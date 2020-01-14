@@ -8,40 +8,59 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
-public class Tankdrive extends CommandBase {
+public class MoveInAStraightLine extends CommandBase {
+  double rotationsForward; 
+
   /**
-   * Creates a new Tankdrive.
+   * Creates a new MoveForward.
    */
-  public Tankdrive() {
+  public MoveInAStraightLine(double rotations) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.drivetrain);
+
+    rotationsForward = rotations;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    RobotContainer.drivetrain.resetLeftEncoder();
+    RobotContainer.drivetrain.resetRightEncoder(); 
+
+    RobotContainer.drivetrain.setLeftMotorPosition(rotationsForward);
+    RobotContainer.drivetrain.setRightMotorPosition(rotationsForward);
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.drivetrain.setLeftMotorSpeed(RobotContainer.driveStick.getRawAxis(Constants.leftAxis));
-    RobotContainer.drivetrain.setRightMotorSpeed(RobotContainer.driveStick.getRawAxis(Constants.rightAxis));
+
+
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-    RobotContainer.drivetrain.setLeftMotorSpeed(0);
-    RobotContainer.drivetrain.setRightMotorSpeed(0);
+  public void end(boolean interrupted) {    
+    RobotContainer.drivetrain.setLeftMotorPosition(RobotContainer.drivetrain.getLeftMotorEncoder());
+    RobotContainer.drivetrain.setRightMotorPosition(RobotContainer.drivetrain.getRightMotorEncoder());
+
+    if(interrupted == true){
+      RobotContainer.drivetrain.setLeftMotorSpeed(0);
+      RobotContainer.drivetrain.setLeftMotorSpeed(0);
+    }
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    
+    //TODO test the logic for stopping forward movement
+    if((RobotContainer.drivetrain.getLeftMotorEncoder() == rotationsForward) && (RobotContainer.drivetrain.getRightMotorEncoder() == rotationsForward)){
+      return true; 
+    }
+    return false; 
   }
 }

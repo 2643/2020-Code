@@ -55,12 +55,27 @@ public class Drivetrain extends SubsystemBase {
     rightBackMotor.getPIDController().setFF(rightkFF);
   }
 
+  /**
+   * Gets the encoder position of the left side of the drivetrain 
+   * @return double rotations
+   */
+  public double getLeftMotorEncoder(){
+    return leftFrontMotor.getEncoder().getPosition();
+  }
+
+  /**
+   * Gets the encoder position of the right side of the drivetrain
+   * @return double rotations
+   */
+  public double getRightMotorEncoder(){
+    return rightFrontMotor.getEncoder().getPosition(); 
+  }
 
   /**
    * Sets the speed of the left side motors using Duty Cycle
    * @param speed from -1 to 1, speed to set motor
    */
-  public static void setLeftMotorSpeed(double speed){
+  public void setLeftMotorSpeed(double speed){
     leftFrontMotor.getPIDController().setReference(speed, ControlType.kDutyCycle);
     leftBackMotor.getPIDController().setReference(speed, ControlType.kDutyCycle);
   }
@@ -69,7 +84,7 @@ public class Drivetrain extends SubsystemBase {
    * Sets the speed of the right side motors using Duty Cycle
    * @param speed -1 tp 1, speed to set motor
    */
-  public static void setRightMotorSpeed(double speed){
+  public void setRightMotorSpeed(double speed){
     rightFrontMotor.getPIDController().setReference(speed, ControlType.kDutyCycle);
     rightBackMotor.getPIDController().setReference(speed, ControlType.kDutyCycle);
   }
@@ -78,7 +93,7 @@ public class Drivetrain extends SubsystemBase {
    * Sets the speed of the drivetrain using Duty Cycle
    * @param speed -1 to 1, speed to set motor
    */
-  public static void setMotorSpeed(double speed){
+  public void setMotorSpeed(double speed){
     setLeftMotorSpeed(speed);
     setRightMotorSpeed(speed);
   }
@@ -87,17 +102,30 @@ public class Drivetrain extends SubsystemBase {
    * Sets the position of the left side of the drivetrain using Position
    * @param rotations 
    */
-  public static void setLeftMotorPosition(double rotations){
+  public void setLeftMotorPosition(double rotations){
     leftFrontMotor.getPIDController().setReference(rotations, ControlType.kPosition);
   }
   /**
    * Sets the position of the right side of the drivetrain using Position
    * @param rotations
    */
-  public static void setRightMotorPosition(double rotations){
+  public void setRightMotorPosition(double rotations){
     rightFrontMotor.getPIDController().setReference(rotations, ControlType.kPosition);
   }
 
+  /**
+   * Resets the left encoder
+   */
+  public void resetLeftEncoder(){
+    leftFrontMotor.getEncoder().setPosition(0);
+  }
+
+  /**
+   * Resets the right encoder
+   */
+  public void resetRightEncoder(){
+    rightFrontMotor.getEncoder().setPosition(0);
+  }
 
   @Override
   public void periodic() {
