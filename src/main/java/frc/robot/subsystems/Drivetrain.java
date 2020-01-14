@@ -12,18 +12,19 @@ import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class Drivetrain extends SubsystemBase {
-  private static CANSparkMax leftFrontMotor = new CANSparkMax(0, MotorType.kBrushless);
-  private static CANSparkMax leftBackMotor = new CANSparkMax(1, MotorType.kBrushless);
+  private static CANSparkMax leftFrontMotor = new CANSparkMax(Constants.leftFrontMotorPort, MotorType.kBrushless);
+  private static CANSparkMax leftBackMotor = new CANSparkMax(Constants.leftBackMotorPort, MotorType.kBrushless);
 
   double leftkP = 0; 
   double leftkI = 0;
   double leftkD = 0;
   double leftkFF = 0; 
 
-  private static CANSparkMax rightFrontMotor = new CANSparkMax(2, MotorType.kBrushless);
-  private static CANSparkMax rightBackMotor = new CANSparkMax(3, MotorType.kBrushless);
+  private static CANSparkMax rightFrontMotor = new CANSparkMax(Constants.rightFrontMotorPort, MotorType.kBrushless);
+  private static CANSparkMax rightBackMotor = new CANSparkMax(Constants.rightBackMotorPort, MotorType.kBrushless);
 
   double rightkP = 0;
   double rightkI = 0;
@@ -76,8 +77,8 @@ public class Drivetrain extends SubsystemBase {
    * @param speed from -1 to 1, speed to set motor
    */
   public void setLeftMotorSpeed(double speed){
-    leftFrontMotor.getPIDController().setReference(speed, ControlType.kDutyCycle);
-    leftBackMotor.getPIDController().setReference(speed, ControlType.kDutyCycle);
+    leftFrontMotor.getPIDController().setReference(-speed, ControlType.kDutyCycle);
+    leftBackMotor.getPIDController().setReference(-speed, ControlType.kDutyCycle);
   }
 
   /**

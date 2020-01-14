@@ -16,10 +16,10 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static int leftFrontMotorPort = 0; //TODO determine drivetrain ports
-    public static int leftBackMotorPort = 0; //TODO determine drivetrain ports
-    public static int rightFrontMotorPort = 0; //TODO determine drivetrain ports
-    public static int rightBackMotorPort = 0; //TODO determine drivetrain ports
+    public static int leftFrontMotorPort = 1;
+    public static int leftBackMotorPort = 2;
+    public static int rightFrontMotorPort = 3; 
+    public static int rightBackMotorPort = 4; 
 
     public static int driveStickPort = 0; 
     public static int opBoardPort = 1;

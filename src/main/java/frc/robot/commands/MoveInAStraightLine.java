@@ -57,7 +57,7 @@ public class MoveInAStraightLine extends CommandBase {
   @Override
   public boolean isFinished() {
     
-    //TODO test the logic for stopping forward movement
+    //TODO test the logic for stopping forward/backward movement
     if((RobotContainer.drivetrain.getLeftMotorEncoder() == rotationsForward) && (RobotContainer.drivetrain.getRightMotorEncoder() == rotationsForward)){
       return true; 
     }
