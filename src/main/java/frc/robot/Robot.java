@@ -60,6 +60,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledPeriodic() {
+    RobotContainer.drivetrain.resetAllEncoder();
   }
 
   /**
@@ -80,6 +81,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
+    
   }
 
   @Override
@@ -104,6 +106,7 @@ public class Robot extends TimedRobot {
   public void testInit() {
     // Cancels all running commands at the start of test mode.
     CommandScheduler.getInstance().cancelAll();
+    RobotContainer.drivetrain.resetAllEncoder();
   }
 
   /**
@@ -111,5 +114,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
+    //RobotContainer.drivetrain.setAllMotorPosition(10);
+    //RobotContainer.drivetrain.getRightMotorEncoder();
+    System.out.println(RobotContainer.drivetrain.getRightMotorEncoder());
+    //RobotContainer.drivetrain.setMotorSpeed(0.01);
   }
 }
