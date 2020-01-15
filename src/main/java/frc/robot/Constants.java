@@ -27,4 +27,13 @@ public final class Constants {
     public static final int leftAxis = 1;
     public static final int rightAxis = 5; 
 
+    public static final int rotate90left = 0; //TODO determine encoder value for the 90 degree turn on the left side of the drivtrain
+    public static final int rotate90right = 0; // TODO determine encoder value for the 90 degree turn on the right side of the drivetrain
+
+    public static final int rotate180left = 0; //TODO determine encoder value for the 180 degree turn on the left side of the drivetrain
+    public static final int rotate180right = 0; // TODO determine encoder value for the 180 degree turn of the right side of the drivtrain
+
+    public static final int rotate235left = 0; //TODO determine encoder value for the 235 degree turn on the left side of the drivetrain
+    public static final int rotate235right = 0; //TODO determine encoder value for the 235 degree turn on the right side of the drivetrain
+
 }
