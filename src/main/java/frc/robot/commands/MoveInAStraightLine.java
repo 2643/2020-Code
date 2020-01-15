@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class MoveInAStraightLine extends CommandBase {
@@ -58,8 +59,10 @@ public class MoveInAStraightLine extends CommandBase {
   public boolean isFinished() {
     
     //TODO test the logic for stopping forward/backward movement
-    if((RobotContainer.drivetrain.getLeftMotorEncoder() == rotationsForward) && (RobotContainer.drivetrain.getRightMotorEncoder() == rotationsForward)){
+    if((RobotContainer.drivetrain.getLeftMotorEncoder() >= (rotationsForward + Constants.allowedError)) && (RobotContainer.drivetrain.getLeftMotorEncoder() <= (rotationsForward - Constants.allowedError))){
+        if((RobotContainer.drivetrain.getRightMotorEncoder() >= (rotationsForward + Constants.allowedError)) && (RobotContainer.drivetrain.getRightMotorEncoder() <= (rotationsForward - Constants.allowedError))){
       return true; 
+      }
     }
     return false; 
   }

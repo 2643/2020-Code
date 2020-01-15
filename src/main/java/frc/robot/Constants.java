@@ -27,4 +27,6 @@ public final class Constants {
     public static final int leftAxis = 1;
     public static final int rightAxis = 5; 
 
+    public static final double allowedError = 0.05;
+
 }

@@ -18,7 +18,7 @@ public class Drivetrain extends SubsystemBase {
   private static CANSparkMax leftFrontMotor = new CANSparkMax(Constants.leftFrontMotorPort, MotorType.kBrushless);
   private static CANSparkMax leftBackMotor = new CANSparkMax(Constants.leftBackMotorPort, MotorType.kBrushless);
 
-  double leftkP = 0; 
+  double leftkP = 0.1; 
   double leftkI = 0;
   double leftkD = 0;
   double leftkFF = 0; 
@@ -26,10 +26,13 @@ public class Drivetrain extends SubsystemBase {
   private static CANSparkMax rightFrontMotor = new CANSparkMax(Constants.rightFrontMotorPort, MotorType.kBrushless);
   private static CANSparkMax rightBackMotor = new CANSparkMax(Constants.rightBackMotorPort, MotorType.kBrushless);
 
-  double rightkP = 0;
+  double rightkP = 0.1;
   double rightkI = 0;
   double rightkD = 0; 
   double rightkFF = 0;
+
+  double MaxOutput = 0.2;
+  double MinOutput = -0.2;
 
   /**
    * Creates a new Drivetrain.
@@ -39,21 +42,29 @@ public class Drivetrain extends SubsystemBase {
     leftFrontMotor.getPIDController().setI(leftkI);
     leftFrontMotor.getPIDController().setD(leftkD);
     leftFrontMotor.getPIDController().setFF(leftkFF);
-
+    leftFrontMotor.getPIDController().setOutputRange(MinOutput, MaxOutput);
+    
     leftBackMotor.getPIDController().setP(leftkP);
     leftBackMotor.getPIDController().setI(leftkI);
     leftBackMotor.getPIDController().setD(leftkD);
     leftBackMotor.getPIDController().setFF(leftkFF);
+    leftBackMotor.getPIDController().setOutputRange(MinOutput, MaxOutput);
 
     rightFrontMotor.getPIDController().setP(rightkP);
     rightFrontMotor.getPIDController().setI(rightkI);
     rightFrontMotor.getPIDController().setD(rightkD);
     rightFrontMotor.getPIDController().setFF(rightkFF);
+    rightFrontMotor.getPIDController().setOutputRange(MinOutput, MaxOutput);
 
     rightBackMotor.getPIDController().setP(rightkP);
     rightBackMotor.getPIDController().setI(rightkI);
     rightBackMotor.getPIDController().setD(rightkD);
     rightBackMotor.getPIDController().setFF(rightkFF);
+    rightBackMotor.getPIDController().setOutputRange(MinOutput, MaxOutput);
+    /*
+    leftBackMotor.follow(leftFrontMotor);
+    rightBackMotor.follow(rightFrontMotor);
+    */
   }
 
   /**
@@ -78,16 +89,14 @@ public class Drivetrain extends SubsystemBase {
    */
   public void setLeftMotorSpeed(double speed){
     leftFrontMotor.getPIDController().setReference(-speed, ControlType.kDutyCycle);
-    leftBackMotor.getPIDController().setReference(-speed, ControlType.kDutyCycle);
   }
 
   /**
    * Sets the speed of the right side motors using Duty Cycle
-   * @param speed -1 tp 1, speed to set motor
+   * @param speed -1 to 1, speed to set motor
    */
   public void setRightMotorSpeed(double speed){
     rightFrontMotor.getPIDController().setReference(speed, ControlType.kDutyCycle);
-    rightBackMotor.getPIDController().setReference(speed, ControlType.kDutyCycle);
   }
 
   /**
@@ -112,6 +121,11 @@ public class Drivetrain extends SubsystemBase {
    */
   public void setRightMotorPosition(double rotations){
     rightFrontMotor.getPIDController().setReference(rotations, ControlType.kPosition);
+    rightBackMotor.getPIDController().setReference(rotations, ControlType.kPosition);
+  }
+  public void setAllMotorPosition(double rotations){
+    setRightMotorPosition(rotations);
+    setLeftMotorPosition(rotations);
   }
 
   /**
@@ -127,7 +141,10 @@ public class Drivetrain extends SubsystemBase {
   public void resetRightEncoder(){
     rightFrontMotor.getEncoder().setPosition(0);
   }
-
+  public void resetAllEncoder(){
+    resetLeftEncoder();
+    resetRightEncoder();
+  }
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
