@@ -38,20 +38,14 @@ public class MoveInAStraightLine extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
-
+    System.out.println(RobotContainer.drivetrain.getLeftMotorEncoder() + " " + RobotContainer.drivetrain.getRightMotorEncoder());
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {    
-    RobotContainer.drivetrain.setLeftMotorPosition(RobotContainer.drivetrain.getLeftMotorEncoder());
-    RobotContainer.drivetrain.setRightMotorPosition(RobotContainer.drivetrain.getRightMotorEncoder());
-
-    if(interrupted == true){
       RobotContainer.drivetrain.setLeftMotorSpeed(0);
-      RobotContainer.drivetrain.setLeftMotorSpeed(0);
-    }
+      RobotContainer.drivetrain.setRightMotorSpeed(0);
   }
 
   // Returns true when the command should end.
@@ -59,9 +53,10 @@ public class MoveInAStraightLine extends CommandBase {
   public boolean isFinished() {
     
     //TODO test the logic for stopping forward/backward movement
-    if((RobotContainer.drivetrain.getLeftMotorEncoder() <= (rotationsForward + Constants.allowedError)) && (RobotContainer.drivetrain.getLeftMotorEncoder() >= (rotationsForward - Constants.allowedError))){
-        if((RobotContainer.drivetrain.getRightMotorEncoder() <= (rotationsForward + Constants.allowedError)) && (RobotContainer.drivetrain.getRightMotorEncoder() >= (rotationsForward - Constants.allowedError))){
-      return true; 
+    if((Math.abs(RobotContainer.drivetrain.getLeftMotorEncoder()) <= (rotationsForward + Constants.allowedError)) && (Math.abs(RobotContainer.drivetrain.getLeftMotorEncoder()) >= (rotationsForward - Constants.allowedError))){
+      if((Math.abs(RobotContainer.drivetrain.getRightMotorEncoder()) <= (rotationsForward + Constants.allowedError)) && (Math.abs(RobotContainer.drivetrain.getRightMotorEncoder()) >= (rotationsForward - Constants.allowedError))){
+        System.out.println("finished");
+        return true; 
       }
     }
     return false; 

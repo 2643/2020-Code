@@ -35,6 +35,6 @@ public final class Constants {
 
     public static final int rotate235left = 0; //TODO determine encoder value for the 235 degree turn on the left side of the drivetrain
     public static final int rotate235right = 0; //TODO determine encoder value for the 235 degree turn on the right side of the drivetrain
-    public static final double allowedError = 0.05;
+    public static final double allowedError = 0.09;
 
 }

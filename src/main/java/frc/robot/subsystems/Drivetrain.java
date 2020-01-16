@@ -89,6 +89,7 @@ public class Drivetrain extends SubsystemBase {
    */
   public void setLeftMotorSpeed(double speed){
     leftFrontMotor.getPIDController().setReference(-speed, ControlType.kDutyCycle);
+    leftBackMotor.getPIDController().setReference(-speed, ControlType.kDutyCycle);
   }
 
   /**
@@ -97,6 +98,7 @@ public class Drivetrain extends SubsystemBase {
    */
   public void setRightMotorSpeed(double speed){
     rightFrontMotor.getPIDController().setReference(speed, ControlType.kDutyCycle);
+    rightBackMotor.getPIDController().setReference(speed, ControlType.kDutyCycle);
   }
 
   /**
@@ -114,15 +116,18 @@ public class Drivetrain extends SubsystemBase {
    */
   public void setLeftMotorPosition(double rotations){
     leftFrontMotor.getPIDController().setReference(rotations, ControlType.kPosition);
+    leftBackMotor.getPIDController().setReference(rotations, ControlType.kPosition);
   }
   /**
    * Sets the position of the right side of the drivetrain using Position
    * @param rotations
    */
   public void setRightMotorPosition(double rotations){
-    rightFrontMotor.getPIDController().setReference(rotations, ControlType.kPosition);
-    rightBackMotor.getPIDController().setReference(rotations, ControlType.kPosition);
+    rightFrontMotor.getPIDController().setReference(-rotations, ControlType.kPosition);
+    rightBackMotor.getPIDController().setReference(-rotations, ControlType.kPosition);
   }
+
+
   public void setAllMotorPosition(double rotations){
     setRightMotorPosition(rotations);
     setLeftMotorPosition(rotations);
@@ -133,6 +138,7 @@ public class Drivetrain extends SubsystemBase {
    */
   public void resetLeftEncoder(){
     leftFrontMotor.getEncoder().setPosition(0);
+    leftBackMotor.getEncoder().setPosition(0);
   }
 
   /**
@@ -140,11 +146,14 @@ public class Drivetrain extends SubsystemBase {
    */
   public void resetRightEncoder(){
     rightFrontMotor.getEncoder().setPosition(0);
+    rightBackMotor.getEncoder().setPosition(0);
   }
+
   public void resetAllEncoder(){
     resetLeftEncoder();
     resetRightEncoder();
   }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
