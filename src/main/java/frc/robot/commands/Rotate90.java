@@ -12,12 +12,17 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class Rotate90 extends CommandBase {
+  String direction;
+  String compare;
+
   /**
    * Creates a new Rotate.
    */
-  public Rotate90() {
+  public Rotate90(String Which) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.drivetrain);
+    direction = Which;
+    compare = "Left";
 
   }
 
@@ -26,8 +31,13 @@ public class Rotate90 extends CommandBase {
   public void initialize() {
     RobotContainer.drivetrain.resetLeftEncoder();
     RobotContainer.drivetrain.resetRightEncoder();
-    RobotContainer.drivetrain.setRightMotorPosition(Constants.rotate90right);
-    RobotContainer.drivetrain.setLeftMotorPosition(Constants.rotate90left);
+    if ((direction.compareToIgnoreCase(compare)) == 0) {
+      RobotContainer.drivetrain.setRightMotorPosition(-Constants.rotate90Left);
+      RobotContainer.drivetrain.setLeftMotorPosition(Constants.rotate90Left);
+    } else {
+      RobotContainer.drivetrain.setRightMotorPosition(-Constants.rotate90Right);
+      RobotContainer.drivetrain.setLeftMotorPosition(Constants.rotate90Right);
+    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -41,7 +51,7 @@ public class Rotate90 extends CommandBase {
     RobotContainer.drivetrain.setLeftMotorPosition(RobotContainer.drivetrain.getLeftMotorEncoder());
     RobotContainer.drivetrain.setRightMotorPosition(RobotContainer.drivetrain.getRightMotorEncoder());
 
-    if(interrupted == true){
+    if (interrupted == true) {
       RobotContainer.drivetrain.setLeftMotorSpeed(0);
       RobotContainer.drivetrain.setLeftMotorSpeed(0);
     }
@@ -50,9 +60,10 @@ public class Rotate90 extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    //TODO Make sure if logic works 
-    if((RobotContainer.drivetrain.getLeftMotorEncoder() == Constants.rotate90left) && (RobotContainer.drivetrain.getRightMotorEncoder() == Constants.rotate90right))
-      return true;    
+    // TODO Make sure if logic works
+    if ((RobotContainer.drivetrain.getLeftMotorEncoder() == Constants.rotate90Left)
+        && (RobotContainer.drivetrain.getRightMotorEncoder() == Constants.rotate90Left))
+      return true;
     return false;
-    }
   }
+}

@@ -31,8 +31,8 @@ public class Drivetrain extends SubsystemBase {
   double rightkD = 0; 
   double rightkFF = 0;
 
-  double MaxOutput = 0.2;
-  double MinOutput = -0.2;
+  double MaxOutput = 0.1;
+  double MinOutput = -0.1;
 
   /**
    * Creates a new Drivetrain.

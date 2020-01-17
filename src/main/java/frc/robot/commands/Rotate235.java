@@ -25,8 +25,8 @@ public class Rotate235 extends CommandBase {
   public void initialize() {
     RobotContainer.drivetrain.resetLeftEncoder();
     RobotContainer.drivetrain.resetRightEncoder();
-    RobotContainer.drivetrain.setRightMotorPosition(Constants.rotate235right);
-    RobotContainer.drivetrain.setLeftMotorPosition(Constants.rotate235left);
+    RobotContainer.drivetrain.setRightMotorPosition(Constants.rotate235Right);
+    RobotContainer.drivetrain.setLeftMotorPosition(Constants.rotate235Left);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -48,7 +48,7 @@ public class Rotate235 extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if((RobotContainer.drivetrain.getLeftMotorEncoder() == Constants.rotate235left) && (RobotContainer.drivetrain.getRightMotorEncoder() == Constants.rotate235right))
+    if((RobotContainer.drivetrain.getLeftMotorEncoder() == Constants.rotate235Left) && (RobotContainer.drivetrain.getRightMotorEncoder() == Constants.rotate235Right))
       return true;    
     return false;
   }

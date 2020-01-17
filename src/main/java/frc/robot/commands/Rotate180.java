@@ -26,8 +26,8 @@ public class Rotate180 extends CommandBase {
   public void initialize() {
     RobotContainer.drivetrain.resetLeftEncoder();
     RobotContainer.drivetrain.resetRightEncoder();
-    RobotContainer.drivetrain.setRightMotorPosition(Constants.rotate180right);
-    RobotContainer.drivetrain.setLeftMotorPosition(Constants.rotate180left);
+    RobotContainer.drivetrain.setRightMotorPosition(Constants.rotate180);
+    RobotContainer.drivetrain.setLeftMotorPosition(Constants.rotate180);
 
   }
 
@@ -52,7 +52,7 @@ public class Rotate180 extends CommandBase {
   @Override
   public boolean isFinished() {
     //TODO Make sure if logic works 
-    if((RobotContainer.drivetrain.getLeftMotorEncoder() == Constants.rotate180left) && (RobotContainer.drivetrain.getRightMotorEncoder() == Constants.rotate180right))
+    if((RobotContainer.drivetrain.getLeftMotorEncoder() == Constants.rotate180) && (RobotContainer.drivetrain.getRightMotorEncoder() == Constants.rotate180))
       return true;    
     return false;
   }
