@@ -12,12 +12,16 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class Rotate235 extends CommandBase {
+  String direction;
+  String compare;
   /**
    * Creates a new Rotate235.
    */
-  public Rotate235() {
+  public Rotate235(String Which) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.drivetrain);
+    direction = Which;
+    compare = "Left";
   }
 
   // Called when the command is initially scheduled.
@@ -25,8 +29,13 @@ public class Rotate235 extends CommandBase {
   public void initialize() {
     RobotContainer.drivetrain.resetLeftEncoder();
     RobotContainer.drivetrain.resetRightEncoder();
-    RobotContainer.drivetrain.setRightMotorPosition(Constants.rotate235Right);
-    RobotContainer.drivetrain.setLeftMotorPosition(Constants.rotate235Left);
+    if ((direction.compareToIgnoreCase(compare)) == 0) {
+      RobotContainer.drivetrain.setRightMotorPosition(-Constants.rotate235Left);
+      RobotContainer.drivetrain.setLeftMotorPosition(Constants.rotate235Left);
+    } else {
+      RobotContainer.drivetrain.setRightMotorPosition(-Constants.rotate235Right);
+      RobotContainer.drivetrain.setLeftMotorPosition(Constants.rotate235Right);
+    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
