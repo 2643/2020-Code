@@ -26,7 +26,7 @@ public class Rotate180 extends CommandBase {
   public void initialize() {
     RobotContainer.drivetrain.resetLeftEncoder();
     RobotContainer.drivetrain.resetRightEncoder();
-    RobotContainer.drivetrain.setRightMotorPosition(Constants.rotate180);
+    RobotContainer.drivetrain.setRightMotorPosition(-Constants.rotate180);
     RobotContainer.drivetrain.setLeftMotorPosition(Constants.rotate180);
 
   }
