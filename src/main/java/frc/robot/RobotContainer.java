@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-//import frc.robot.commands.MoveInAStraightLine;
+import frc.robot.commands.MoveInAStraightLine;
 import frc.robot.commands.Rotate90;
 import frc.robot.subsystems.Drivetrain;
 
@@ -28,8 +28,8 @@ public class RobotContainer {
 
   public static Drivetrain drivetrain = new Drivetrain();
 
-  //MoveInAStraightLine auto = new MoveInAStraightLine(10);
-  Rotate90 auto = new Rotate90("Left");
+  MoveInAStraightLine auto = new MoveInAStraightLine(70);
+  //Rotate90 auto = new Rotate90("Left");
 
 
   /**

@@ -32,7 +32,6 @@ public class MoveInAStraightLine extends CommandBase {
 
     RobotContainer.drivetrain.setLeftMotorPosition(rotationsForward);
     RobotContainer.drivetrain.setRightMotorPosition(rotationsForward);
-
   }
 
   // Called every time the scheduler runs while the command is scheduled.
