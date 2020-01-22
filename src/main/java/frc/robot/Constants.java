@@ -42,5 +42,6 @@ public final class Constants {
 
     public static final int frictionWheelMotorPort = 0; //TODO Change to correct port
     
+    public static final double maxRPM = 5500;
 
 }

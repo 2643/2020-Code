@@ -12,6 +12,10 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class Tankdrive extends CommandBase {
+  double leftSpeed = 0;
+  double rightSpeed = 0;
+  boolean finished = false;
+
   /**
    * Creates a new Tankdrive.
    */
@@ -23,13 +27,32 @@ public class Tankdrive extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    if (Math.abs(RobotContainer.driveStick.getRawAxis(Constants.leftAxis)) < 0.05) {
+      if (Math.abs(RobotContainer.driveStick.getRawAxis(Constants.rightAxis)) < 0.05) {
+        finished = true;
+      }
+    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.drivetrain.setLeftMotorSpeed(RobotContainer.driveStick.getRawAxis(Constants.leftAxis));
-    RobotContainer.drivetrain.setRightMotorSpeed(RobotContainer.driveStick.getRawAxis(Constants.rightAxis));
+    if (Math.abs(RobotContainer.driveStick.getRawAxis(Constants.leftAxis)) > 0.03) {
+      leftSpeed = (RobotContainer.driveStick.getRawAxis(Constants.leftAxis) * Constants.maxRPM);
+    }
+    else{
+      leftSpeed = 0;
+    }
+
+    if (Math.abs(RobotContainer.driveStick.getRawAxis(Constants.rightAxis)) > 0.03) {
+      rightSpeed = (RobotContainer.driveStick.getRawAxis(Constants.rightAxis) * Constants.maxRPM);
+    }
+    else{
+      rightSpeed = 0;
+    }
+    
+    RobotContainer.drivetrain.setLeftMotorSpeed(leftSpeed);
+    RobotContainer.drivetrain.setRightMotorSpeed(rightSpeed);
   }
 
   // Called once the command ends or is interrupted.
@@ -37,11 +60,12 @@ public class Tankdrive extends CommandBase {
   public void end(boolean interrupted) {
     RobotContainer.drivetrain.setLeftMotorSpeed(0);
     RobotContainer.drivetrain.setRightMotorSpeed(0);
+    finished = false;
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return finished;
   }
 }
