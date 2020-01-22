@@ -37,4 +37,10 @@ public final class Constants {
 
     public static final double allowedError = 0.05;
 
+    public static final int doubleSolenoidPort1 = 8;//TODO go back and fix this
+    public static final int doubleSolenoidPort2 = 9;//TODO go back and fix this
+
+    public static final int frictionWheelMotorPort = 0; //TODO Change to correct port
+    
+
 }
