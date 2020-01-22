@@ -26,10 +26,11 @@ public class RobotContainer {
   public static Joystick driveStick = new Joystick(Constants.driveStickPort);
   public static Joystick opBoard = new Joystick(Constants.opBoardPort);
 
+
   public static Drivetrain drivetrain = new Drivetrain();
 
-  MoveInAStraightLine auto = new MoveInAStraightLine(70);
-  //Rotate90 auto = new Rotate90("Left");
+  MoveInAStraightLine auto = new MoveInAStraightLine(1000);
+  // auto = new Rotate90("Left");
 
 
   /**

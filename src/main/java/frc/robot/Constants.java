@@ -37,4 +37,6 @@ public final class Constants {
 
     public static final double allowedError = 0.05;
 
+    public static final double maxRPM = 5500;
+
 }
