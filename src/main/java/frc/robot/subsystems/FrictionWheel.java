@@ -29,6 +29,7 @@ public class FrictionWheel extends SubsystemBase {
   public void extendPiston(){
     frictionWheelPiston.set(Value.kForward);//TODO Check direction
   }
+  
   public void retractPiston(){
     frictionWheelPiston.set(Value.kReverse);//TODO Check direction
   }
@@ -37,14 +38,6 @@ public class FrictionWheel extends SubsystemBase {
   }
   @Override
   public void periodic() {
-    /*
-    if(Diston_button.get()==0){
-      frictionWheelPiston.set(DoubleSolenoid.Value.kOff);
-    }else if(Diston_button.get()==1){
-      frictionWheelPiston.set(DoubleSolenoid.Value.kForward);
-    }else if(Diston_button.get()==2){
-      frictionWheelPiston.set(DoubleSolenoid.Value.kReverse);
-    }
-    */
+    
   }
 }

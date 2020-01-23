@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.MoveInAStraightLine;
 import frc.robot.commands.Rotate90;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.FrictionWheel;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -28,7 +29,7 @@ public class RobotContainer {
 
 
   public static Drivetrain drivetrain = new Drivetrain();
-
+  public static FrictionWheel frictionWheel = new FrictionWheel();
   MoveInAStraightLine auto = new MoveInAStraightLine(1000);
   // auto = new Rotate90("Left");
 
