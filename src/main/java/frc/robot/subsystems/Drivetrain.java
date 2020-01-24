@@ -38,6 +38,7 @@ public class Drivetrain extends SubsystemBase {
   double maxAccel = 3000;
   int slotID = 0;
   int maxVel = 7000;
+  int minVel = 500;
 
   double allowedErr = 0.1;
 
@@ -54,6 +55,7 @@ public class Drivetrain extends SubsystemBase {
     leftFrontMotor.getPIDController().setSmartMotionMaxAccel(maxAccel, slotID);
     leftFrontMotor.getPIDController().setSmartMotionAllowedClosedLoopError(allowedErr, slotID);
     leftFrontMotor.getPIDController().setSmartMotionMaxVelocity(maxVel, slotID);
+    leftFrontMotor.getPIDController().setSmartMotionMinOutputVelocity(minVel, slotID);
 
     // Set the PID Controller for Left Back Motor
     leftBackMotor.getPIDController().setP(kP, slotID);
@@ -64,6 +66,7 @@ public class Drivetrain extends SubsystemBase {
     leftBackMotor.getPIDController().setSmartMotionMaxAccel(maxAccel, slotID);
     leftBackMotor.getPIDController().setSmartMotionAllowedClosedLoopError(allowedErr, slotID);
     leftBackMotor.getPIDController().setSmartMotionMaxVelocity(maxVel, slotID);
+    leftBackMotor.getPIDController().setSmartMotionMinOutputVelocity(minVel, slotID);
 
     // Set the PID Controller for Right Front Motor
     rightFrontMotor.restoreFactoryDefaults();
@@ -75,6 +78,7 @@ public class Drivetrain extends SubsystemBase {
     rightFrontMotor.getPIDController().setSmartMotionMaxAccel(maxAccel, slotID);
     rightFrontMotor.getPIDController().setSmartMotionAllowedClosedLoopError(allowedErr, slotID);
     rightFrontMotor.getPIDController().setSmartMotionMaxVelocity(maxVel, slotID);
+    rightFrontMotor.getPIDController().setSmartMotionMinOutputVelocity(minVel, slotID);
 
     // Set the PID Controller for Right Back Motor
     rightBackMotor.restoreFactoryDefaults();
@@ -86,6 +90,7 @@ public class Drivetrain extends SubsystemBase {
     rightBackMotor.getPIDController().setSmartMotionMaxAccel(maxAccel, slotID);
     rightBackMotor.getPIDController().setSmartMotionAllowedClosedLoopError(allowedErr, slotID);
     rightBackMotor.getPIDController().setSmartMotionMaxVelocity(maxVel, slotID);
+    rightBackMotor.getPIDController().setSmartMotionMinOutputVelocity(minVel, slotID);
 
     // Sets the back motors to follow the front motors
     //leftBackMotor.follow(leftFrontMotor);
@@ -119,8 +124,8 @@ public class Drivetrain extends SubsystemBase {
    * @param speed from -1 to 1, speed to set motor
    */
   public void setLeftMotorSpeed(double speed) {
-    leftFrontMotor.getPIDController().setReference(-speed, ControlType.kVelocity, slotID, 0);
-    leftBackMotor.getPIDController().setReference(-speed, ControlType.kVelocity, slotID, 0);
+    leftFrontMotor.getPIDController().setReference(-speed, ControlType.kDutyCycle, slotID, 0);
+    leftBackMotor.getPIDController().setReference(-speed, ControlType.kDutyCycle, slotID, 0);
   }
 
   /**
@@ -129,8 +134,8 @@ public class Drivetrain extends SubsystemBase {
    * @param speed -1 to 1, speed to set motor
    */
   public void setRightMotorSpeed(double speed) {
-    rightFrontMotor.getPIDController().setReference(speed, ControlType.kVelocity, slotID, 0);
-    rightBackMotor.getPIDController().setReference(speed, ControlType.kVelocity, slotID, 0);
+    rightFrontMotor.getPIDController().setReference(speed, ControlType.kDutyCycle, slotID, 0);
+    rightBackMotor.getPIDController().setReference(speed, ControlType.kDutyCycle, slotID, 0);
   }
 
   /**

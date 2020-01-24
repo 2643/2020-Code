@@ -38,14 +38,14 @@ public class Tankdrive extends CommandBase {
   @Override
   public void execute() {
     if (Math.abs(RobotContainer.driveStick.getRawAxis(Constants.leftAxis)) > 0.03) {
-      leftSpeed = (RobotContainer.driveStick.getRawAxis(Constants.leftAxis) * Constants.maxRPM);
+      leftSpeed = (RobotContainer.driveStick.getRawAxis(Constants.leftAxis));
     }
     else{
       leftSpeed = 0;
     }
 
     if (Math.abs(RobotContainer.driveStick.getRawAxis(Constants.rightAxis)) > 0.03) {
-      rightSpeed = (RobotContainer.driveStick.getRawAxis(Constants.rightAxis) * Constants.maxRPM);
+      rightSpeed = (RobotContainer.driveStick.getRawAxis(Constants.rightAxis));
     }
     else{
       rightSpeed = 0;
