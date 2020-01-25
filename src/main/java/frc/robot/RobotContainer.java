@@ -30,7 +30,9 @@ public class RobotContainer {
 
   public static Drivetrain drivetrain = new Drivetrain();
   public static FrictionWheel frictionWheel = new FrictionWheel();
-  MoveInAStraightLine auto = new MoveInAStraightLine(1000);
+
+
+  MoveInAStraightLine auto = new MoveInAStraightLine(100);
   // auto = new Rotate90("Left");
 
 
