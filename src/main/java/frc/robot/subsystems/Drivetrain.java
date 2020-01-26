@@ -9,9 +9,7 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.ControlType;
-import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import com.revrobotics.CANSparkMaxLowLevel.PeriodicFrame;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -38,7 +36,7 @@ public class Drivetrain extends SubsystemBase {
   double maxAccel = 3000;
   int slotID = 0;
   int maxVel = 7000;
-  int minVel = 500;
+  int minVel = 0;
 
   double allowedErr = 0.1;
 
@@ -156,8 +154,6 @@ public class Drivetrain extends SubsystemBase {
   public void setLeftMotorPosition(double rotations) {
     leftFrontMotor.getPIDController().setReference(rotations, ControlType.kSmartMotion, slotID, 0);
     leftBackMotor.getPIDController().setReference(rotations, ControlType.kSmartMotion, slotID, 0);
-    //leftFrontMotor.getPIDController().setReference(rotations, ControlType.kPosition);
-    //leftBackMotor.getPIDController().setReference(rotations,ControlType.kPosition);
   }
 
   /**
@@ -168,9 +164,6 @@ public class Drivetrain extends SubsystemBase {
   public void setRightMotorPosition(double rotations) {
     rightFrontMotor.getPIDController().setReference(-rotations, ControlType.kSmartMotion, slotID, 0);
     rightBackMotor.getPIDController().setReference(-rotations, ControlType.kSmartMotion, slotID, 0);
-    //System.out.println(rightFrontMotor.getAppliedOutput() + " "  + rightBackMotor.getAppliedOutput());
-    //rightFrontMotor.getPIDController().setReference(-rotations, ControlType.kPosition);
-    //rightBackMotor.getPIDController().setReference(-rotations,ControlType.kPosition);
   }
 
   public void setAllMotorPosition(double rotations) {
