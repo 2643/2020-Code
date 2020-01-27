@@ -21,6 +21,7 @@ public class RetractPiston extends CommandBase {
 
   public RetractPiston() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(RobotContainer.syst);
   }
 
   // Called when the command is initially scheduled.
@@ -34,6 +35,7 @@ public class RetractPiston extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    
   }
 
   // Called once the command ends or is interrupted.

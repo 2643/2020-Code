@@ -17,6 +17,7 @@ public class ExtendPiston extends CommandBase {
   public ExtendPiston() {
     addRequirements(RobotContainer.frictionWheel);
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(RobotContainer.syst);
   }
 
   // Called when the command is initially scheduled.
@@ -25,7 +26,6 @@ public class ExtendPiston extends CommandBase {
     timer.reset();
     timer.start();
     RobotContainer.frictionWheel.extendPiston();
-    
   }
 
   // Called every time the scheduler runs while the command is scheduled.

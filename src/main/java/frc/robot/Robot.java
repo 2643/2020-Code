@@ -49,6 +49,8 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
     CommandScheduler.getInstance().setDefaultCommand(RobotContainer.drivetrain, new Tankdrive());
+    //CommandScheduler.getInstance().setDefaultCommand(RobotContainer.syst, new RetractPiston());
+    
   }
 
   /**

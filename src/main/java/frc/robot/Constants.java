@@ -46,4 +46,6 @@ public final class Constants {
 
     public static final int pistonTimer = 1;
 
+    public static final int extrudeButton = 1;
+
 }
