@@ -22,18 +22,23 @@ import edu.wpi.first.wpilibj.util.Color;
  * wherever the constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static int leftFrontMotorPort = 1;
-    public static int leftBackMotorPort = 2;
-    public static int rightFrontMotorPort = 3; 
-    public static int rightBackMotorPort = 4; 
-
+    //OI Constants
     public static int driveStickPort = 0; 
     public static int opBoardPort = 1;
 
     public static final int leftAxis = 1;
     public static final int rightAxis = 5; 
 
-    public static final int rotate90Left = -13; //TODO determine encoder value for the 90 degree turn on the left side of the drivtrain
+    public static final int extrudeButton = 1;
+
+
+    //Drivetrain Constants
+    public static int leftFrontMotorPort = 1;
+    public static int leftBackMotorPort = 2;
+    public static int rightFrontMotorPort = 3; 
+    public static int rightBackMotorPort = 4; 
+
+    public static final int rotate90Left = -13; //TODO determine encoder value for the 90 degree turn on the left side of the drivetrain
     public static final int rotate90Right = 13; 
 
     public static final int rotate180 = 26; //TODO determine encoder value for the 180 degree turn on the left side of the drivetrain
@@ -43,16 +48,16 @@ public final class Constants {
 
     public static final double allowedError = 0.05;
 
-    public static final int frictionWheelMotorPort = 7;
 
-    public static final int frictionWheelSpeed = 1;
+    //Friction Wheel Constants
+    public static final int frictionWheelMotorPort = 7;
 
     public static final int doubleSolenoidPort1 = 5;
     public static final int doubleSolenoidPort2 = 5;
 
+    public static final int frictionWheelSpeed = 1;
+    
     public static final int pistonTimer = 1;
-
-    public static final int extrudeButton = 1;
 
     public static String colorString = "";
 
@@ -61,4 +66,8 @@ public final class Constants {
     public static final Color kRedTarget = ColorMatch.makeColor(0.561, 0.232, 0.114);
     public static final Color kYellowTarget = ColorMatch.makeColor(0.361, 0.524, 0.113);
 
+    //Climber Constants
+    public static final int leftClimberPort = 0; //TODO find the port of the left climber port
+    public static final int rightClimberPort = 0; //TODO find the port of the right climber port
+    public static final int climberDeliveryMotorPort = 0; //TODO find the port of the climber delivery
 }
