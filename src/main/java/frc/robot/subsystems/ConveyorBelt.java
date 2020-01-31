@@ -46,4 +46,13 @@ public class ConveyorBelt extends SubsystemBase {
   public void setConveyorBeltSpeed(){
     conveyorBeltMotor.set(Constants.conveyorBeltSpeed);
   }
+
+  public int lastIndex(){
+    for(int c = 4; c >= 0; c--){
+      if(conveyoriRSensors[c].get() == true){
+        return c;
+      }
+    }
+    return 0;
+  }
 }

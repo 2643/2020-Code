@@ -21,7 +21,7 @@ public class RetractPiston extends CommandBase {
 
   public RetractPiston() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.syst);
+    addRequirements(RobotContainer.frictionWheel);
   }
 
   // Called when the command is initially scheduled.

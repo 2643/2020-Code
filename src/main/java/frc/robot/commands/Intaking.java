@@ -13,6 +13,10 @@ import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
 public class Intaking extends CommandBase {
+
+  public boolean finished = false;
+  public int lastIRActivated = 0;
+
   /**
    * Creates a new Indexing.
    */
@@ -27,6 +31,11 @@ public class Intaking extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    if(RobotContainer.intake.isBallThere() == false){
+      finished = true;
+    }
+
+    lastIRActivated = RobotContainer.conveyorBelt.lastIndex();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -35,21 +44,23 @@ public class Intaking extends CommandBase {
 
     RobotContainer.intake.setIntakeSpeed();
 
-    if(RobotContainer.intake.isBallThere() == true){
+    if(RobotContainer.intake.isBallThere() == true && lastIRActivated != 4){
       RobotContainer.conveyorBelt.setConveyorBeltSpeed();
     }
-
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-
+    finished = false;
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    if(RobotContainer.conveyorBelt.getConveyorIRs()[lastIRActivated + 1].get() == true && lastIRActivated != 4){ //TODO fix logic error
+      finished = true;
+    }
+    return finished;
   }
 }

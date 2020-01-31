@@ -17,7 +17,7 @@ public class ExtendPiston extends CommandBase {
   public ExtendPiston() {
     addRequirements(RobotContainer.frictionWheel);
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.syst);
+    addRequirements(RobotContainer.frictionWheel);
   }
 
   // Called when the command is initially scheduled.
