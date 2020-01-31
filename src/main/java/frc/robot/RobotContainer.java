@@ -14,8 +14,10 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.MoveInAStraightLine;
 import frc.robot.commands.Rotate90;
+import frc.robot.subsystems.ConveyorBelt;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.FrictionWheel;
+import frc.robot.subsystems.Intake;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -27,15 +29,16 @@ public class RobotContainer {
   // The robot's subsystems and commands and OI devices are defined here...
   public static Joystick driveStick = new Joystick(Constants.driveStickPort);
   public static Joystick opBoard = new Joystick(Constants.opBoardPort);
-  public static FrictionWheel syst = new FrictionWheel();
-
-
+  public static Intake intake = new Intake();
+  public static ConveyorBelt conveyorBelt = new ConveyorBelt();
   public static Drivetrain drivetrain = new Drivetrain();
   public static FrictionWheel frictionWheel = new FrictionWheel();
 
-  public static JoystickButton extrudeButton = new JoystickButton(opBoard,Constants.extrudeButton);
+
+  public static JoystickButton extrudeButton = new JoystickButton(opBoard, Constants.extrudeButton);
 
   MoveInAStraightLine auto = new MoveInAStraightLine(100);
+  
   // auto = new Rotate90("Left");
 
 

@@ -52,10 +52,13 @@ public final class Constants {
     //Friction Wheel Constants
     public static final int frictionWheelMotorPort = 7;
 
-    public static final int doubleSolenoidPort1 = 5;
-    public static final int doubleSolenoidPort2 = 5;
+    public static final int doubleSolenoidPort1 = 8;//TODO go back and fix this
+    public static final int doubleSolenoidPort2 = 9;//TODO go back and fix this
 
-    public static final int frictionWheelSpeed = 1;
+
+    
+    public static final double maxRPM = 5500;
+    public static final double frictionWheelSpeed = -0.5; //TODO go back and look
     
     public static final int pistonTimer = 1;
 
@@ -70,4 +73,18 @@ public final class Constants {
     public static final int leftClimberPort = 0; //TODO find the port of the left climber port
     public static final int rightClimberPort = 0; //TODO find the port of the right climber port
     public static final int climberDeliveryMotorPort = 0; //TODO find the port of the climber delivery
+    public static final int conveyorBeltMotorPort = 0; //TODO Change if needed
+    public static final int intakeiRSensor1Channel = 0; //TODO change to correct port
+    public static final int intakeiRSensor2Channel = 0; //TODO Change to correct channel
+    public static final int intakeMotorPort = 0; //TODO Change to correct port
+
+    public static final int conveyoriRSensor1Channel = 0; //TODO Change to coorect channel
+    public static final int conveyoriRSensor2Channel = 0; //TODO Change to coorect channel
+    public static final int conveyoriRSensor3Channel = 0; //TODO Change to coorect channel
+    public static final int conveyoriRSensor4Channel = 0; //TODO Change to coorect channel
+    public static final int conveyoriRSensor5Channel = 0; //TODO Change to coorect channel
+
+
+    public static final double intakeSpeed = 0.3;
+    public static final double conveyorBeltSpeed = 0.3; //TODO check if good
 }
