@@ -36,6 +36,8 @@ public class FrictionWheel extends SubsystemBase {
   public void setMotorSpeed(double speed){
     frictionWheelMotor.set(speed);
   }
+
+  
   @Override
   public void periodic() {
     

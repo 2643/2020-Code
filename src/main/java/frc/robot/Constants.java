@@ -86,5 +86,7 @@ public final class Constants {
 
 
     public static final double intakeSpeed = 0.3;
-    public static final double conveyorBeltSpeed = 0.3; //TODO check if good
+    public static final double reverseIntakeSpeed = -0.3;
+    public static final double conveyorBeltForwardSpeed = 0.3; //TODO check if this speed works to move conveyor belt forward
+    public static final double conveyorBeltBackwardSpeed = -0.3; //TODO check if this speed works to move conveyor belt backward
 }

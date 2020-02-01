@@ -7,60 +7,20 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
-import frc.robot.Robot;
-import frc.robot.RobotContainer;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
-public class Intaking extends CommandBase {
-
-  public boolean finished = false;
-  public int lastIRActivated = 0;
-
+// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
+// information, see:
+// https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
+public class Intaking extends SequentialCommandGroup {
   /**
-   * Creates a new Indexing.
+   * Creates a new Intaking.
    */
   public Intaking() {
-    // TODO Add required subsystem
-    // Use addRequirements() here to declare subsystem dependencies.
+    // Add your commands in the super() call, e.g.
+    // super(new FooCommand(), new BarCommand());
 
-    addRequirements(RobotContainer.intake);
-    addRequirements(RobotContainer.conveyorBelt);
-  }
-
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    if(RobotContainer.intake.isBallThere() == false){
-      finished = true;
-    }
-
-    lastIRActivated = RobotContainer.conveyorBelt.lastIndex();
-  }
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute(){
-
-    RobotContainer.intake.setIntakeSpeed();
-
-    if(RobotContainer.intake.isBallThere() == true && lastIRActivated != 4){
-      RobotContainer.conveyorBelt.setConveyorBeltSpeed();
-    }
-  }
-
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-    finished = false;
-  }
-
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    if(RobotContainer.conveyorBelt.getConveyorIRs()[lastIRActivated + 1].get() == true && lastIRActivated != 4){ //TODO fix logic error
-      finished = true;
-    }
-    return finished;
+    //TODO test whether this runs the intake and index algorithm correctly
+    super(new IndexBeforeIntake(), new ForwardIntake().alongWith(new IntakeIndex()));
   }
 }

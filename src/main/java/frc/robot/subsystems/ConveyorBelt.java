@@ -43,14 +43,44 @@ public class ConveyorBelt extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void setConveyorBeltSpeed(){
-    conveyorBeltMotor.set(Constants.conveyorBeltSpeed);
+  /**
+   * Moves the conveyor belt forward at a set speed
+   */
+  public void moveConveyorBeltForward(){
+    conveyorBeltMotor.set(Constants.conveyorBeltForwardSpeed);
   }
 
+  /**
+   * Moves the conveyor belt backward at a set speed
+   */
+  public void moveConveyorBeltBackward(){
+    conveyorBeltMotor.set(Constants.conveyorBeltBackwardSpeed);
+  }
+
+  /**
+   * Stops the conveyor belt
+   */
+  public void stopConveyorBelt(){
+    conveyorBeltMotor.set(0);
+  }
+
+  /**
+   * Returns the index of the last IR activated
+   * @return int index 0 - 4; default return 0 when none activated
+   */
   public int lastIndex(){
-    for(int c = 4; c >= 0; c--){
+    for(int c = conveyoriRSensors.length-1; c >= 0; c--){
       if(conveyoriRSensors[c].get() == true){
         return c;
+      }
+    }
+    return 0;
+  }
+
+  public int firstIndex(){
+    for(int c = 0; c < conveyoriRSensors.length; c++){
+      if(conveyoriRSensors[c].get() == true){
+        return c; 
       }
     }
     return 0;
