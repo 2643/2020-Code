@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj.util.Color;
  * wherever the constants are needed, to reduce verbosity.
  */
 public final class Constants {
+
     public static int leftFrontMotorPort = 1;
     public static int leftBackMotorPort = 2;
     public static int rightFrontMotorPort = 3; 
@@ -33,13 +34,22 @@ public final class Constants {
     public static final int leftAxis = 1;
     public static final int rightAxis = 5; 
 
-    public static final int rotate90Left = -13; //TODO determine encoder value for the 90 degree turn on the left side of the drivtrain
+    public static final int rotate90Left = -13; 
+    //TODO determine encoder value for the 90 degree turn on the left side of the drivetrain
     public static final int rotate90Right = 13; 
 
-    public static final int rotate180 = 26; //TODO determine encoder value for the 180 degree turn on the left side of the drivetrain
+    public static final int rotate180 = 26; 
+    //TODO determine encoder value for the 180 degree turn on the left side of the drivetrain
 
-    public static final double rotate235Left = -32.5; //TODO determine encoder value for the 235 degree turn on the left side of the drivetrain
+    public static final double rotate235Left = -32.5; 
+    //TODO determine encoder value for the 235 degree turn on the left side of the drivetrain
+
     public static final double rotate235Right = 32.5;
+
+    public static double rotateX(double x){
+      double val = ((13/90)* x);
+      return val;
+    }
 
     public static final double allowedError = 0.05;
 
