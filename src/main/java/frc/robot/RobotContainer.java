@@ -36,6 +36,8 @@ public class RobotContainer {
 
 
   public static JoystickButton extrudeButton = new JoystickButton(opBoard, Constants.extrudeButton);
+  public static final JoystickButton moveIntake = new JoystickButton(driveStick, 2);
+  public static JoystickButton moveConveyorBelt = new JoystickButton(driveStick, 3);
 
   MoveInAStraightLine auto = new MoveInAStraightLine(100);
   

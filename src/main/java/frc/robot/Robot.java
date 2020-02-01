@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.*;
-
+import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
@@ -197,7 +197,15 @@ public class Robot extends TimedRobot {
   public void testPeriodic() {
     //RobotContainer.drivetrain.setAllMotorPosition(10);
     //RobotContainer.drivetrain.getRightMotorEncoder();
-    System.out.println(RobotContainer.drivetrain.getRightMotorEncoder());
+    //System.out.println(RobotContainer.drivetrain.getRightMotorEncoder());
     //RobotContainer.drivetrain.setMotorSpeed(0.01);
+
+    //RobotContainer.moveIntake.whileHeld(new ForwardIntake());
+    //RobotContainer.moveConveyorBelt.whileHeld(new IntakeIndex());
+    if(RobotContainer.moveIntake.get()){
+        RobotContainer.intake.intake();
+    } else if(RobotContainer.moveConveyorBelt.get()){
+        RobotContainer.conveyorBelt.moveConveyorBeltForward();
+    }
   }
 }
