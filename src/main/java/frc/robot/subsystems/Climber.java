@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -27,9 +28,16 @@ public class Climber extends SubsystemBase {
    * Creates a new Climber.
    */
   public Climber() {
+  
 
   }
-  
+  public void deliverHook(double speed){
+    climberDeliveryMotor.set(speed);
+  }
+  public void pullUpRobot(double speed){
+    leftClimberMotor.set(ControlMode.PercentOutput, speed);
+    rightClimberMotor.set(ControlMode.PercentOutput, speed);
+  }
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.MoveInAStraightLine;
 import frc.robot.commands.Rotate90;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.ConveyorBelt;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.FrictionWheel;
@@ -33,6 +34,7 @@ public class RobotContainer {
   public static ConveyorBelt conveyorBelt = new ConveyorBelt();
   public static Drivetrain drivetrain = new Drivetrain();
   public static FrictionWheel frictionWheel = new FrictionWheel();
+  public static Climber climber = new Climber();
 
 
   public static JoystickButton extrudeButton = new JoystickButton(opBoard, Constants.extrudeButton);
