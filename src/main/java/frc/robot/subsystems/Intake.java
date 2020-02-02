@@ -18,7 +18,6 @@ import frc.robot.Constants;
 public class Intake extends SubsystemBase {
 
   public static DigitalInput intakeiRSensor1 = new DigitalInput(Constants.intakeiRSensor1Channel);
-  public static DigitalInput intakeiRSensor2 = new DigitalInput(Constants.intakeiRSensor2Channel);
   public static CANSparkMax intakeMotor = new CANSparkMax(Constants.intakeMotorPort, MotorType.kBrushless);
 
   /**
@@ -29,7 +28,7 @@ public class Intake extends SubsystemBase {
   }
 
   public boolean isBallThere(){
-    if(intakeiRSensor1.get() == true && intakeiRSensor2.get() == true){ //TODO make this work
+    if(intakeiRSensor1.get() == true){ //TODO make this work
       return true;
     }else{
       return false;

@@ -12,10 +12,13 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import edu.wpi.first.wpilibj.Timer;
 
+/**
+ * Extends friction wheel mechanism
+ */
 public class ExtendPiston extends CommandBase {
-  Timer timer = new Timer();
+  private Timer timer = new Timer();
+  
   public ExtendPiston() {
-    addRequirements(RobotContainer.frictionWheel);
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.frictionWheel);
   }
@@ -41,8 +44,7 @@ public class ExtendPiston extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (timer.get() >= Constants.pistonTimer)
-    {
+    if (timer.get() >= Constants.pistonTimer){
       return true;
     }
     return false;

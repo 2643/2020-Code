@@ -11,13 +11,16 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
+/**
+ * Moves the control panel to the right
+ */
 public class MoveWheelRight extends CommandBase {
   /**
    * Creates a new MoveWheelRight.
    */
   public MoveWheelRight() {
-    
-    addRequirements(RobotContainer.frictionWheel);// Use addRequirements() here to declare subsystem dependencies.
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(RobotContainer.frictionWheel);
   }
 
   // Called when the command is initially scheduled.

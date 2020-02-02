@@ -8,53 +8,57 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import com.ctre.phoenix.sensors.PigeonIMU;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
-public class MoveInAStraightLine extends CommandBase {
-  private double rotationsForward; 
 
-  /**
-   * Creates a new MoveForward.
-   */
-  public MoveInAStraightLine(double rotations) {
+public class RotateX extends CommandBase {
+
+  private double angle;
+
+  public RotateX(int a) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.drivetrain);
-
-    rotationsForward = rotations;
+    angle = a;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    // Reset the drivetrain encoders
     RobotContainer.drivetrain.resetLeftEncoder();
-    RobotContainer.drivetrain.resetRightEncoder(); 
+    RobotContainer.drivetrain.resetRightEncoder();
 
-    RobotContainer.drivetrain.setLeftMotorPosition(rotationsForward);
-    RobotContainer.drivetrain.setRightMotorPosition(rotationsForward);
+    //Set the drivetrain to move to the angle using PID
+    RobotContainer.drivetrain.setRightMotorPosition(-Constants.rotateX(angle));
+    RobotContainer.drivetrain.setLeftMotorPosition(Constants.rotateX(angle));
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println(RobotContainer.drivetrain.getLeftMotorEncoder() + " " + RobotContainer.drivetrain.getRightMotorEncoder());
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {    
+  public void end(boolean interrupted) {
+    RobotContainer.drivetrain.setLeftMotorPosition(RobotContainer.drivetrain.getLeftMotorEncoder());
+    RobotContainer.drivetrain.setRightMotorPosition(RobotContainer.drivetrain.getRightMotorEncoder());
+
+    if(interrupted == true){
       RobotContainer.drivetrain.setLeftMotorSpeed(0);
-      RobotContainer.drivetrain.setRightMotorSpeed(0);
+      RobotContainer.drivetrain.setLeftMotorSpeed(0);
+    }
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if((Math.abs(RobotContainer.drivetrain.getLeftMotorEncoder()) <= (rotationsForward + Constants.allowedError)) && (Math.abs(RobotContainer.drivetrain.getLeftMotorEncoder()) >= (rotationsForward - Constants.allowedError))){
-      if((Math.abs(RobotContainer.drivetrain.getRightMotorEncoder()) <= (rotationsForward + Constants.allowedError)) && (Math.abs(RobotContainer.drivetrain.getRightMotorEncoder()) >= (rotationsForward - Constants.allowedError))){
-        return true; 
-      }
-    }
-    return false; 
+    if((RobotContainer.drivetrain.getLeftMotorEncoder() == Constants.rotateX(angle)) 
+    && (RobotContainer.drivetrain.getRightMotorEncoder() == Constants.rotateX(angle)))
+      return true;    
+    return false;
   }
 }

@@ -12,8 +12,8 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class Rotate90 extends CommandBase {
-  String direction;
-  String compare;
+  private String direction;
+  private String compare;
 
   /**
    * Creates a new Rotate.
@@ -53,7 +53,7 @@ public class Rotate90 extends CommandBase {
 
     if (interrupted == true) {
       RobotContainer.drivetrain.setLeftMotorSpeed(0);
-      RobotContainer.drivetrain.setLeftMotorSpeed(0);
+      RobotContainer.drivetrain.setRightMotorSpeed(0);
     }
   }
 

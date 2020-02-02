@@ -10,7 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
+/**
+ * Moves the power cells to the beginning of the conveyor belt before intaking
+ */
 public class IndexBeforeIntake extends CommandBase {
+  
   private int firstIRActivated = 0; 
   private boolean finished = true; 
   /**

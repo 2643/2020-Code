@@ -12,8 +12,8 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class Rotate235 extends CommandBase {
-  String direction;
-  String compare;
+  private String direction;
+  private String compare;
   /**
    * Creates a new Rotate235.
    */
