@@ -32,11 +32,11 @@ public class Rotate90 extends CommandBase {
     RobotContainer.drivetrain.resetLeftEncoder();
     RobotContainer.drivetrain.resetRightEncoder();
     if ((direction.compareToIgnoreCase(compare)) == 0) {
-      RobotContainer.drivetrain.setRightMotorPosition(-Constants.rotate90Left);
       RobotContainer.drivetrain.setLeftMotorPosition(Constants.rotate90Left);
+      RobotContainer.drivetrain.setRightMotorPosition(-Constants.rotate90Left);
     } else {
-      RobotContainer.drivetrain.setRightMotorPosition(-Constants.rotate90Right);
       RobotContainer.drivetrain.setLeftMotorPosition(Constants.rotate90Right);
+      RobotContainer.drivetrain.setRightMotorPosition(-Constants.rotate90Right);
     }
   }
 
@@ -61,8 +61,8 @@ public class Rotate90 extends CommandBase {
   @Override
   public boolean isFinished() {
     // TODO Make sure if logic works
-    if ((RobotContainer.drivetrain.getLeftMotorEncoder() == Constants.rotate90Left)
-        && (RobotContainer.drivetrain.getRightMotorEncoder() == Constants.rotate90Left))
+    if ((Math.abs(RobotContainer.drivetrain.getLeftMotorEncoder()) == Math.abs(Constants.rotate90Left))
+        && (Math.abs(RobotContainer.drivetrain.getRightMotorEncoder()) == Math.abs(Constants.rotate90Left)))
       return true;
     return false;
   }

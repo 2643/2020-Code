@@ -30,11 +30,11 @@ public class Rotate235 extends CommandBase {
     RobotContainer.drivetrain.resetLeftEncoder();
     RobotContainer.drivetrain.resetRightEncoder();
     if ((direction.compareToIgnoreCase(compare)) == 0) {
-      RobotContainer.drivetrain.setRightMotorPosition(-Constants.rotate235Left);
       RobotContainer.drivetrain.setLeftMotorPosition(Constants.rotate235Left);
+      RobotContainer.drivetrain.setRightMotorPosition(-Constants.rotate235Left);
     } else {
-      RobotContainer.drivetrain.setRightMotorPosition(-Constants.rotate235Right);
       RobotContainer.drivetrain.setLeftMotorPosition(Constants.rotate235Right);
+      RobotContainer.drivetrain.setRightMotorPosition(-Constants.rotate235Right);
     }
   }
 
@@ -50,14 +50,15 @@ public class Rotate235 extends CommandBase {
     RobotContainer.drivetrain.setRightMotorPosition(RobotContainer.drivetrain.getRightMotorEncoder());
     if(interrupted == true){
       RobotContainer.drivetrain.setLeftMotorSpeed(0);
-      RobotContainer.drivetrain.setLeftMotorSpeed(0);
+      RobotContainer.drivetrain.setRightMotorSpeed(0);
     }
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if((RobotContainer.drivetrain.getLeftMotorEncoder() == Constants.rotate235Left) && (RobotContainer.drivetrain.getRightMotorEncoder() == Constants.rotate235Right))
+    if((Math.abs(RobotContainer.drivetrain.getLeftMotorEncoder()) == Math.abs(Constants.rotate235Left)) 
+    && (Math.abs(RobotContainer.drivetrain.getRightMotorEncoder()) == Math.abs(Constants.rotate235Left)))
       return true;    
     return false;
   }

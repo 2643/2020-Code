@@ -8,7 +8,6 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import com.ctre.phoenix.sensors.PigeonIMU;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
@@ -31,9 +30,8 @@ public class RotateX extends CommandBase {
     RobotContainer.drivetrain.resetRightEncoder();
 
     //Set the drivetrain to move to the angle using PID
-    RobotContainer.drivetrain.setRightMotorPosition(-Constants.rotateX(angle));
     RobotContainer.drivetrain.setLeftMotorPosition(Constants.rotateX(angle));
-
+    RobotContainer.drivetrain.setRightMotorPosition(-Constants.rotateX(angle));
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -49,15 +47,15 @@ public class RotateX extends CommandBase {
 
     if(interrupted == true){
       RobotContainer.drivetrain.setLeftMotorSpeed(0);
-      RobotContainer.drivetrain.setLeftMotorSpeed(0);
+      RobotContainer.drivetrain.setRightMotorSpeed(0);
     }
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if((RobotContainer.drivetrain.getLeftMotorEncoder() == Constants.rotateX(angle)) 
-    && (RobotContainer.drivetrain.getRightMotorEncoder() == Constants.rotateX(angle)))
+    if((Math.abs(RobotContainer.drivetrain.getLeftMotorEncoder()) == Constants.rotateX(angle)) 
+    && (Math.abs(RobotContainer.drivetrain.getRightMotorEncoder()) == Constants.rotateX(angle)))
       return true;    
     return false;
   }
