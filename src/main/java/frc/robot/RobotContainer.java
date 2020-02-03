@@ -7,7 +7,11 @@
 
 package frc.robot;
 
+import com.revrobotics.ColorMatch;
+import com.revrobotics.ColorSensorV3;
+
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -34,7 +38,7 @@ public class RobotContainer {
   public static Drivetrain drivetrain = new Drivetrain();
   public static FrictionWheel frictionWheel = new FrictionWheel();
   public static Climber climber = new Climber();
-
+  public static FrictionWheel ColorSensor = new FrictionWheel();
 
   public static JoystickButton extrudeButton = new JoystickButton(opBoard, Constants.extrudeButton);
   public static final JoystickButton moveIntake = new JoystickButton(driveStick, 2);
@@ -42,6 +46,7 @@ public class RobotContainer {
 
   MoveInAStraightLine auto = new MoveInAStraightLine(100);
   
+
   // auto = new Rotate90("Left");
 
 
