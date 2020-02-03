@@ -25,7 +25,8 @@ public class ShootingIndex extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    lastIRActivated = RobotContainer.conveyorBelt.lastIndex(); 
+    lastIRActivated = RobotContainer.conveyorBelt.lastIndex();
+    //If the fifth iRSensor is activated, then the command ends 
     if(lastIRActivated == 4){
       finished = true; 
     }
@@ -47,6 +48,7 @@ public class ShootingIndex extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    //If the iRSensor after the one last activated is activated, the command ends.
     if(RobotContainer.conveyorBelt.getConveyorIRs()[lastIRActivated + 1].get() == true){
       finished = true; 
     }

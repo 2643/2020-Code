@@ -66,6 +66,7 @@ public class ConveyorBelt extends SubsystemBase {
    * @return int index 0 - 4; default return 0 when none activated
    */
   public int lastIndex(){
+    // Returns the last iRSensor in the list that returns true
     for(int c = conveyoriRSensors.length-1; c >= 0; c--){
       if(conveyoriRSensors[c].get() == true){
         return c;
@@ -75,6 +76,7 @@ public class ConveyorBelt extends SubsystemBase {
   }
 
   public int firstIndex(){
+    // Returns the first iRSensor in the list that returns true
     for(int c = 0; c < conveyoriRSensors.length; c++){
       if(conveyoriRSensors[c].get() == true){
         return c; 
