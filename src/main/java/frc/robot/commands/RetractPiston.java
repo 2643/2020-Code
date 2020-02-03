@@ -12,12 +12,15 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import edu.wpi.first.wpilibj.Timer;
 
+/**
+ * Retracts the friction wheel mechanism
+ */
 public class RetractPiston extends CommandBase {
   /**
    * Creates a new RetractPiston.
    */
 
-  Timer timer = new Timer();
+  private Timer timer = new Timer();
 
   public RetractPiston() {
     // Use addRequirements() here to declare subsystem dependencies.

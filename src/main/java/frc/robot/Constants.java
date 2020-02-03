@@ -39,12 +39,21 @@ public final class Constants {
     public static int rightBackMotorPort = 4; 
 
     public static final int rotate90Left = -13; //TODO determine encoder value for the 90 degree turn on the left side of the drivetrain
+    //TODO determine encoder value for the 90 degree turn on the left side of the drivetrain
     public static final int rotate90Right = 13; 
 
-    public static final int rotate180 = 26; //TODO determine encoder value for the 180 degree turn on the left side of the drivetrain
+    public static final int rotate180 = 26; 
+    //TODO determine encoder value for the 180 degree turn on the left side of the drivetrain
 
-    public static final double rotate235Left = -32.5; //TODO determine encoder value for the 235 degree turn on the left side of the drivetrain
+    public static final double rotate235Left = -32.5; 
+    //TODO determine encoder value for the 235 degree turn on the left side of the drivetrain
+
     public static final double rotate235Right = 32.5;
+
+    public static double rotateX(double x){
+      double val = ((13/90)* x);
+      return val;
+    }
 
     public static final double allowedError = 0.05;
 
@@ -54,8 +63,6 @@ public final class Constants {
 
     public static final int doubleSolenoidPort1 = 8;//TODO go back and fix this
     public static final int doubleSolenoidPort2 = 9;//TODO go back and fix this
-
-
     
     public static final double maxRPM = 5500;
     public static final double frictionWheelSpeed = -0.5; //TODO go back and look
@@ -73,10 +80,19 @@ public final class Constants {
     public static final int leftClimberPort = 0; //TODO find the port of the left climber port
     public static final int rightClimberPort = 0; //TODO find the port of the right climber port
     public static final int climberDeliveryMotorPort = 0; //TODO find the port of the climber delivery
-    public static final int conveyorBeltMotorPort = 0; //TODO Change if needed
-    public static final int intakeiRSensor1Channel = 0; //TODO change to correct port
-    public static final int intakeiRSensor2Channel = 0; //TODO Change to correct channel
+    
+    //Intake Constants
     public static final int intakeMotorPort = 0; //TODO Change to correct port
+    public static final int intakeiRSensor1Channel = 0; //TODO change to correct port
+
+    public static final double intakeSpeed = 0.3;
+    public static final double reverseIntakeSpeed = -0.3;
+
+    //Conveyor Constants
+    public static final int conveyorBeltMotorPort = 0; //TODO Change if needed
+
+    public static final double conveyorBeltForwardSpeed = 0.3; //TODO check if this speed works to move conveyor belt forward
+    public static final double conveyorBeltBackwardSpeed = -0.3; //TODO check if this speed works to move conveyor belt backward
 
     public static final int conveyoriRSensor1Channel = 0; //TODO Change to coorect channel
     public static final int conveyoriRSensor2Channel = 0; //TODO Change to coorect channel
@@ -84,9 +100,4 @@ public final class Constants {
     public static final int conveyoriRSensor4Channel = 0; //TODO Change to coorect channel
     public static final int conveyoriRSensor5Channel = 0; //TODO Change to coorect channel
 
-
-    public static final double intakeSpeed = 0.3;
-    public static final double reverseIntakeSpeed = -0.3;
-    public static final double conveyorBeltForwardSpeed = 0.3; //TODO check if this speed works to move conveyor belt forward
-    public static final double conveyorBeltBackwardSpeed = -0.3; //TODO check if this speed works to move conveyor belt backward
 }

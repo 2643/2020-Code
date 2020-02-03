@@ -12,6 +12,8 @@ import frc.robot.RobotContainer;
 
 public class ShootingIndex extends CommandBase {
   private int lastIRActivated = 0;
+  private boolean finished = false; 
+
   /**
    * Creates a new ShootingIndex.
    */
@@ -24,6 +26,9 @@ public class ShootingIndex extends CommandBase {
   @Override
   public void initialize() {
     lastIRActivated = RobotContainer.conveyorBelt.lastIndex(); 
+    if(lastIRActivated == 4){
+      finished = true; 
+    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -36,14 +41,15 @@ public class ShootingIndex extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     RobotContainer.conveyorBelt.stopConveyorBelt();
+    finished = false; 
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     if(RobotContainer.conveyorBelt.getConveyorIRs()[lastIRActivated + 1].get() == true){
-      return true; 
+      finished = true; 
     }
-    return false; 
+    return finished; 
   }
 }

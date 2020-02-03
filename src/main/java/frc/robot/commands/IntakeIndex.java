@@ -10,6 +10,9 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
+/**
+ * Moves the power cells in the conveyor belt over by one to hold the power cell being intaked
+ */
 public class IntakeIndex extends CommandBase {
   private int lastIRActivated = 0;
   private boolean finished = false; 

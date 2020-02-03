@@ -26,9 +26,8 @@ public class Rotate180 extends CommandBase {
   public void initialize() {
     RobotContainer.drivetrain.resetLeftEncoder();
     RobotContainer.drivetrain.resetRightEncoder();
-    RobotContainer.drivetrain.setRightMotorPosition(-Constants.rotate180);
     RobotContainer.drivetrain.setLeftMotorPosition(Constants.rotate180);
-
+    RobotContainer.drivetrain.setRightMotorPosition(-Constants.rotate180);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -44,7 +43,7 @@ public class Rotate180 extends CommandBase {
 
     if(interrupted == true){
       RobotContainer.drivetrain.setLeftMotorSpeed(0);
-      RobotContainer.drivetrain.setLeftMotorSpeed(0);
+      RobotContainer.drivetrain.setRightMotorSpeed(0);
     }
   }
 
@@ -52,7 +51,8 @@ public class Rotate180 extends CommandBase {
   @Override
   public boolean isFinished() {
     //TODO Make sure if logic works 
-    if((RobotContainer.drivetrain.getLeftMotorEncoder() == Constants.rotate180) && (RobotContainer.drivetrain.getRightMotorEncoder() == Constants.rotate180))
+    if((Math.abs(RobotContainer.drivetrain.getLeftMotorEncoder()) == Constants.rotate180) 
+    && (Math.abs(RobotContainer.drivetrain.getRightMotorEncoder()) == Constants.rotate180))
       return true;    
     return false;
   }

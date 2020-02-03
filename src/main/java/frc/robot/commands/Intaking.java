@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
+
+
 public class Intaking extends SequentialCommandGroup {
   /**
    * Creates a new Intaking.
@@ -21,6 +23,8 @@ public class Intaking extends SequentialCommandGroup {
     // super(new FooCommand(), new BarCommand());
 
     //TODO test whether this runs the intake and index algorithm correctly
+
+    //TODO make this command inline when writing button to command definitions
     super(new IndexBeforeIntake(), new ForwardIntake().alongWith(new IntakeIndex()));
   }
 }

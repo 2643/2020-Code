@@ -15,29 +15,41 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Climber extends SubsystemBase {
-  //two TalonFX for climbing
-  //one WPI_TalonSRX/SparkMax for climber delivery
-  
   public static TalonFX leftClimberMotor = new TalonFX(Constants.leftClimberPort); 
   public static TalonFX rightClimberMotor = new TalonFX(Constants.rightClimberPort);
 
   public static WPI_TalonSRX climberDeliveryMotor = new WPI_TalonSRX(Constants.climberDeliveryMotorPort);
-  
   
   /**
    * Creates a new Climber.
    */
   public Climber() {
   
-
   }
+
+  /**
+   * Sets the speed of the climber delivery motor
+   */
   public void deliverHook(double speed){
     climberDeliveryMotor.set(speed);
   }
-  public void pullUpRobot(double speed){
+
+  /**
+   * Sets the speed of the left winch to pull up the robot
+   * @param speed double from -1 to 1
+   */
+  public void setLeftClimberWinch(double speed){
     leftClimberMotor.set(ControlMode.PercentOutput, speed);
+  }
+
+  /**
+   * Sets the speed of the right winch to pull up the robot
+   * @param speed double from -1 to 1
+   */
+  public void setRightClimberWinch(double speed){
     rightClimberMotor.set(ControlMode.PercentOutput, speed);
   }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

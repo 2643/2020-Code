@@ -12,7 +12,7 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class MoveInAStraightLine extends CommandBase {
-  double rotationsForward; 
+  private double rotationsForward; 
 
   /**
    * Creates a new MoveForward.
@@ -50,11 +50,8 @@ public class MoveInAStraightLine extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    
-    //TODO test the logic for stopping forward/backward movement
     if((Math.abs(RobotContainer.drivetrain.getLeftMotorEncoder()) <= (rotationsForward + Constants.allowedError)) && (Math.abs(RobotContainer.drivetrain.getLeftMotorEncoder()) >= (rotationsForward - Constants.allowedError))){
       if((Math.abs(RobotContainer.drivetrain.getRightMotorEncoder()) <= (rotationsForward + Constants.allowedError)) && (Math.abs(RobotContainer.drivetrain.getRightMotorEncoder()) >= (rotationsForward - Constants.allowedError))){
-        System.out.println("finished");
         return true; 
       }
     }

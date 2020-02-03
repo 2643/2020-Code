@@ -12,9 +12,9 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class Tankdrive extends CommandBase {
-  double leftSpeed = 0;
-  double rightSpeed = 0;
-  boolean finished = false;
+  private double leftSpeed = 0;
+  private double rightSpeed = 0;
+  private boolean finished = false;
 
   /**
    * Creates a new Tankdrive.
