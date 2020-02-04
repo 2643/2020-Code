@@ -12,12 +12,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.MoveInAStraightLine;
-import frc.robot.subsystems.Climber;
-import frc.robot.subsystems.ConveyorBelt;
 import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.FrictionWheel;
-import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.*;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
