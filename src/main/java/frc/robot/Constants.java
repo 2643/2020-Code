@@ -38,6 +38,18 @@ public final class Constants {
     public static int rightFrontMotorPort = 3; 
     public static int rightBackMotorPort = 4; 
 
+    public static int rightShooterMotorPort = 5;
+    public static int leftShooterMotorPort = 6;
+    public static int hoodMotorPort = 7;
+    public static int turretMotorPort = 8;
+
+    public static int leftLimitSwitchPort = 1;
+    public static int centreLimitSwitchPort = 2;
+    public static int rightLimitSwitchPort = 3;
+
+  
+
+
     public static final int rotate90Left = -13; //TODO determine encoder value for the 90 degree turn on the left side of the drivetrain
     //TODO determine encoder value for the 90 degree turn on the left side of the drivetrain
     public static final int rotate90Right = 13; 

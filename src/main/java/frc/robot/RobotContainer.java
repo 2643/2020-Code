@@ -22,6 +22,7 @@ import frc.robot.subsystems.ConveyorBelt;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.FrictionWheel;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Shooter;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -39,17 +40,13 @@ public class RobotContainer {
   public static FrictionWheel frictionWheel = new FrictionWheel();
   public static Climber climber = new Climber();
   public static FrictionWheel ColorSensor = new FrictionWheel();
+  public static Shooter shooter = new Shooter();
 
   public static JoystickButton extrudeButton = new JoystickButton(opBoard, Constants.extrudeButton);
   public static final JoystickButton moveIntake = new JoystickButton(driveStick, 2);
   public static JoystickButton moveConveyorBelt = new JoystickButton(driveStick, 3);
 
   MoveInAStraightLine auto = new MoveInAStraightLine(100);
-  
-
-  // auto = new Rotate90("Left");
-
-
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
