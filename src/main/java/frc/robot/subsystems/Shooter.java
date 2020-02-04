@@ -95,7 +95,7 @@ public class Shooter extends SubsystemBase {
    * Moves hood to shoot at certain angle
    * @param position angle for the hood
    */
-  public void moveHood(double position){
+  public void moveHood(double position){ //TODO add functionality to accept angles to move hood to
     hoodMotor.getPIDController().setReference(position, ControlType.kSmartMotion, slotID_hood);
   }
 
@@ -103,7 +103,7 @@ public class Shooter extends SubsystemBase {
    * Moves the turret to an angle
    * @param position angle to move turret to
    */
-  public void aimTurret(double position){
+  public void aimTurret(double position){ //TODO add functionality to accept angles to move turret to
     if(leftLimitSwitch.get() == true || rightLimitSwitch.get() == true){
       turretMotor.getPIDController().setReference(0, ControlType.kDutyCycle, slotID_turret);
     }
