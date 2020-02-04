@@ -15,10 +15,10 @@ import edu.wpi.first.wpilibj.Timer;
 /**
  * Extends friction wheel mechanism
  */
-public class ExtendPiston extends CommandBase {
+public class ExtendFrictionWheel extends CommandBase {
   private Timer timer = new Timer();
   
-  public ExtendPiston() {
+  public ExtendFrictionWheel() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.frictionWheel);
   }
@@ -28,7 +28,7 @@ public class ExtendPiston extends CommandBase {
   public void initialize() {timer.reset();
     timer.reset();
     timer.start();
-    RobotContainer.frictionWheel.extendPiston();
+    RobotContainer.frictionWheel.extendMechanism();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

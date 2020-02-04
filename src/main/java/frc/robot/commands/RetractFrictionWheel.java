@@ -15,14 +15,14 @@ import edu.wpi.first.wpilibj.Timer;
 /**
  * Retracts the friction wheel mechanism
  */
-public class RetractPiston extends CommandBase {
+public class RetractFrictionWheel extends CommandBase {
   /**
-   * Creates a new RetractPiston.
+   * Creates a new RetractFrictionWheel.
    */
 
   private Timer timer = new Timer();
 
-  public RetractPiston() {
+  public RetractFrictionWheel() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.frictionWheel);
   }
@@ -32,7 +32,7 @@ public class RetractPiston extends CommandBase {
   public void initialize() {
     timer.reset();
     timer.start();
-    RobotContainer.frictionWheel.retractPiston();
+    RobotContainer.frictionWheel.retractMechanism();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

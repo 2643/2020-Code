@@ -15,11 +15,14 @@ import frc.robot.RobotContainer;
 public class RotateX extends CommandBase {
 
   private double angle;
+  private String direction;
+  private String compare = "Left";
 
-  public RotateX(int a) {
+  public RotateX(int a, String directionOfTurn) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.drivetrain);
     angle = a;
+    direction = directionOfTurn;
   }
 
   // Called when the command is initially scheduled.
@@ -30,8 +33,14 @@ public class RotateX extends CommandBase {
     RobotContainer.drivetrain.resetRightEncoder();
 
     //Set the drivetrain to move to the angle using PID
-    RobotContainer.drivetrain.setLeftMotorPosition(Constants.rotateX(angle));
-    RobotContainer.drivetrain.setLeftMotorPosition(-Constants.rotateX(angle));
+    //TODO check if this rotates in the right direction
+    if ((direction.compareToIgnoreCase(compare)) == 0) {
+      RobotContainer.drivetrain.setLeftMotorPosition(-Constants.rotateX(angle));
+      RobotContainer.drivetrain.setRightMotorPosition(Constants.rotateX(angle));
+    } else {
+      RobotContainer.drivetrain.setLeftMotorPosition(Constants.rotateX(angle));
+      RobotContainer.drivetrain.setRightMotorPosition(-Constants.rotateX(angle));
+    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.

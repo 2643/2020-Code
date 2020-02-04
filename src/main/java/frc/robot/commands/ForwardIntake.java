@@ -22,13 +22,11 @@ public class ForwardIntake extends CommandBase {
 
   @Override
   public void execute() {
-    // Starts the intake
     RobotContainer.intake.intake();
   }
 
   @Override
   public void end(boolean interrupted) {
-    // Stops the intake
     RobotContainer.intake.stopIntake();
   }
 

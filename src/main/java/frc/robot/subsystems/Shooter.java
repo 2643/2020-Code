@@ -18,77 +18,100 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
-  //one talonfx motor for the shooter
-  //one neo 550 for the turret
-  //three limit switches for the turret
-  //one motor (?) for the hood on the shooter
   public static TalonFX leftShooterMotor = new TalonFX(Constants.leftShooterMotorPort);
   public static TalonFX rightShooterMotor = new TalonFX(Constants.rightShooterMotorPort);
-  public static CANSparkMax hoodMotor = new CANSparkMax(Constants.hoodMotorPort, MotorType.kBrushless);
-  public static CANSparkMax turretMotor = new CANSparkMax(Constants.turretMotorPort, MotorType.kBrushless);
 
+  public static CANSparkMax turretMotor = new CANSparkMax(Constants.turretMotorPort, MotorType.kBrushless);
+  public static CANSparkMax hoodMotor = new CANSparkMax(Constants.hoodMotorPort, MotorType.kBrushless);
+  
   public static DigitalInput leftLimitSwitch = new DigitalInput(Constants.leftLimitSwitchPort);
   public static DigitalInput centreLimitSwitch = new DigitalInput(Constants.centreLimitSwitchPort);
   public static DigitalInput rightLimitSwitch = new DigitalInput(Constants.rightLimitSwitchPort);
 
-    // Sets the PID and FF variables
-    double kP = 0.00016;//0.006;
-    double kI = 0;//0.000002;
-    double kD = 0;//0.004;//0.2;
-    double kFF = 0.000156;
+  //Shooter PID Constants
   
-    // Sets the max and min output for the motor speed
-    double MaxOutput = 1;
-    double MinOutput = -1;
+
+  //Turret PID Constants
+  double kP_turret = 0.00016;//0.006;
+  double kI_turret = 0;//0.000002;
+  double kD_turret = 0;//0.004;//0.2;
+  double kFF_turret = 0.000156;
+  double MaxOutput_turret = 1;
+  double MinOutput_turret = -1;
+  double maxAccel_turret = 3000;
+  int slotID_turret = 0;
+  int maxVel_turret = 7000;
+  int minVel_turret = 0;
+  double allowedErr_turret = 0.1;
+
+  //Hood PID Constants
+  double kP_hood = 0.00016;//0.006;
+  double kI_hood = 0;//0.000002;
+  double kD_hood = 0;//0.004;//0.2;
+  double kFF_hood = 0.000156;
+  double MaxOutput_hood = 1;
+  double MinOutput_hood = -1;
+  double maxAccel_hood = 3000;
+  int slotID_hood = 0;
+  int maxVel_hood = 7000;
+  int minVel_hood = 0;
+  double allowedErr_hood = 0.1;
   
-    // Sets the max acceleration for the motors
-    double maxAccel = 3000;
-    int slotID = 0;
-    int maxVel = 7000;
-    int minVel = 0;
-  
-    double allowedErr = 0.1;
   /**
    * Creates a new Shooter.
    */
   public Shooter() {
-    hoodMotor.getPIDController().setP(kP, slotID);
-    hoodMotor.getPIDController().setI(kI, slotID);
-    hoodMotor.getPIDController().setD(kD, slotID);
-    hoodMotor.getPIDController().setFF(kFF, slotID);
-    hoodMotor.getPIDController().setOutputRange(MinOutput, MaxOutput, slotID);
-    hoodMotor.getPIDController().setSmartMotionMaxAccel(maxAccel, slotID);
-    hoodMotor.getPIDController().setSmartMotionAllowedClosedLoopError(allowedErr, slotID);
-    hoodMotor.getPIDController().setSmartMotionMaxVelocity(maxVel, slotID);
-    hoodMotor.getPIDController().setSmartMotionMinOutputVelocity(minVel, slotID);
+    turretMotor.getPIDController().setP(kP_turret, slotID_turret);
+    turretMotor.getPIDController().setI(kI_turret, slotID_turret);
+    turretMotor.getPIDController().setD(kD_turret, slotID_turret);
+    turretMotor.getPIDController().setFF(kFF_turret, slotID_turret);
+    turretMotor.getPIDController().setOutputRange(MinOutput_turret, MaxOutput_turret, slotID_turret);
+    turretMotor.getPIDController().setSmartMotionMaxAccel(maxAccel_turret, slotID_turret);
+    turretMotor.getPIDController().setSmartMotionAllowedClosedLoopError(allowedErr_turret, slotID_turret);
+    turretMotor.getPIDController().setSmartMotionMaxVelocity(maxVel_turret, slotID_turret);
+    turretMotor.getPIDController().setSmartMotionMinOutputVelocity(minVel_turret, slotID_turret);
 
-    turretMotor.getPIDController().setP(kP, slotID);
-    turretMotor.getPIDController().setI(kI, slotID);
-    turretMotor.getPIDController().setD(kD, slotID);
-    turretMotor.getPIDController().setFF(kFF, slotID);
-    turretMotor.getPIDController().setOutputRange(MinOutput, MaxOutput, slotID);
-    turretMotor.getPIDController().setSmartMotionMaxAccel(maxAccel, slotID);
-    turretMotor.getPIDController().setSmartMotionAllowedClosedLoopError(allowedErr, slotID);
-    turretMotor.getPIDController().setSmartMotionMaxVelocity(maxVel, slotID);
-    turretMotor.getPIDController().setSmartMotionMinOutputVelocity(minVel, slotID);
+    hoodMotor.getPIDController().setP(kP_hood, slotID_hood);
+    hoodMotor.getPIDController().setI(kI_hood, slotID_hood);
+    hoodMotor.getPIDController().setD(kD_hood, slotID_hood);
+    hoodMotor.getPIDController().setFF(kFF_hood, slotID_hood);
+    hoodMotor.getPIDController().setOutputRange(MinOutput_hood, MaxOutput_hood, slotID_hood);
+    hoodMotor.getPIDController().setSmartMotionMaxAccel(maxAccel_hood, slotID_hood);
+    hoodMotor.getPIDController().setSmartMotionAllowedClosedLoopError(allowedErr_hood, slotID_hood);
+    hoodMotor.getPIDController().setSmartMotionMaxVelocity(maxVel_hood, slotID_hood);
+    hoodMotor.getPIDController().setSmartMotionMinOutputVelocity(minVel_hood, slotID_hood);
+  }
 
+  /**
+   * Spins the motor at a given speed in RPM
+   * @param speed RPM to spin motor at
+   */
+  public void spinMotors(double speed){
+    leftShooterMotor.set(ControlMode.Velocity, speed);//TODO Check direction for both shooter motors
+    rightShooterMotor.set(ControlMode.Velocity, -speed);
   }
-public void spinMotors(final double speed){
-  leftShooterMotor.set(ControlMode.PercentOutput, speed);//TODO Check direction for both motors
-  rightShooterMotor.set(ControlMode.PercentOutput, -speed);
-}
-public void moveHood(final double position){
-hoodMotor.getPIDController().setReference(position, ControlType.kSmartMotion, slotID);
-}
-public void aimHood(final double position){
-  if(leftLimitSwitch.get() == true || rightLimitSwitch.get() == true){
-    turretMotor.set(0);
+
+  /**
+   * Moves hood to shoot at certain angle
+   * @param position angle for the hood
+   */
+  public void moveHood(double position){
+    hoodMotor.getPIDController().setReference(position, ControlType.kSmartMotion, slotID_hood);
   }
-  else{
-    turretMotor.getPIDController().setReference(position, ControlType.kSmartMotion, slotID);
+
+  /**
+   * Moves the turret to an angle
+   * @param position angle to move turret to
+   */
+  public void aimTurret(double position){
+    if(leftLimitSwitch.get() == true || rightLimitSwitch.get() == true){
+      turretMotor.getPIDController().setReference(0, ControlType.kDutyCycle, slotID_turret);
+    }
+    else{
+      turretMotor.getPIDController().setReference(position, ControlType.kSmartMotion, slotID_turret);
+    }
   }
-//TODO make it possible to turn certain angles
-}
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

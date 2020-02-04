@@ -7,15 +7,10 @@
 
 package frc.robot;
 
-import com.revrobotics.ColorMatch;
-import com.revrobotics.ColorSensorV3;
-
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.MoveInAStraightLine;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.ConveyorBelt;
@@ -32,21 +27,22 @@ import frc.robot.subsystems.Shooter;
  */
 public class RobotContainer {
   // The robot's subsystems and commands and OI devices are defined here...
-  public static Joystick driveStick = new Joystick(Constants.driveStickPort);
-  public static Joystick opBoard = new Joystick(Constants.opBoardPort);
+
+  //Subsystems
+  public static Drivetrain drivetrain = new Drivetrain();
+  public static Shooter shooter = new Shooter();
   public static Intake intake = new Intake();
   public static ConveyorBelt conveyorBelt = new ConveyorBelt();
-  public static Drivetrain drivetrain = new Drivetrain();
   public static FrictionWheel frictionWheel = new FrictionWheel();
   public static Climber climber = new Climber();
-  public static FrictionWheel ColorSensor = new FrictionWheel();
-  public static Shooter shooter = new Shooter();
 
-  public static JoystickButton extrudeButton = new JoystickButton(opBoard, Constants.extrudeButton);
-  public static final JoystickButton moveIntake = new JoystickButton(driveStick, 2);
-  public static JoystickButton moveConveyorBelt = new JoystickButton(driveStick, 3);
-
+  //Autonomous Command
   MoveInAStraightLine auto = new MoveInAStraightLine(100);
+  
+  //Operator Interface
+  public static Joystick driveStick = new Joystick(Constants.driveStickPort);
+  public static Joystick opBoard = new Joystick(Constants.opBoardPort);
+  
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -72,7 +68,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    // return m_autoCommand;
     return auto;
   }
 

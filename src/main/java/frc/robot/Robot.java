@@ -11,9 +11,6 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.*;
-import edu.wpi.first.wpilibj.I2C;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.util.Color;
 
 // import edu.wpi.first.wpilibj.I2C;
 // import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -33,10 +30,6 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
-  /**
-   * Note: Any example colors should be calibrated as the user needs, these
-   * are here as a basic example.
-   */
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -65,10 +58,6 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
     CommandScheduler.getInstance().setDefaultCommand(RobotContainer.drivetrain, new Tankdrive());
-    //CommandScheduler.getInstance().setDefaultCommand(RobotContainer.syst, new RetractPiston());
-
-    
-
   }
 
   /**
@@ -128,7 +117,6 @@ public class Robot extends TimedRobot {
   public void testInit() {
     // Cancels all running commands at the start of test mode.
     CommandScheduler.getInstance().cancelAll();
-    RobotContainer.drivetrain.resetAllEncoder();
   }
 
   /**
@@ -136,17 +124,23 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
-    //RobotContainer.drivetrain.setAllMotorPosition(10);
-    //RobotContainer.drivetrain.getRightMotorEncoder();
-    //System.out.println(RobotContainer.drivetrain.getRightMotorEncoder());
-    //RobotContainer.drivetrain.setMotorSpeed(0.01);
 
-    //RobotContainer.moveIntake.whileHeld(new ForwardIntake());
-    //RobotContainer.moveConveyorBelt.whileHeld(new IntakeIndex());
-    if(RobotContainer.moveIntake.get()){
-        RobotContainer.intake.intake();
-    } else if(RobotContainer.moveConveyorBelt.get()){
-        RobotContainer.conveyorBelt.moveConveyorBeltForward();
+    //Testing the intake
+    if(RobotContainer.driveStick.getRawButton(1)){
+      RobotContainer.intake.intake();
+    }else if(RobotContainer.driveStick.getRawButton(2)){
+      RobotContainer.intake.reverseIntake(); 
+    }else{
+      RobotContainer.intake.stopIntake();
+    }
+
+    //Testing the conveyor belt
+    if(RobotContainer.driveStick.getRawButton(3)){
+      RobotContainer.conveyorBelt.moveConveyorBeltForward();
+    }else if(RobotContainer.driveStick.getRawButton(4)){
+      RobotContainer.intake.reverseIntake(); 
+    }else {
+      RobotContainer.conveyorBelt.stopConveyorBelt();
     }
   }
 }

@@ -29,8 +29,6 @@ public final class Constants {
     public static final int leftAxis = 1;
     public static final int rightAxis = 5; 
 
-    public static final int extrudeButton = 1;
-
 
     //Drivetrain Constants
     public static int leftFrontMotorPort = 1;
@@ -38,6 +36,20 @@ public final class Constants {
     public static int rightFrontMotorPort = 3; 
     public static int rightBackMotorPort = 4; 
 
+    /**
+     * Determines the number of encoder ticks necessary for drivetrain to turn at certain angle
+     * @param angle the angle to turn
+     * @return number of encoder ticks for the each side of the drivetrain to turn 
+     */
+    public static double rotateX(double angle){
+      double encoderTicks = ((13/90)* angle);
+      return encoderTicks;
+    }
+
+    public static final double allowedError = 0.05;
+
+
+    //Shooter Constants
     public static int rightShooterMotorPort = 5;
     public static int leftShooterMotorPort = 6;
     public static int hoodMotorPort = 7;
@@ -47,27 +59,6 @@ public final class Constants {
     public static int centreLimitSwitchPort = 2;
     public static int rightLimitSwitchPort = 3;
 
-  
-
-
-    public static final int rotate90Left = -13; //TODO determine encoder value for the 90 degree turn on the left side of the drivetrain
-    //TODO determine encoder value for the 90 degree turn on the left side of the drivetrain
-    public static final int rotate90Right = 13; 
-
-    public static final int rotate180 = 26; 
-    //TODO determine encoder value for the 180 degree turn on the left side of the drivetrain
-
-    public static final double rotate235Left = -32.5; 
-    //TODO determine encoder value for the 235 degree turn on the left side of the drivetrain
-
-    public static final double rotate235Right = 32.5;
-
-    public static double rotateX(double x){
-      double val = ((13/90)* x);
-      return val;
-    }
-
-    public static final double allowedError = 0.05;
 
 
     //Friction Wheel Constants
@@ -81,7 +72,7 @@ public final class Constants {
     
     public static final int pistonTimer = 1;
 
-    public static String colorString = "";
+    public static int colorSensorOptimalRange; //TODO determine sensing distance that the color sensor will be at
 
     public static final Color kBlueTarget = ColorMatch.makeColor(0.143, 0.427, 0.429);
     public static final Color kGreenTarget = ColorMatch.makeColor(0.197, 0.561, 0.240);
@@ -94,22 +85,22 @@ public final class Constants {
     public static final int climberDeliveryMotorPort = 0; //TODO find the port of the climber delivery
     
     //Intake Constants
-    public static final int intakeMotorPort = 0; //TODO Change to correct port
-    public static final int intakeiRSensor1Channel = 0; //TODO change to correct port
+    public static final int intakeMotorPort = 0; //TODO Change to correct port for intake motor
+    public static final int intakeiRSensor1Channel = 0; //TODO change to correct port for intake infrared sensor
 
     public static final double intakeSpeed = 0.3;
     public static final double reverseIntakeSpeed = -0.3;
 
     //Conveyor Constants
-    public static final int conveyorBeltMotorPort = 0; //TODO Change if needed
+    public static final int conveyorBeltMotorPort = 0; //TODO change to correct port for conveyor belt
 
     public static final double conveyorBeltForwardSpeed = 0.3; //TODO check if this speed works to move conveyor belt forward
     public static final double conveyorBeltBackwardSpeed = -0.3; //TODO check if this speed works to move conveyor belt backward
 
-    public static final int conveyoriRSensor1Channel = 0; //TODO Change to coorect channel
-    public static final int conveyoriRSensor2Channel = 0; //TODO Change to coorect channel
-    public static final int conveyoriRSensor3Channel = 0; //TODO Change to coorect channel
-    public static final int conveyoriRSensor4Channel = 0; //TODO Change to coorect channel
-    public static final int conveyoriRSensor5Channel = 0; //TODO Change to coorect channel
+    public static final int conveyoriRSensor1Channel = 0; //TODO Change to correct channel
+    public static final int conveyoriRSensor2Channel = 0; //TODO Change to correct channel
+    public static final int conveyoriRSensor3Channel = 0; //TODO Change to correct channel
+    public static final int conveyoriRSensor4Channel = 0; //TODO Change to correct channel
+    public static final int conveyoriRSensor5Channel = 0; //TODO Change to correct channel
 
 }

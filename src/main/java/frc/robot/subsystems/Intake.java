@@ -26,22 +26,35 @@ public class Intake extends SubsystemBase {
     
   }
 
+  /**
+   * Checks if the ball is passing through the intake 
+   */
   public boolean isBallThere(){
-    if(intakeiRSensor1.get() == true){ //TODO make this work
+    //TODO Does this give the conveyor belt enough time to start moving?
+    if(intakeiRSensor1.get() == true){
       return true;
     }else{
       return false;
     }
   }
 
+  /**
+   * Intakes the ball
+   */
   public void intake(){
     intakeMotor.set(Constants.intakeSpeed);
   }
 
+  /**
+   * Runs the intake in reverse
+   */
   public void reverseIntake(){
     intakeMotor.set(Constants.reverseIntakeSpeed);
   }
 
+  /**
+   * Stops running the intake
+   */
   public void stopIntake(){
     intakeMotor.set(0);
   }
