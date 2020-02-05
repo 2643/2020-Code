@@ -12,13 +12,13 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 /**
- * Moves the control panel to the right
+ * Moves the control panel left
  */
-public class MoveWheelRight extends CommandBase {
+public class MoveWheel extends CommandBase {
   /**
-   * Creates a new MoveWheelRight.
+   * Creates a new MoveWheelLeft.
    */
-  public MoveWheelRight() {
+  public MoveWheel() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.frictionWheel);
   }
