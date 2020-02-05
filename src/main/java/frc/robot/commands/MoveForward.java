@@ -11,13 +11,13 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
-public class MoveInAStraightLine extends CommandBase {
+public class MoveForward extends CommandBase {
   private double rotationsForward; 
 
   /**
    * Creates a new MoveForward.
    */
-  public MoveInAStraightLine(double rotations) {
+  public MoveForward(double rotations) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.drivetrain);
 

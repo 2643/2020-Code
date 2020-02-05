@@ -11,8 +11,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.commands.MoveInAStraightLine;
-import frc.robot.subsystems.Drivetrain;
+import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
 /**
@@ -33,7 +32,7 @@ public class RobotContainer {
   public static Climber climber = new Climber();
 
   //Autonomous Command
-  MoveInAStraightLine auto = new MoveInAStraightLine(100);
+  MoveForward auto = new MoveForward(100);
   
   //Operator Interface
   public static Joystick driveStick = new Joystick(Constants.driveStickPort);
