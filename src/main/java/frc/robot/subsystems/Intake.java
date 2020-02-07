@@ -16,7 +16,7 @@ import frc.robot.Constants;
 
 public class Intake extends SubsystemBase {
 
-  public static DigitalInput intakeiRSensor1 = new DigitalInput(Constants.intakeiRSensor1Channel);
+  public static DigitalInput intakeiRSensor = new DigitalInput(Constants.intakeiRSensorChannel);
   public static CANSparkMax intakeMotor = new CANSparkMax(Constants.intakeMotorPort, MotorType.kBrushless);
 
   /**
@@ -31,7 +31,7 @@ public class Intake extends SubsystemBase {
    */
   public boolean isBallThere(){
     //TODO Does this give the conveyor belt enough time to start moving?
-    if(intakeiRSensor1.get() == true){
+    if(intakeiRSensor.get() == true){
       return true;
     }else{
       return false;

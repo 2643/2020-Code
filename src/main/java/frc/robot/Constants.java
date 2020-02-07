@@ -64,11 +64,11 @@ public final class Constants {
     //Friction Wheel Constants
     public static final int frictionWheelMotorPort = 7;
 
-    public static final int doubleSolenoidPort1 = 8;//TODO go back and fix this
-    public static final int doubleSolenoidPort2 = 9;//TODO go back and fix this
+    public static final int doubleSolenoidPort1 = 2;
+    public static final int doubleSolenoidPort2 = 3;
     
     public static final double maxRPM = 5500;
-    public static final double frictionWheelSpeed = -0.5; //TODO go back and look
+    public static final double frictionWheelSpeed = 0.3; 
     
     public static final int pistonTimer = 1;
 
@@ -80,13 +80,13 @@ public final class Constants {
     public static final Color kYellowTarget = ColorMatch.makeColor(0.361, 0.524, 0.113);
 
     //Climber Constants
-    public static final int leftClimberPort = 0; //TODO find the port of the left climber port
-    public static final int rightClimberPort = 0; //TODO find the port of the right climber port
-    public static final int climberDeliveryMotorPort = 0; //TODO find the port of the climber delivery
+    public static final int leftClimberPort = 0; //TODO find the port of the left climber motor
+    public static final int rightClimberPort = 0; //TODO find the port of the right climber motor
+    public static final int climberDeliveryMotorPort = 0; //TODO find the port of the climber delivery motor
     
     //Intake Constants
     public static final int intakeMotorPort = 0; //TODO Change to correct port for intake motor
-    public static final int intakeiRSensor1Channel = 0; //TODO change to correct port for intake infrared sensor
+    public static final int intakeiRSensorChannel = 0; //TODO change to correct port for intake infrared sensor
 
     public static final double intakeSpeed = 0.3;
     public static final double reverseIntakeSpeed = -0.3;
@@ -97,10 +97,10 @@ public final class Constants {
     public static final double conveyorBeltForwardSpeed = 0.3; //TODO check if this speed works to move conveyor belt forward
     public static final double conveyorBeltBackwardSpeed = -0.3; //TODO check if this speed works to move conveyor belt backward
 
-    public static final int conveyoriRSensor1Channel = 0; //TODO Change to correct channel
-    public static final int conveyoriRSensor2Channel = 0; //TODO Change to correct channel
-    public static final int conveyoriRSensor3Channel = 0; //TODO Change to correct channel
-    public static final int conveyoriRSensor4Channel = 0; //TODO Change to correct channel
-    public static final int conveyoriRSensor5Channel = 0; //TODO Change to correct channel
+    public static final int conveyoriRSensor1Channel = 0; //TODO Change to correct channel for IR 1
+    public static final int conveyoriRSensor2Channel = 0; //TODO Change to correct channel for IR 2
+    public static final int conveyoriRSensor3Channel = 0; //TODO Change to correct channel for IR 3
+    public static final int conveyoriRSensor4Channel = 0; //TODO Change to correct channel for IR 4
+    public static final int conveyoriRSensor5Channel = 0; //TODO Change to correct channel for IR 5
 
 }
