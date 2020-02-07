@@ -11,14 +11,16 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Intake extends SubsystemBase {
 
-  public static DigitalInput intakeiRSensor = new DigitalInput(Constants.intakeiRSensorChannel);
+  public static DigitalInput intakeiRSensor1 = new DigitalInput(Constants.intakeiRSensorChannel);
   public static CANSparkMax intakeMotor = new CANSparkMax(Constants.intakeMotorPort, MotorType.kBrushless);
-
+DoubleSolenoid IntakePiston = new DoubleSolenoid(Constants.doubleSolenoidPort3, Constants.doubleSolenoidPort4);
   /**
    * Creates a new Intake.
    */
@@ -29,9 +31,13 @@ public class Intake extends SubsystemBase {
   /**
    * Checks if the ball is passing through the intake 
    */
+
+
+
+
   public boolean isBallThere(){
     //TODO Does this give the conveyor belt enough time to start moving?
-    if(intakeiRSensor.get() == true){
+    if(intakeiRSensor1.get() == true){
       return true;
     }else{
       return false;
@@ -51,7 +57,18 @@ public class Intake extends SubsystemBase {
   public void reverseIntake(){
     intakeMotor.set(Constants.reverseIntakeSpeed);
   }
-
+/**
+ * Retracts the intake piston
+ */
+public void RetractIntakePiston(){
+  IntakePiston.set(Value.kForward);//TODO Check which direction 
+}
+/**
+ * Extends the intake piston
+ */
+public void ExtendIntakePiston(){
+  IntakePiston.set(Value.kReverse); // TODO Check which direction
+}
   /**
    * Stops running the intake
    */
