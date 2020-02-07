@@ -91,6 +91,9 @@ public final class Constants {
     public static final double intakeSpeed = 0.3;
     public static final double reverseIntakeSpeed = -0.3;
 
+    public static final int intakeSolenoidPort1 = 0;
+    public static final int intakeSolenoidPort2 = 1;
+
     //Conveyor Constants
     public static final int conveyorBeltMotorPort = 0; //TODO change to correct port for conveyor belt
 
