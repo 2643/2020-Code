@@ -12,6 +12,9 @@ import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+/**
+ * Distance sensor for the shooter
+ */
 public class LidarProxy extends SubsystemBase{
   private double lastReadDistance;
   private LidarListener _listener;
@@ -35,32 +38,36 @@ public class LidarProxy extends SubsystemBase{
       //SmartDashboard.putBoolean("Lidar/initializedProperly", _initializedProperly);
   }
 
+  /**
+   * Gets distance detected by the sensor in millimeters
+   * @return double millimeterDistance
+   */
   public double get() {
-      return lastReadDistance;
+    return lastReadDistance;
   }
-
+ 
   protected class LidarListener implements Runnable {
-      private SerialPort _port;
-      private LidarProxy _proxy;
+    private SerialPort _port;
+    private LidarProxy _proxy;
 
-      protected LidarListener(LidarProxy proxy, SerialPort.Port port) {
-          _proxy = proxy;
-          _port = new SerialPort(115200, port);
-          //_port.setReadBufferSize(9);
-      }
+    protected LidarListener(LidarProxy proxy, SerialPort.Port port) {
+        _proxy = proxy;
+        _port = new SerialPort(115200, port);
+        //_port.setReadBufferSize(9);
+    }
 
-      public void run() {
-          while (true) {
-              try {
-                  //SmartDashboard.putNumber("Lidar/_port.getBytesReceived()", _port.getBytesReceived());
-                  byte[] read = _port.read(9);
-                  //SmartDashboard.putNumber("Lidar/readLength", read.length);
-                  //SmartDashboard.putNumber("Lidar/bytes/3", new Integer(read[2] & 0xFF));
-                  _proxy.lastReadDistance = read[2] & 0xFF;
-              } catch (Exception e) {
-                  DriverStation.reportError("LidarListener exception: " + e.toString(), false);
-              }
-          }
-      }
+    public void run() {
+        while (true) {
+            try {
+                //SmartDashboard.putNumber("Lidar/_port.getBytesReceived()", _port.getBytesReceived());
+                byte[] read = _port.read(9);
+                //SmartDashboard.putNumber("Lidar/readLength", read.length);
+                //SmartDashboard.putNumber("Lidar/bytes/3", new Integer(read[2] & 0xFF));
+                _proxy.lastReadDistance = read[2] & 0xFF;
+            } catch (Exception e) {
+                DriverStation.reportError("LidarListener exception: " + e.toString(), false);
+            }
+        }
+    }
   }
 }
