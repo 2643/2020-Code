@@ -12,14 +12,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.*;
 
-// import edu.wpi.first.wpilibj.I2C;
-// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-// import edu.wpi.first.wpilibj.util.Color;
-
-// import com.revrobotics.ColorSensorV3;
-// import com.revrobotics.ColorMatchResult;
-// import com.revrobotics.ColorMatch;
-
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -125,22 +117,22 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
 
-    //Testing the intake
-    if(RobotContainer.driveStick.getRawButton(1)){
-      RobotContainer.intake.intake();
-    }else if(RobotContainer.driveStick.getRawButton(2)){
-      RobotContainer.intake.reverseIntake(); 
-    }else{
-      RobotContainer.intake.stopIntake();
-    }
+    // //Testing the intake
+    // if(RobotContainer.driveStick.getRawButton(1)){
+    //   RobotContainer.intake.intake();
+    // }else if(RobotContainer.driveStick.getRawButton(2)){
+    //   RobotContainer.intake.reverseIntake(); 
+    // }else{
+    //   RobotContainer.intake.stopIntake();
+    // }
 
-    //Testing the conveyor belt
-    if(RobotContainer.driveStick.getRawButton(3)){
-      RobotContainer.conveyorBelt.moveConveyorBeltForward();
-    }else if(RobotContainer.driveStick.getRawButton(4)){
-      RobotContainer.intake.reverseIntake(); 
-    }else {
-      RobotContainer.conveyorBelt.stopConveyorBelt();
-    }
+    // //Testing the conveyor belt
+    // if(RobotContainer.driveStick.getRawButton(3)){
+    //   RobotContainer.conveyorBelt.moveConveyorBeltForward();
+    // }else if(RobotContainer.driveStick.getRawButton(4)){
+    //   RobotContainer.intake.reverseIntake(); 
+    // }else {
+    //   RobotContainer.conveyorBelt.stopConveyorBelt();
+    // }
   }
 }
