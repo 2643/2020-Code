@@ -104,6 +104,10 @@ public final class Constants {
     public static final int conveyoriRSensor2Channel = 0; //TODO Change to correct channel for IR 2
     public static final int conveyoriRSensor3Channel = 0; //TODO Change to correct channel for IR 3
     public static final int conveyoriRSensor4Channel = 0; //TODO Change to correct channel for IR 4
-    public static final int conveyoriRSensor5Channel = 0; //TODO Change to correct channel for IR 5
+    public static final int conveyoriRSensor5Channel = 0; //TODO Change to correct channel for IR 5\
+
+    public static final int turretEncoderLeftSoftLimit = 100; //TODO test and change
+    public static final int turretEncoderRightSoftLimit = 260; //TODO test and change
+
 
 }
