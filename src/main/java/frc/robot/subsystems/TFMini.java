@@ -29,13 +29,19 @@ public class TFMini extends SubsystemBase {
    * Creates a new TFMini.
    */
   public TFMini() {
+    // Set the buffer size to be 2 frames large
     port.setReadBufferSize(32);
   }
 
-  public int getDistance() {
+  private Object[] takeMeasurement() {
     Boolean frameOne = false;
     Boolean frameTwo = false;
     List<String> bytes = new ArrayList<String>();
+    Object[] returnArray = new Object[4];
+    returnArray[0] = false;
+    returnArray[1] = -1;
+    returnArray[2] = -1
+    returnArray[3] = "NULL";
     // Add frame headers now.
     bytes.add("59");
     bytes.add("59");
@@ -61,18 +67,42 @@ public class TFMini extends SubsystemBase {
     }
 
     int accumulator = 0;
-    for (int index = 0; index < 8; index++){
+    for (int index = 0; index < 8; index++) {
       accumulator += Integer.parseInt(bytes.get(index), 16);
     }
 
     int checksum = accumulator & Integer.parseInt("ffffffff", 16);
-    if (Integer.toHexString(checksum) == bytes.get(8)){
-      String distanceString = bytes.get(4) + bytes.get(5);
+    if (Integer.toHexString(checksum) == bytes.get(8)) {
+      String distanceString = bytes.get(3) + bytes.get(2);
+      String strengthString = bytes.get(5) + bytes.get(4);
+      String mode = bytes.get(6);
+
       int distance = Integer.parseInt(distanceString, 16);
-      return distance;
+      int strength = Integer.parseInt(strengthString, 16);
+
+      returnArray[0] = true;
+      returnArray[1] = distance;
+      returnArray[2] = strength;
+      returnArray[3] = mode;
+
+      return returnArray;
+    } else {
+      return returnArray;
     }
-    else {
-      return -1;
+  }
+
+  public int getDistance() {
+    int MAX_TRIES = 5;
+    int tries = 0;
+    while (true){
+      Object[] measurement = takeMeasurement();
+      if((boolean)measurement[0]){
+        return (int)measurement[1];
+      }
+      tries += 1;
+      if (MAX_TRIES == tries) {
+        return -1;
+      }
     }
   }
 
@@ -91,6 +121,7 @@ public class TFMini extends SubsystemBase {
   public void trigger() {
     port.write(extTrigger, 16);
   }
+
 
   public static byte[] hexStringToByteArray(String s) {
     int len = s.length();
