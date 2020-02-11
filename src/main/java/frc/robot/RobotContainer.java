@@ -11,11 +11,8 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.MoveInAStraightLine;
-import frc.robot.commands.Rotate90;
-import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.FrictionWheel;
+import frc.robot.commands.*;
+import frc.robot.subsystems.*;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -25,20 +22,22 @@ import frc.robot.subsystems.FrictionWheel;
  */
 public class RobotContainer {
   // The robot's subsystems and commands and OI devices are defined here...
+
+  //Subsystems
+  public static Drivetrain drivetrain = new Drivetrain();
+  public static Shooter shooter = new Shooter();
+  public static Intake intake = new Intake();
+  public static ConveyorBelt conveyorBelt = new ConveyorBelt();
+  public static FrictionWheel frictionWheel = new FrictionWheel();
+  public static Climber climber = new Climber();
+
+  //Autonomous Command
+  MoveForward auto = new MoveForward(100);
+  
+  //Operator Interface
   public static Joystick driveStick = new Joystick(Constants.driveStickPort);
   public static Joystick opBoard = new Joystick(Constants.opBoardPort);
-  public static FrictionWheel syst = new FrictionWheel();
-
-
-  public static Drivetrain drivetrain = new Drivetrain();
-  public static FrictionWheel frictionWheel = new FrictionWheel();
-
-  public static JoystickButton extrudeButton = new JoystickButton(opBoard,Constants.extrudeButton);
-
-  MoveInAStraightLine auto = new MoveInAStraightLine(100);
-  // auto = new Rotate90("Left");
-
-
+  
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -64,7 +63,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    // return m_autoCommand;
     return auto;
   }
 

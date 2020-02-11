@@ -22,43 +22,92 @@ import edu.wpi.first.wpilibj.util.Color;
  * wherever the constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static int leftFrontMotorPort = 1;
-    public static int leftBackMotorPort = 2;
-    public static int rightFrontMotorPort = 3; 
-    public static int rightBackMotorPort = 4; 
-
+    //OI Constants
     public static int driveStickPort = 0; 
     public static int opBoardPort = 1;
 
     public static final int leftAxis = 1;
     public static final int rightAxis = 5; 
 
-    public static final int rotate90Left = -13; //TODO determine encoder value for the 90 degree turn on the left side of the drivtrain
-    public static final int rotate90Right = 13; 
 
-    public static final int rotate180 = 26; //TODO determine encoder value for the 180 degree turn on the left side of the drivetrain
+    //Drivetrain Constants
+    public static int leftFrontMotorPort = 1;
+    public static int leftBackMotorPort = 2;
+    public static int rightFrontMotorPort = 3; 
+    public static int rightBackMotorPort = 4; 
 
-    public static final double rotate235Left = -32.5; //TODO determine encoder value for the 235 degree turn on the left side of the drivetrain
-    public static final double rotate235Right = 32.5;
+    /**
+     * Determines the number of encoder ticks necessary for drivetrain to turn at certain angle
+     * @param angle the angle to turn
+     * @return number of encoder ticks for the each side of the drivetrain to turn 
+     */
+    public static double rotateX(double angle){
+      double encoderTicks = ((13/90)* angle);
+      return encoderTicks;
+    }
 
     public static final double allowedError = 0.05;
 
+
+    //Shooter Constants
+    public static int rightShooterMotorPort = 5;
+    public static int leftShooterMotorPort = 6;
+    public static int hoodMotorPort = 7;
+    public static int turretMotorPort = 8;
+
+    public static int leftLimitSwitchPort = 1;
+    public static int centreLimitSwitchPort = 2;
+    public static int rightLimitSwitchPort = 3;
+
+
+
+    //Friction Wheel Constants
     public static final int frictionWheelMotorPort = 7;
 
-    public static final int frictionWheelSpeed = 1;
-
-    public static final int doubleSolenoidPort1 = 5;
-    public static final int doubleSolenoidPort2 = 5;
-
+    public static final int doubleSolenoidPort1 = 2;
+    public static final int doubleSolenoidPort2 = 3;
+    
+    public static final double maxRPM = 5500;
+    public static final double frictionWheelSpeed = 0.3; 
+    
     public static final int pistonTimer = 1;
 
-    public static final int extrudeButton = 1;
-
-    public static String colorString = "";
+    public static int colorSensorOptimalRange; //TODO determine sensing distance that the color sensor will be at
 
     public static final Color kBlueTarget = ColorMatch.makeColor(0.143, 0.427, 0.429);
     public static final Color kGreenTarget = ColorMatch.makeColor(0.197, 0.561, 0.240);
     public static final Color kRedTarget = ColorMatch.makeColor(0.561, 0.232, 0.114);
     public static final Color kYellowTarget = ColorMatch.makeColor(0.361, 0.524, 0.113);
+
+    //Climber Constants
+    public static final int leftClimberPort = 0; //TODO find the port of the left climber motor
+    public static final int rightClimberPort = 0; //TODO find the port of the right climber motor
+    public static final int climberDeliveryMotorPort = 0; //TODO find the port of the climber delivery motor
+    
+    //Intake Constants
+    public static final int intakeMotorPort = 0; //TODO Change to correct port for intake motor
+    public static final int intakeiRSensorChannel = 0; //TODO change to correct port for intake infrared sensor
+
+    public static final double intakeSpeed = 0.3;
+    public static final double reverseIntakeSpeed = -0.3;
+
+    public static final int intakeSolenoidPort1 = 0;
+    public static final int intakeSolenoidPort2 = 1;
+
+    //Conveyor Constants
+    public static final int conveyorBeltMotorPort = 0; //TODO change to correct port for conveyor belt
+
+    public static final double conveyorBeltForwardSpeed = 0.3; //TODO check if this speed works to move conveyor belt forward
+    public static final double conveyorBeltBackwardSpeed = -0.3; //TODO check if this speed works to move conveyor belt backward
+
+    public static final int conveyoriRSensor1Channel = 0; //TODO Change to correct channel for IR 1
+    public static final int conveyoriRSensor2Channel = 0; //TODO Change to correct channel for IR 2
+    public static final int conveyoriRSensor3Channel = 0; //TODO Change to correct channel for IR 3
+    public static final int conveyoriRSensor4Channel = 0; //TODO Change to correct channel for IR 4
+    public static final int conveyoriRSensor5Channel = 0; //TODO Change to correct channel for IR 5\
+
+    public static final int turretEncoderLeftSoftLimit = 100; //TODO test and change
+    public static final int turretEncoderRightSoftLimit = 260; //TODO test and change
+
 
 }
