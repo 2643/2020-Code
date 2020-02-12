@@ -59,20 +59,19 @@ public class FrictionWheel extends SubsystemBase {
         colorString = "Green";
       } else if (match.color == Constants.kYellowTarget) {
         colorString = "Yellow";
-      }
+       }
       else
       {
         colorString = "Unknown";
       }
       
+      //TODO Refactor the variable names.
       theColor = colorString;
 
-      for (int i = 999; i > 0; i--)
-      {
-
-      }
       Color detectedColor_temp = m_colorSensor.getColor();
       ColorMatchResult match_temp = m_colorMatcher.matchClosestColor(detectedColor_temp);
+      
+      //TODO Split into two sections and use a counter to switch between the two.
       String colorString_temp = "initialized coloring temp";
       if (match_temp.color == Constants.kBlueTarget) {
         colorString_temp = "Blue";
