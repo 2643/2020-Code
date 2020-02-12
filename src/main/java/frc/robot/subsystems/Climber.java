@@ -19,7 +19,7 @@ public class Climber extends SubsystemBase {
   public static TalonFX rightClimberMotor = new TalonFX(Constants.rightClimberPort);
 
   public static WPI_TalonSRX climberDeliveryMotor = new WPI_TalonSRX(Constants.climberDeliveryMotorPort);
-  
+  //TODO: Add a second Motor 
   /**
    * Creates a new Climber.
    */
