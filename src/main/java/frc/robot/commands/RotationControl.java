@@ -13,14 +13,15 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
-public class InitFrictionWheelRotation extends CommandBase {
+public class RotationControl extends CommandBase {
   int x=0;
   Timer timer = new Timer();
   /**
    * Creates a new InitFrictionWheelRotation.
    */
-  public InitFrictionWheelRotation() {
+  public RotationControl() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(RobotContainer.frictionWheel);
   }
 
   // Called when the command is initially scheduled.
@@ -38,20 +39,8 @@ public class InitFrictionWheelRotation extends CommandBase {
         x+=1;
       }
       RobotContainer.frictionWheel.setMotorSpeed(Constants.frictionWheelSpeed);
-    }
-    // x=0;
-    // if(x<5){
-    //   x+=1;
-    //   if(!RobotContainer.frictionWheel.shiftColor().equals(Constants.frictionWheelInputColor)){
-    //     RobotContainer.frictionWheel.setMotorSpeed(Constants.frictionWheelSpeed);
-    //   }else{
-    //     RobotContainer.frictionWheel.setMotorSpeed(0);
-    //   }
-    // }
-    x=10;
+    } 
   }
-    
-    
 
   // Called once the command ends or is interrupted.
   @Override
@@ -61,7 +50,6 @@ public class InitFrictionWheelRotation extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-   
     if (x==10){
       return true;
     }
