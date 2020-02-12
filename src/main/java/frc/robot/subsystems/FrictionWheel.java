@@ -15,6 +15,8 @@ import com.revrobotics.ColorSensorV3;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -25,6 +27,7 @@ public class FrictionWheel extends SubsystemBase {
   private final I2C.Port i2cPort = I2C.Port.kOnboard;
   public final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
   public final ColorMatch m_colorMatcher = new ColorMatch();
+  public String theColor;
 
   
   /**
@@ -41,12 +44,13 @@ public class FrictionWheel extends SubsystemBase {
   /**
    * Returns the color detected by the color sensor
    */
-  public String detectColor(){
-    ColorMatchResult match = m_colorMatcher.matchClosestColor(m_colorSensor.getColor());
+  public String getColor() {
     int proximity = m_colorSensor.getProximity();
-    String colorString;
-    
-    if(proximity >= Constants.colorSensorOptimalRange){
+    Color detectedColor = m_colorSensor.getColor();
+    ColorMatchResult match = m_colorMatcher.matchClosestColor(detectedColor);
+    String colorString = "initialized colorstring";
+    if (proximity > 190)
+    {
       if (match.color == Constants.kBlueTarget) {
         colorString = "Blue";
       } else if (match.color == Constants.kRedTarget) {
@@ -55,14 +59,78 @@ public class FrictionWheel extends SubsystemBase {
         colorString = "Green";
       } else if (match.color == Constants.kYellowTarget) {
         colorString = "Yellow";
-      } else {
+       }
+      else
+      {
         colorString = "Unknown";
       }
-    }else{
-      colorString = "Too Far Away";
+      
+      //TODO Refactor the variable names.
+      theColor = colorString;
+
+      Color detectedColor_temp = m_colorSensor.getColor();
+      ColorMatchResult match_temp = m_colorMatcher.matchClosestColor(detectedColor_temp);
+      
+      //TODO Split into two sections and use a counter to switch between the two.
+      String colorString_temp = "initialized coloring temp";
+      if (match_temp.color == Constants.kBlueTarget) {
+        colorString_temp = "Blue";
+      } else if (match_temp.color == Constants.kRedTarget) {
+        colorString_temp = "Red";
+      } else if (match_temp.color == Constants.kGreenTarget) {
+        colorString_temp = "Green";
+      } else if (match_temp.color == Constants.kYellowTarget) {
+        colorString_temp = "Yellow";
+      }
+
+
+      if (!colorString_temp.equals(colorString))
+      {
+       // while (true)
+       //{
+          if (colorString.equals("Yellow"))
+          {
+            if (colorString_temp.equals("Blue") && !colorString_temp.equals("Green"))
+            {
+            //  while(!colorString_temp.equals("Blue") || colorString_temp.equals("Green"))
+              //{
+                theColor = "Blue";
+              //}
+            }
+          }
+          else if (colorString.equals("Green"))
+          {
+            if (colorString_temp.equals("Red") && !colorString_temp.equals("Yellow"))
+            {
+              theColor = "Red";
+            }
+          }
+          else if (colorString.equals("Red"))
+          {
+            if (colorString_temp.equals("Yellow"))
+            {
+              theColor = "Yellow";
+            }
+          }
+          else if (colorString.equals("Blue"))
+          {
+            if (colorString_temp.equals("Green"))
+            {
+                theColor = "Green";
+            }
+          }
+        //  }
+      }
     }
-    return colorString; 
-  }
+    else
+    {
+      theColor = "Too Far Away";
+    }
+    SmartDashboard.putString("Detected Color", theColor);
+    return theColor;
+}
+
+
 
   /**
    * Extends the FrictionWheel mechanism
@@ -84,10 +152,90 @@ public class FrictionWheel extends SubsystemBase {
   public void setMotorSpeed(double speed){
     frictionWheelMotor.set(speed);
   }
-
-  
   @Override
   public void periodic() {
     
   }
+
+  public String shiftColor() 
+  {
+    int proximity = m_colorSensor.getProximity();
+    Color detectedColor = m_colorSensor.getColor();
+    ColorMatchResult match = m_colorMatcher.matchClosestColor(detectedColor);
+    String colorString = "initialized colorstring";
+    if (proximity > 190)
+    {
+      if (match.color == Constants.kBlueTarget) 
+      {
+        colorString = "Blue";
+      } else if (match.color == Constants.kRedTarget) 
+      {
+        colorString = "Red";
+      } else if (match.color == Constants.kGreenTarget) 
+      {
+        colorString = "Green";
+      } else if (match.color == Constants.kYellowTarget) 
+      {
+        colorString = "Yellow";
+      }
+      else
+      {
+        colorString = "Unknown";
+      }
+      
+      theColor = colorString;
+
+      Color detectedColor_temp = m_colorSensor.getColor();
+      ColorMatchResult match_temp = m_colorMatcher.matchClosestColor(detectedColor_temp);
+      String colorString_temp = "initialized coloring temp";
+      if (match_temp.color == Constants.kBlueTarget) {
+        colorString_temp = "Blue";
+      } else if (match_temp.color == Constants.kRedTarget) {
+        colorString_temp = "Red";
+      } else if (match_temp.color == Constants.kGreenTarget) {
+        colorString_temp = "Green";
+      } else if (match_temp.color == Constants.kYellowTarget) {
+        colorString_temp = "Yellow";
+      }
+
+
+      if (!colorString_temp.equals(colorString))
+      {
+          if (colorString.equals("Yellow"))
+          {
+            if (colorString_temp.equals("Blue") && !colorString_temp.equals("Green"))
+            {
+                theColor = "Blue";
+            }
+          }
+          else if (colorString.equals("Green"))
+          {
+            if (colorString_temp.equals("Red") && !colorString_temp.equals("Yellow"))
+            {
+              theColor = "Red";
+            }
+          }
+          else if (colorString.equals("Red"))
+          {
+            if (colorString_temp.equals("Yellow"))
+            {
+              theColor = "Yellow";
+            }
+          }
+          else if (colorString.equals("Blue"))
+          {
+            if (colorString_temp.equals("Green"))
+            {
+                theColor = "Green";
+            }
+          }
+      }
+    }
+    else
+    {
+      theColor = "Too Far Away";
+    }
+    SmartDashboard.putString("Detected Color", theColor);
+    return theColor;
+}
 }

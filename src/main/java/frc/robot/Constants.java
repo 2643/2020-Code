@@ -62,6 +62,11 @@ public final class Constants {
 
 
     //Friction Wheel Constants
+
+    public static final int wheelTimer_7turns =1;//TODO find out how long to spin wheel 3.5 times
+    public static final double wheelTimer_move1=0.25;//TODO find out how long to spin over one color
+    public static String frictionWheelInputColor;//TODO create program to actually input the color yknow
+
     public static final int frictionWheelMotorPort = 7;
 
     public static final int doubleSolenoidPort1 = 2;
