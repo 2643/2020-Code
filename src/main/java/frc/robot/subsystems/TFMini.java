@@ -40,7 +40,7 @@ public class TFMini extends SubsystemBase {
     Object[] returnArray = new Object[4];
     returnArray[0] = false;
     returnArray[1] = -1;
-    returnArray[2] = -1
+    returnArray[2] = -1;
     returnArray[3] = "NULL";
     // Add frame headers now.
     bytes.add("59");
