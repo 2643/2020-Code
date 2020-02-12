@@ -20,6 +20,7 @@ public class Climber extends SubsystemBase {
 
   public static WPI_TalonSRX climberDeliveryMotor = new WPI_TalonSRX(Constants.climberDeliveryMotorPort);
   //TODO: Add a second Motor 
+  //TODO Add soft limits for delivery and winch
   /**
    * Creates a new Climber.
    */
