@@ -14,6 +14,7 @@ import frc.robot.RobotContainer;
 
 public class RotationControl extends CommandBase {
   int x=0;
+  boolean keepgoing;
   /**
    * Creates a new RotationControl
    */
