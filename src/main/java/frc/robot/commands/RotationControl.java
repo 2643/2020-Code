@@ -15,6 +15,7 @@ import frc.robot.RobotContainer;
 
 public class RotationControl extends CommandBase {
   int x=0;
+  boolean keepgoing = false;
   Timer timer = new Timer();
   /**
    * Creates a new InitFrictionWheelRotation.
@@ -28,6 +29,7 @@ public class RotationControl extends CommandBase {
   @Override
   public void initialize() {
     x=0;
+    keepgoing=true;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -36,10 +38,16 @@ public class RotationControl extends CommandBase {
     //make it pass 7 times over one color
     if(x<7){
       if(RobotContainer.frictionWheel.getColor().equals("Green")){
+        keepgoing=true;
+      }
+      if(RobotContainer.frictionWheel.getColor().equals("Green") && keepgoing==true){
         x+=1;
+        keepgoing=false;
       }
       RobotContainer.frictionWheel.setMotorSpeed(Constants.frictionWheelSpeed);
-    } 
+    }else{
+      RobotContainer.frictionWheel.setMotorSpeed(0);
+    }
   }
 
   // Called once the command ends or is interrupted.
