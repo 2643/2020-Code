@@ -77,7 +77,7 @@ public final class Constants {
     
     public static final int pistonTimer = 1;
 
-    public static int colorSensorOptimalRange; //TODO determine sensing distance that the color sensor will be at
+    public static int colorSensorOptimalRange = 190;
 
     public static final Color kBlueTarget = ColorMatch.makeColor(0.143, 0.427, 0.429);
     public static final Color kGreenTarget = ColorMatch.makeColor(0.197, 0.561, 0.240);

@@ -51,7 +51,7 @@ public class FrictionWheel extends SubsystemBase {
     final Color detectedColor = m_colorSensor.getColor();
     final ColorMatchResult match = m_colorMatcher.matchClosestColor(detectedColor);
     String colorString = "initialized colorstring";
-    if (proximity > 190)
+    if (proximity > Constants.colorSensorOptimalRange)
     {
       if (match.color == Constants.kBlueTarget) 
       {
