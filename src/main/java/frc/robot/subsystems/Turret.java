@@ -14,6 +14,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 public class Turret extends SubsystemBase {
   public static CANSparkMax turretMotor = new CANSparkMax(Constants.turretMotorPort, MotorType.kBrushless);
@@ -73,14 +74,23 @@ public class Turret extends SubsystemBase {
   /**
    * Move the turret using duty cycle, or constantly changing the target
    */
-  public void moveTurret(double speed){
-    
+  public void moveTurretLeft(){
+    if(RobotContainer.driveStick.getPOV() == 270){
+      turretMotor.getPIDController().setReference(0.2, ControlType.kDutyCycle, slotID_turret);
+    }
   }
 
+
+  public void moveTurretRight(){
+    if(RobotContainer.driveStick.getPOV() == 90){
+      turretMotor.getPIDController().setReference(-0.2, ControlType.kDutyCycle, slotID_turret);
+    }
+  }
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    moveTurretLeft();
+    moveTurretRight();
 
-    //TODO: Write something to move the turret using POV control here
   }
 }
