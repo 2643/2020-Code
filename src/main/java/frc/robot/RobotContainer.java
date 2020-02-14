@@ -37,8 +37,8 @@ public class RobotContainer {
   AutonomousRoutine auto = new AutonomousRoutine(); 
   
   //Operator Interface
-  public static Joystick driveStick = new Joystick(Constants.driveStickPort);
-  public static Joystick opBoard = new Joystick(Constants.opBoardPort);
+  public static Joystick driveStick = new Joystick(0);
+  public static Joystick opBoard = new Joystick(1);
 
   
 
@@ -59,6 +59,9 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+
+
+    
   }
 
 

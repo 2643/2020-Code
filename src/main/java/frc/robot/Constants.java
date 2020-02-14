@@ -23,9 +23,6 @@ import edu.wpi.first.wpilibj.util.Color;
  */
 public final class Constants {
     //OI Constants
-    public static int driveStickPort = 0; 
-    public static int opBoardPort = 1;
-
     public static final int leftAxis = 1;
     public static final int rightAxis = 5; 
 
@@ -62,11 +59,6 @@ public final class Constants {
 
 
     //Friction Wheel Constants
-
-    public static final int wheelTimer_7turns =1;//TODO find out how long to spin wheel 3.5 times
-    public static final double wheelTimer_move1=0.25;//TODO find out how long to spin over one color
-    public static String frictionWheelInputColor;//TODO create program to actually input the color yknow
-
     public static final int frictionWheelMotorPort = 7;
 
     public static final int doubleSolenoidPort1 = 2;
