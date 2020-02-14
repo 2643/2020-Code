@@ -9,9 +9,6 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.SerialPort.Parity;
 import edu.wpi.first.wpilibj.SerialPort.Port;
@@ -22,88 +19,95 @@ public class TFMini extends SubsystemBase {
   byte[] extTrigger = hexStringToByteArray("4257020000000041");
   byte[] setInternalTrigger = hexStringToByteArray("4257020000000140");
   byte[] reset = hexStringToByteArray("4257020000000140");
-
-  SerialPort port = new SerialPort(115200, Port.kOnboard, 8, Parity.kNone, StopBits.kOne);
+  SerialPort port = new SerialPort(115200, Port.kMXP, 8, Parity.kNone, StopBits.kOne);
 
   /**
    * Creates a new TFMini.
    */
   public TFMini() {
-    // Set the buffer size to be 2 frames large
-    port.setReadBufferSize(32);
+    // Set the buffer to 2 frames
+    port.setReadBufferSize(18);
+
   }
 
   private Object[] takeMeasurement() {
-    Boolean frameOne = false;
-    Boolean frameTwo = false;
-    List<String> bytes = new ArrayList<String>();
-    Object[] returnArray = new Object[4];
+    Boolean headerOne = false;
+    Boolean headerTwo = false;
+    byte[] bytes = new byte[9];
+    Object[] returnArray = new Object[5];
     returnArray[0] = false;
     returnArray[1] = -1;
     returnArray[2] = -1;
     returnArray[3] = "NULL";
-    // Add frame headers now.
-    bytes.add("59");
-    bytes.add("59");
 
-    String outputFrame = port.readString();
-    for (int index = 0; index < 32; index++) {
-      if (frameOne && frameTwo) {
-        for (int indexTwo = 0; index < 7; index++) {
-          bytes.add(charToHexString(outputFrame.charAt(index + indexTwo)));
+    if (port.getBytesReceived() <= 18) {
+      System.out.println("Not enough bytes.");
+      return returnArray;
+    }
+
+    byte[] outputFrame = port.read(18);
+    for (int index = 0; index < 18; index++) {
+      if (headerOne && headerTwo) {
+        for (int indexTwo = 0; indexTwo < 7; indexTwo++) {
+          bytes[indexTwo + 2] = outputFrame[index + indexTwo];
         }
         break;
       }
-      if (frameOne) {
-        if (charToHexString(outputFrame.charAt(index)) == "59") {
-          frameTwo = true;
+      if (headerOne && !headerTwo) {
+        if (outputFrame[index] == (byte) 89) {
+          headerTwo = true;
+          bytes[1] = outputFrame[index];
         } else {
-          frameOne = false;
+          headerOne = false;
         }
       }
-      if (charToHexString(outputFrame.charAt(index)) == "59") {
-        frameOne = true;
+      if (!headerOne && outputFrame[index] == (byte) 89) {
+        headerOne = true;
+        bytes[0] = outputFrame[index];
       }
     }
+
+    // System.out.println("frame " + String.join(",",
+    // ByteArrayToStringList(outputFrame)));
+    // System.out.println("bytes " + String.join(",",
+    // ByteArrayToStringList(bytes)));i
 
     int accumulator = 0;
     for (int index = 0; index < 8; index++) {
-      accumulator += Integer.parseInt(bytes.get(index), 16);
+      accumulator += bytes[index];
     }
-
-    int checksum = accumulator & Integer.parseInt("ffffffff", 16);
-    if (Integer.toHexString(checksum) == bytes.get(8)) {
-      String distanceString = bytes.get(3) + bytes.get(2);
-      String strengthString = bytes.get(5) + bytes.get(4);
-      String mode = bytes.get(6);
-
-      int distance = Integer.parseInt(distanceString, 16);
-      int strength = Integer.parseInt(strengthString, 16);
-
-      returnArray[0] = true;
-      returnArray[1] = distance;
-      returnArray[2] = strength;
-      returnArray[3] = mode;
-
-      return returnArray;
-    } else {
+    accumulator = (byte) accumulator;
+    if (!(accumulator == bytes[8])) {
+      System.out.print(String.format("%02x", accumulator) + " ");
+      System.out.println(String.format("%02x", bytes[8]));
+      System.out.println("CHECKSUM ERROR");
       return returnArray;
     }
+
+    if (bytes[3] == (byte)255 && bytes[2] == (byte)255) {
+      return returnArray;
+    }
+
+    int distance = ((Byte.toUnsignedInt(bytes[3]) << 8) | (Byte.toUnsignedInt(bytes[2])));
+    int strength = ((Byte.toUnsignedInt(bytes[5]) << 8) | (Byte.toUnsignedInt(bytes[4])));
+    long mode = bytes[6];
+
+    returnArray[0] = true;
+    returnArray[1] = distance;
+    returnArray[2] = strength;
+    returnArray[3] = (int)mode;
+
+    return returnArray;
   }
 
   public int getDistance() {
-    int MAX_TRIES = 5;
-    int tries = 0;
-    while (true){
+    for (int tries = 0; tries < 5; tries ++) {
       Object[] measurement = takeMeasurement();
-      if((boolean)measurement[0]){
-        return (int)measurement[1];
-      }
-      tries += 1;
-      if (MAX_TRIES == tries) {
-        return -1;
+      if ((boolean) measurement[0]) {
+        return (int) measurement[1];
       }
     }
+    return -1;
   }
 
   public void setExternalTrigger() {
@@ -122,8 +126,7 @@ public class TFMini extends SubsystemBase {
     port.write(extTrigger, 16);
   }
 
-
-  public static byte[] hexStringToByteArray(String s) {
+  private static byte[] hexStringToByteArray(String s) {
     int len = s.length();
     byte[] data = new byte[len / 2];
     for (int i = 0; i < len; i += 2) {
@@ -132,9 +135,16 @@ public class TFMini extends SubsystemBase {
     return data;
   }
 
-  public String charToHexString(char ch) {
-    return String.format("%02x", (int) ch);
+  private static String[] ByteArrayToStringList(byte[] ba) {
+    String[] hex = new String[ba.length];
+    for (int i = 0; i < ba.length; i++)
+      hex[i] = String.format("%02x", ba[i]);
+    return hex;
   }
+
+  // private String charToHexString(char ch) {
+  // return String.format("%02x", (int) ch);
+  // }
 
   @Override
   public void periodic() {
