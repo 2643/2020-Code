@@ -13,6 +13,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 public class Hood extends SubsystemBase {
   public static CANSparkMax hoodMotor = new CANSparkMax(Constants.hoodMotorPort, MotorType.kBrushless);
@@ -29,8 +30,8 @@ public class Hood extends SubsystemBase {
   int maxVel_hood = 7000;
   int minVel_hood = 0;
   double allowedErr_hood = 0.1;
-
-  //TODO add specific angles for the hood to turn to
+  int index = 0;
+  double[] position = {1, 2, 3, 4};//TODO add specific angles for the hood to turn to
   /**
    * Creates a new Hood.
    */
@@ -59,5 +60,17 @@ public class Hood extends SubsystemBase {
     // This method will be called once per scheduler run
 
     //TODO: Use POV up and down to move hood to a specific position here
+    if (RobotContainer.driveStick.getPOV()==0){
+      if (index >=0 && index<= position.length-1) {
+        index = index + 1;
+        moveHood(position[index]);
+      }
+    }
+    else if (RobotContainer.driveStick.getPOV()==180){
+      if (index >=0 && index<= position.length-1) {
+        index = index - 1;
+        moveHood(position[index]); 
+      }
+    }
   }
 }
