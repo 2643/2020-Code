@@ -26,17 +26,23 @@ public class RobotContainer {
   //Subsystems
   public static Drivetrain drivetrain = new Drivetrain();
   public static Shooter shooter = new Shooter();
+  public static Turret turret = new Turret(); 
+  public static Hood hood = new Hood();
   public static Intake intake = new Intake();
   public static ConveyorBelt conveyorBelt = new ConveyorBelt();
   public static FrictionWheel frictionWheel = new FrictionWheel();
   public static Climber climber = new Climber();
 
   //Autonomous Command
-  MoveForward auto = new MoveForward(100);
+  AutonomousRoutine auto = new AutonomousRoutine(); 
   
   //Operator Interface
   public static Joystick driveStick = new Joystick(Constants.driveStickPort);
   public static Joystick opBoard = new Joystick(Constants.opBoardPort);
+
+  
+
+
   
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.

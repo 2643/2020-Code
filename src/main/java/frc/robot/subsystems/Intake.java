@@ -20,7 +20,7 @@ public class Intake extends SubsystemBase {
 
   public static DigitalInput intakeiRSensor1 = new DigitalInput(Constants.intakeiRSensorChannel);
   public static CANSparkMax intakeMotor = new CANSparkMax(Constants.intakeMotorPort, MotorType.kBrushless);
-DoubleSolenoid IntakePiston = new DoubleSolenoid(Constants.intakeSolenoidPort1, Constants.intakeSolenoidPort2);
+  DoubleSolenoid IntakePiston = new DoubleSolenoid(Constants.intakeSolenoidPort1, Constants.intakeSolenoidPort2);
   /**
    * Creates a new Intake.
    */
@@ -57,18 +57,18 @@ DoubleSolenoid IntakePiston = new DoubleSolenoid(Constants.intakeSolenoidPort1, 
   public void reverseIntake(){
     intakeMotor.set(Constants.reverseIntakeSpeed);
   }
-/**
- * Retracts the intake piston
- */
-public void RetractIntakePiston(){
-  IntakePiston.set(Value.kForward);//TODO Check which direction 
-}
-/**
- * Extends the intake piston
- */
-public void ExtendIntakePiston(){
-  IntakePiston.set(Value.kReverse); // TODO Check which direction
-}
+  /**
+   * Retracts the intake piston
+   */
+  public void RetractIntakePiston(){
+    IntakePiston.set(Value.kForward);//TODO Check which direction 
+  }
+  /**
+   * Extends the intake piston
+   */
+  public void ExtendIntakePiston(){
+    IntakePiston.set(Value.kReverse); // TODO Check which direction
+  }
   /**
    * Stops running the intake
    */
