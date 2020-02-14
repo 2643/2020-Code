@@ -20,7 +20,7 @@ public class Intake extends SubsystemBase {
 
   public static DigitalInput intakeiRSensor1 = new DigitalInput(Constants.intakeiRSensorChannel);
   public static CANSparkMax intakeMotor = new CANSparkMax(Constants.intakeMotorPort, MotorType.kBrushless);
-DoubleSolenoid IntakePiston = new DoubleSolenoid(Constants.intakeSolenoidPort1, Constants.intakeSolenoidPort2);
+DoubleSolenoid IntakePiston = new DoubleSolenoid(Constants.doubleSolenoidPort1, Constants.doubleSolenoidPort2);
   /**
    * Creates a new Intake.
    */
