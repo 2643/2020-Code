@@ -82,8 +82,6 @@ public class RobotContainer {
     autoIntake.whenPressed(new Intaking());
     rotationControl.whenPressed(new RotationControl()); //TODO check whether it is whenPressed or something else
     positionControl.whileHeld(new PositionControl()); //TODO check whether it is whileHeld or something else
-    
-
 
   }
 
