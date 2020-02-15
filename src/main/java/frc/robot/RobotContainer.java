@@ -43,22 +43,22 @@ public class RobotContainer {
   public static JoystickButton controlPanel = new JoystickButton(driveStick, 5);
   public static JoystickButton verticalIntake = new JoystickButton(driveStick, 6);
 
-  public static Joystick opBoard = new Joystick(1);
-  public static JoystickButton forwardConveyor = new JoystickButton(opBoard, 1); //TODO change this to correct button
-  public static JoystickButton reverseConveyor = new JoystickButton(opBoard, 2); //TODO change this to correct button
-  public static JoystickButton manualIntake = new JoystickButton(opBoard, 3); //TODO change this to correct button
-  public static JoystickButton reverseIntake = new JoystickButton(opBoard, 4); //TODO change this to correct button
-  public static JoystickButton manualControlPanel = new JoystickButton(opBoard, 5); //TODO change this to correct button
-  public static JoystickButton autoIntake = new JoystickButton(opBoard, 6); //TODO change this to correct button
-  public static JoystickButton rotationControl = new JoystickButton(opBoard, 7); //TODO change this to correct button
-  public static JoystickButton positionControl = new JoystickButton(opBoard, 8); //TODO change this to correct button
-  public static JoystickButton autoShoot = new JoystickButton(opBoard, 9); //TODO change this to correct button
-  public static JoystickButton manualShooting = new JoystickButton(opBoard, 10); //TODO change this to correct button
-  public static JoystickButton hookDelivery = new JoystickButton(opBoard, 11); //TODO change this to correct button
-  public static JoystickButton dropTelescope = new JoystickButton(opBoard, 12); //TODO change this to correct button
-  public static JoystickButton leftClimb = new JoystickButton(opBoard, 13); //TODO change this to correct button
-  public static JoystickButton rightClimb = new JoystickButton(opBoard, 14); //TODO change this to correct button
-  public static JoystickButton bothWinchClimb = new JoystickButton(opBoard, 15); //TODO change this to correct button
+  public static Joystick opBoard = new Joystick(1); //TODO change the operator board buttons to the correct ones
+  public static JoystickButton forwardConveyor = new JoystickButton(opBoard, 1); 
+  public static JoystickButton reverseConveyor = new JoystickButton(opBoard, 2); 
+  public static JoystickButton manualIntake = new JoystickButton(opBoard, 3); 
+  public static JoystickButton reverseIntake = new JoystickButton(opBoard, 4); 
+  public static JoystickButton manualControlPanel = new JoystickButton(opBoard, 5); 
+  public static JoystickButton autoIntake = new JoystickButton(opBoard, 6); 
+  public static JoystickButton rotationControl = new JoystickButton(opBoard, 7); 
+  public static JoystickButton positionControl = new JoystickButton(opBoard, 8); 
+  public static JoystickButton autoShoot = new JoystickButton(opBoard, 9); 
+  public static JoystickButton manualShooting = new JoystickButton(opBoard, 10); 
+  public static JoystickButton hookDelivery = new JoystickButton(opBoard, 11); 
+  public static JoystickButton dropTelescope = new JoystickButton(opBoard, 12); 
+  public static JoystickButton leftClimb = new JoystickButton(opBoard, 13); 
+  public static JoystickButton rightClimb = new JoystickButton(opBoard, 14); 
+  public static JoystickButton bothWinchClimb = new JoystickButton(opBoard, 15); 
   
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -80,7 +80,7 @@ public class RobotContainer {
     manualIntake.whileHeld(new ForwardIntake());
     reverseIntake.whileHeld(new ReverseIntake());
 
-    autoIntake.whenPressed(new Intaking());
+    autoIntake.whenPressed(new IndexBeforeIntake().andThen(new ForwardIntake().alongWith(new IntakeIndex())));
     rotationControl.whileHeld(new RotationControl()); 
     positionControl.whileHeld(new PositionControl()); 
 
@@ -91,7 +91,7 @@ public class RobotContainer {
     dropTelescope.whileHeld(new DropHook());
 
     leftClimb.whileHeld(new WinchLeft());
-    bothWinchClimb.whileHeld(new WinchIn());
+    bothWinchClimb.whileHeld(new WinchUp());
     rightClimb.whileHeld(new WinchRight());
     
     controlPanel.whenPressed(new ConditionalCommand(new ExtendFrictionWheel(), new RetractFrictionWheel(), Constants.frictionWheelToggle));

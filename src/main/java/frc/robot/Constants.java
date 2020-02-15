@@ -72,7 +72,7 @@ public final class Constants {
     
     public static final int pistonTimer = 1;
 
-    public static int colorSensorOptimalRange = 190; //TODO determine sensing distance that the color sensor will be at
+    public static int colorSensorOptimalRange = 190;
 
     public static final Color kBlueTarget = ColorMatch.makeColor(0.143, 0.427, 0.429);
     public static final Color kGreenTarget = ColorMatch.makeColor(0.197, 0.561, 0.240);
@@ -85,13 +85,19 @@ public final class Constants {
     public static BooleanSupplier frictionWheelToggle = () -> frictionWheelToggleVariable; 
 
     //Climber Constants
-    public static final int leftClimberPort = 0; //TODO find the port of the left climber motor
-    public static final int rightClimberPort = 0; //TODO find the port of the right climber motor
-    public static final int climberDeliveryMotorPort = 0; //TODO find the port of the climber delivery motor
+    public static final int climberDeliveryMotorPort1 = 0; //TODO port of the first climber delivery motor
+    public static final int climberDeliveryMotorPort2 = 0; //TODO port of the secondclimber delivery motor 
     public static final int leftWinchPort = 0;//TODO find the port o fthe climber left winch port
     public static final int rightWinchPort = 0;//TODO find the port of the climber right winch port
     
+    public static final double deliveryHookSpeed = 0.3; //TODO determine speed of hook delivery and retrieval
     
+    public static final double deliveryTopLimit = 0;
+    public static final double deliveryBottomLimit = 0; 
+
+    public static final double winchTopLimit = 0;
+    public static final double winchBottomLimit = 0;
+
     //Intake Constants
     public static final int intakeMotorPort = 0; //TODO Change to correct port for intake motor
     public static final int intakeiRSensorChannel = 0; //TODO change to correct port for intake infrared sensor
