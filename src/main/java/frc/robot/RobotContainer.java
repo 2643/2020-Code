@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
@@ -39,8 +40,10 @@ public class RobotContainer {
   
   //Operator Interface
   public static Joystick driveStick = new Joystick(0);
-  public static Joystick opBoard = new Joystick(1);
+  public static JoystickButton controlPanel = new JoystickButton(driveStick, 5);
+  public static JoystickButton verticalIntake = new JoystickButton(driveStick, 6);
 
+  public static Joystick opBoard = new Joystick(1);
   public static JoystickButton forwardConveyor = new JoystickButton(opBoard, 1); //TODO change this to correct button
   public static JoystickButton reverseConveyor = new JoystickButton(opBoard, 2); //TODO change this to correct button
   public static JoystickButton manualIntake = new JoystickButton(opBoard, 3); //TODO change this to correct button
@@ -57,8 +60,6 @@ public class RobotContainer {
   public static JoystickButton rightClimb = new JoystickButton(opBoard, 14); //TODO change this to correct button
   public static JoystickButton bothWinchClimb = new JoystickButton(opBoard, 15); //TODO change this to correct button
   
-  public static JoystickButton controlPanel = new JoystickButton(driveStick, 5);
-  public static JoystickButton verticalIntake = new JoystickButton(driveStick, 6);
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -80,9 +81,21 @@ public class RobotContainer {
     reverseIntake.whileHeld(new ReverseIntake());
 
     autoIntake.whenPressed(new Intaking());
-    rotationControl.whenPressed(new RotationControl()); //TODO check whether it is whenPressed or something else
-    positionControl.whileHeld(new PositionControl()); //TODO check whether it is whileHeld or something else
+    rotationControl.whileHeld(new RotationControl()); 
+    positionControl.whileHeld(new PositionControl()); 
 
+    //autoShoot
+    //manualShooting
+
+    hookDelivery.whileHeld(new SendHook());
+    dropTelescope.whileHeld(new DropHook());
+
+    leftClimb.whileHeld(new WinchLeft());
+    bothWinchClimb.whileHeld(new WinchIn());
+    rightClimb.whileHeld(new WinchRight());
+    
+    controlPanel.whenPressed(new ConditionalCommand(new ExtendFrictionWheel(), new RetractFrictionWheel(), Constants.frictionWheelToggle));
+    verticalIntake.whenPressed(new ConditionalCommand(new LowerIntake(), new RaiseIntake(), Constants.verticalIntakeToggle));
   }
 
 

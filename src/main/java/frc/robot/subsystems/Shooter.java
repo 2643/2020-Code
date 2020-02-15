@@ -9,13 +9,16 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.ControlType;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
-  public static TalonFX leftShooterMotor = new TalonFX(Constants.leftShooterMotorPort);
-  public static TalonFX rightShooterMotor = new TalonFX(Constants.rightShooterMotorPort);
+  public static CANSparkMax leftShooterMotor = new CANSparkMax(Constants.leftShooterMotorPort, MotorType.kBrushless);
+  public static CANSparkMax rightShooterMotor = new CANSparkMax(Constants.rightShooterMotorPort, MotorType.kBrushless);
 
   //Shooter PID Constants
   
@@ -32,13 +35,15 @@ public class Shooter extends SubsystemBase {
    * @param speed RPM to spin motor at
    */
   public void spinMotors(double speed){
-    leftShooterMotor.set(ControlMode.Velocity, speed);//TODO Check direction for both shooter motors
-    rightShooterMotor.set(ControlMode.Velocity, -speed);
+    leftShooterMotor.getPIDController().setReference(speed, ControlType.kVelocity);//TODO Check direction for both shooter motors
+    rightShooterMotor.getPIDController().setReference(-speed, ControlType.kVelocity);
   }
 
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+
+    //TODO: MAYBE write code to turn the shooter wheels backward if the last IR sensor on the conveyor belt is lit up
   }
 }

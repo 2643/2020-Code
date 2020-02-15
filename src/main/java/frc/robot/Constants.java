@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import java.util.function.BooleanSupplier;
+
 import com.revrobotics.ColorMatch;
 
 import edu.wpi.first.wpilibj.util.Color;
@@ -79,6 +81,9 @@ public final class Constants {
 
     public static String colorString; 
 
+    public static boolean frictionWheelToggleVariable = false; 
+    public static BooleanSupplier frictionWheelToggle = () -> frictionWheelToggleVariable; 
+
     //Climber Constants
     public static final int leftClimberPort = 0; //TODO find the port of the left climber motor
     public static final int rightClimberPort = 0; //TODO find the port of the right climber motor
@@ -96,6 +101,11 @@ public final class Constants {
 
     public static final int intakeSolenoidPort1 = 0;
     public static final int intakeSolenoidPort2 = 1;
+
+    public static final int intakeRaiseTime = 1;
+
+    public static boolean verticalIntakeToggleVariable = false; 
+    public static BooleanSupplier verticalIntakeToggle = () -> verticalIntakeToggleVariable;
     
     //Conveyor Constants
     public static final int conveyorBeltMotorPort = 0; //TODO change to correct port for conveyor belt
