@@ -84,7 +84,7 @@ public class TFMini extends SubsystemBase {
       return returnArray;
     }
 
-    if (bytes[3] == (byte)255 && bytes[2] == (byte)255) {
+    if (bytes[3] == (byte) 255 && bytes[2] == (byte) 255) {
       return returnArray;
     }
 
@@ -95,13 +95,13 @@ public class TFMini extends SubsystemBase {
     returnArray[0] = true;
     returnArray[1] = distance;
     returnArray[2] = strength;
-    returnArray[3] = (int)mode;
+    returnArray[3] = (int) mode;
 
     return returnArray;
   }
 
   public int getDistance() {
-    for (int tries = 0; tries < 5; tries ++) {
+    for (int tries = 0; tries < 5; tries++) {
       Object[] measurement = takeMeasurement();
       if ((boolean) measurement[0]) {
         return (int) measurement[1];
@@ -111,19 +111,19 @@ public class TFMini extends SubsystemBase {
   }
 
   public void setExternalTrigger() {
-    port.write(setExtTrigger, 16);
+    port.write(setExtTrigger, 8);
   }
 
   public void setInternalTrigger() {
-    port.write(setInternalTrigger, 16);
+    port.write(setInternalTrigger, 8);
   }
 
   public void reset() {
-    port.write(reset, 16);
+    port.write(reset, 8);
   }
 
   public void trigger() {
-    port.write(extTrigger, 16);
+    port.write(extTrigger, 8);
   }
 
   private static byte[] hexStringToByteArray(String s) {
@@ -134,17 +134,6 @@ public class TFMini extends SubsystemBase {
     }
     return data;
   }
-
-  private static String[] ByteArrayToStringList(byte[] ba) {
-    String[] hex = new String[ba.length];
-    for (int i = 0; i < ba.length; i++)
-      hex[i] = String.format("%02x", ba[i]);
-    return hex;
-  }
-
-  // private String charToHexString(char ch) {
-  // return String.format("%02x", (int) ch);
-  // }
 
   @Override
   public void periodic() {

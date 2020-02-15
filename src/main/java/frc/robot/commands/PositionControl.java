@@ -27,7 +27,6 @@ public class PositionControl extends CommandBase {
   @Override
   public void initialize() {
     destColor = Constants.colorString;
-    theColor = RobotContainer.frictionWheel.getColor();
 
     if (destColor.equals("Yellow")){
       destColor = "Green";
@@ -43,6 +42,8 @@ public class PositionControl extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    theColor = RobotContainer.frictionWheel.getColor();
+    
     RobotContainer.frictionWheel.setMotorSpeed(0.3);  
     //0.3 is too fast because of intertia, 0.1 is too slow
     //Number being set on friction wheel
@@ -62,7 +63,7 @@ public class PositionControl extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(!theColor.equals(destColor)){
+    if(theColor.equals(destColor)){
       return true;
     } 
     return false;
