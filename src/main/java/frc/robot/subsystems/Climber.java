@@ -17,6 +17,8 @@ import frc.robot.Constants;
 public class Climber extends SubsystemBase {
   public static TalonFX leftClimberMotor = new TalonFX(Constants.leftClimberPort); 
   public static TalonFX rightClimberMotor = new TalonFX(Constants.rightClimberPort);
+  public static TalonFX leftWinchMotor = new TalonFX(Constants.leftWinchPort);
+  public static TalonFX rightWinchMotor = new TalonFX(Constants.rightWinchPort);
 
   public static WPI_TalonSRX climberDeliveryMotor = new WPI_TalonSRX(Constants.climberDeliveryMotorPort);
   //TODO: Add a second Motor 
@@ -50,6 +52,14 @@ public class Climber extends SubsystemBase {
   public void setRightClimberWinch(double speed){
     rightClimberMotor.set(ControlMode.PercentOutput, speed);
   }
+  public void setRightWinch(double speed){
+    rightWinchMotor.set(ControlMode.PercentOutput, speed);
+  }
+
+  public void setLeftWinch(double speed){
+    leftWinchMotor.set(ControlMode.PercentOutput, speed);
+  }
+
 
   @Override
   public void periodic() {

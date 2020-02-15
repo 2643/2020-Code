@@ -91,6 +91,9 @@ public final class Constants {
     public static final int leftClimberPort = 0; //TODO find the port of the left climber motor
     public static final int rightClimberPort = 0; //TODO find the port of the right climber motor
     public static final int climberDeliveryMotorPort = 0; //TODO find the port of the climber delivery motor
+    public static final int leftWinchPort = 0;//TODO find the port o fthe climber left winch port
+    public static final int rightWinchPort = 0;//TODO find the port of the climber right winch port
+    
     
     //Intake Constants
     public static final int intakeMotorPort = 0; //TODO Change to correct port for intake motor
