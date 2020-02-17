@@ -17,10 +17,9 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Intake extends SubsystemBase {
-
-  public static DigitalInput intakeiRSensor1 = new DigitalInput(Constants.intakeiRSensorChannel);
-  public static CANSparkMax intakeMotor = new CANSparkMax(Constants.intakeMotorPort, MotorType.kBrushless);
-  DoubleSolenoid IntakePiston = new DoubleSolenoid(Constants.intakeSolenoidPort1, Constants.intakeSolenoidPort2);
+  private static DigitalInput intakeIR = new DigitalInput(Constants.intakeIRChannel);
+  private static CANSparkMax intakeMotor = new CANSparkMax(Constants.intakeMotorPort, MotorType.kBrushless);
+  private static DoubleSolenoid IntakePiston = new DoubleSolenoid(Constants.intakeSolenoidPort1, Constants.intakeSolenoidPort2);
   /**
    * Creates a new Intake.
    */
@@ -31,13 +30,9 @@ public class Intake extends SubsystemBase {
   /**
    * Checks if the ball is passing through the intake 
    */
-
-
-
-
   public boolean isBallThere(){
     //TODO Does this give the conveyor belt enough time to start moving?
-    if(intakeiRSensor1.get() == true){
+    if(intakeIR.get() == true){
       return true;
     }else{
       return false;

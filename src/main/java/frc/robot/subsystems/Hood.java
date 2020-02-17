@@ -11,12 +11,14 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class Hood extends SubsystemBase {
-  public static CANSparkMax hoodMotor = new CANSparkMax(Constants.hoodMotorPort, MotorType.kBrushless);
+  private static CANSparkMax hoodMotor = new CANSparkMax(Constants.hoodMotorPort, MotorType.kBrushless);
+  private static DigitalInput hoodLimit = new DigitalInput(Constants.hoodLimitPort); //TODO incorporate soft limits for the hood
 
   //Hood PID Constants
   double kP_hood = 0.00016;//0.006;
@@ -31,7 +33,7 @@ public class Hood extends SubsystemBase {
   int minVel_hood = 0;
   double allowedErr_hood = 0.1;
   int index = 0;
-  double[] position = {1, 2, 3, 4};//TODO add specific angles for the hood to turn to
+  double[] position = {1, 2, 3, 4};//TODO add specific encoder ticks for the hood to turn to
   /**
    * Creates a new Hood.
    */

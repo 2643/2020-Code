@@ -17,11 +17,10 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class Turret extends SubsystemBase {
-  public static CANSparkMax turretMotor = new CANSparkMax(Constants.turretMotorPort, MotorType.kBrushless);
+  private static CANSparkMax turretMotor = new CANSparkMax(Constants.turretMotorPort, MotorType.kBrushless);
 
-  public static DigitalInput leftLimitSwitch = new DigitalInput(Constants.leftLimitSwitchPort);
-  public static DigitalInput centreLimitSwitch = new DigitalInput(Constants.centreLimitSwitchPort);
-  public static DigitalInput rightLimitSwitch = new DigitalInput(Constants.rightLimitSwitchPort);
+  private static DigitalInput leftLimitSwitch = new DigitalInput(Constants.leftLimitSwitchPort);  
+  private static DigitalInput rightLimitSwitch = new DigitalInput(Constants.rightLimitSwitchPort);
 
   //Turret PID Constants
   double kP_turret = 0.00016;//0.006;
@@ -75,15 +74,15 @@ public class Turret extends SubsystemBase {
    * Move the turret using duty cycle, or constantly changing the target
    */
   public void moveTurretLeft(){
-    if(RobotContainer.driveStick.getPOV() == 270){
-      turretMotor.getPIDController().setReference(0.2, ControlType.kDutyCycle, slotID_turret);
+    if(RobotContainer.driveStick.getPOV() == 270 && leftLimitSwitch.get() == false){
+      turretMotor.getPIDController().setReference(Constants.leftTurretSpeed, ControlType.kDutyCycle, slotID_turret);
     }
   }
 
 
   public void moveTurretRight(){
-    if(RobotContainer.driveStick.getPOV() == 90){
-      turretMotor.getPIDController().setReference(-0.2, ControlType.kDutyCycle, slotID_turret);
+    if(RobotContainer.driveStick.getPOV() == 90 && rightLimitSwitch.get() == false){
+      turretMotor.getPIDController().setReference(Constants.rightTurretSpeed, ControlType.kDutyCycle, slotID_turret);
     }
   }
   @Override

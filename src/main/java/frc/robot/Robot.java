@@ -21,7 +21,7 @@ import frc.robot.commands.*;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
-  private RobotContainer m_robotContainer;
+  private static RobotContainer m_robotContainer;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -33,6 +33,7 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
 
+    m_robotContainer.drivetrain.resetAllEncoder();
   }
 
   /**
@@ -49,7 +50,7 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
-    CommandScheduler.getInstance().setDefaultCommand(RobotContainer.drivetrain, new Tankdrive());
+    CommandScheduler.getInstance().setDefaultCommand(m_robotContainer.drivetrain, new Tankdrive());
   }
 
   /**
@@ -63,7 +64,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledPeriodic() {
-    RobotContainer.drivetrain.resetAllEncoder();
+    m_robotContainer.drivetrain.resetAllEncoder();
   }
 
   /**
@@ -117,22 +118,5 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
 
-    // //Testing the intake
-    // if(RobotContainer.driveStick.getRawButton(1)){
-    //   RobotContainer.intake.intake();
-    // }else if(RobotContainer.driveStick.getRawButton(2)){
-    //   RobotContainer.intake.reverseIntake(); 
-    // }else{
-    //   RobotContainer.intake.stopIntake();
-    // }
-
-    // //Testing the conveyor belt
-    // if(RobotContainer.driveStick.getRawButton(3)){
-    //   RobotContainer.conveyorBelt.moveConveyorBeltForward();
-    // }else if(RobotContainer.driveStick.getRawButton(4)){
-    //   RobotContainer.intake.reverseIntake(); 
-    // }else {
-    //   RobotContainer.conveyorBelt.stopConveyorBelt();
-    // }
   }
 }

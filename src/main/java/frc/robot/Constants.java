@@ -49,16 +49,23 @@ public final class Constants {
 
 
     //Shooter Constants
-    public static int rightShooterMotorPort = 5;
     public static int leftShooterMotorPort = 6;
-    public static int hoodMotorPort = 7;
-    public static int turretMotorPort = 8;
+    public static int rightShooterMotorPort = 5;
 
+    //Turret Constants
+    public static int turretMotorPort = 8;
     public static int leftLimitSwitchPort = 1;
-    public static int centreLimitSwitchPort = 2;
     public static int rightLimitSwitchPort = 3;
 
+    public static double leftTurretSpeed = 0.2;
+    public static double rightTurretSpeed = -0.2;
 
+    public static final int turretEncoderLeftSoftLimit = 0; 
+    public static final int turretEncoderRightSoftLimit = 0; 
+
+    //Hood Constants
+    public static int hoodMotorPort = 7;
+    public static int hoodLimitPort = 0; //TODO find port of the limit switch on the hood
 
     //Friction Wheel Constants
     public static final int frictionWheelMotorPort = 7;
@@ -67,13 +74,13 @@ public final class Constants {
     public static final int doubleSolenoidPort2 = 3;
     public static final int doubleSolenoidPort3 = 0;
     public static final int doubleSolenoidPort4 = 1;
+
     public static final double maxRPM = 5500;
     public static final double frictionWheelSpeed = 0.3; 
     
     public static final int pistonTimer = 1;
 
-    public static int colorSensorOptimalRange = 190;
-
+    public static final int colorSensorOptimalRange = 190;
     public static final Color kBlueTarget = ColorMatch.makeColor(0.143, 0.427, 0.429);
     public static final Color kGreenTarget = ColorMatch.makeColor(0.197, 0.561, 0.240);
     public static final Color kRedTarget = ColorMatch.makeColor(0.561, 0.232, 0.114);
@@ -100,10 +107,10 @@ public final class Constants {
 
     //Intake Constants
     public static final int intakeMotorPort = 0; //TODO Change to correct port for intake motor
-    public static final int intakeiRSensorChannel = 0; //TODO change to correct port for intake infrared sensor
+    public static final int intakeIRChannel = 0; //TODO change to correct port for intake infrared sensor
 
-    public static final double intakeSpeed = 0.3;
-    public static final double reverseIntakeSpeed = -0.3;
+    public static final double intakeSpeed = -0.4;
+    public static final double reverseIntakeSpeed = 0.4;
 
     public static final int intakeSolenoidPort1 = 0;
     public static final int intakeSolenoidPort2 = 1;
@@ -116,15 +123,12 @@ public final class Constants {
     //Conveyor Constants
     public static final int conveyorBeltMotorPort = 0; //TODO change to correct port for conveyor belt
 
-    public static final double conveyorBeltForwardSpeed = 0.3; //TODO check if this speed works to move conveyor belt forward
-    public static final double conveyorBeltBackwardSpeed = -0.3; //TODO check if this speed works to move conveyor belt backward
+    public static final double conveyorBeltForwardSpeed = -0.6; //TODO check if this speed works to move conveyor belt forward
+    public static final double conveyorBeltBackwardSpeed = 0.6; //TODO check if this speed works to move conveyor belt backward
 
     public static final int conveyoriRSensor1Channel = 0; //TODO Change to correct channel for IR 1
     public static final int conveyoriRSensor2Channel = 0; //TODO Change to correct channel for IR 2
     public static final int conveyoriRSensor3Channel = 0; //TODO Change to correct channel for IR 3
     public static final int conveyoriRSensor4Channel = 0; //TODO Change to correct channel for IR 4
     public static final int conveyoriRSensor5Channel = 0; //TODO Change to correct channel for IR 5
-
-    public static final int turretEncoderLeftSoftLimit = 0; 
-    public static final int turretEncoderRightSoftLimit = 0; 
 }
