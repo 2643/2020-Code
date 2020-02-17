@@ -50,8 +50,8 @@ public class MoveForward extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if((Math.abs(RobotContainer.drivetrain.getLeftMotorEncoder()) <= (rotationsForward + Constants.allowedError)) && (Math.abs(RobotContainer.drivetrain.getLeftMotorEncoder()) >= (rotationsForward - Constants.allowedError))){
-      if((Math.abs(RobotContainer.drivetrain.getRightMotorEncoder()) <= (rotationsForward + Constants.allowedError)) && (Math.abs(RobotContainer.drivetrain.getRightMotorEncoder()) >= (rotationsForward - Constants.allowedError))){
+    if((Math.abs(RobotContainer.drivetrain.getLeftMotorEncoder()) <= (rotationsForward + RobotContainer.drivetrain.allowedError)) && (Math.abs(RobotContainer.drivetrain.getLeftMotorEncoder()) >= (rotationsForward - RobotContainer.drivetrain.allowedError))){
+      if((Math.abs(RobotContainer.drivetrain.getRightMotorEncoder()) <= (rotationsForward + RobotContainer.drivetrain.allowedError)) && (Math.abs(RobotContainer.drivetrain.getRightMotorEncoder()) >= (rotationsForward - RobotContainer.drivetrain.allowedError))){
         return true; 
       }
     }
