@@ -41,24 +41,10 @@ public class ConveyorBelt extends SubsystemBase {
   }
 
   /**
-   * Moves the conveyor belt forward at a set speed
+   * Moves the conveyor belt at a set speed
    */
-  public void moveConveyorBeltForward(){
-    conveyorBeltMotor.set(Constants.conveyorBeltForwardSpeed);
-  }
-
-  /**
-   * Moves the conveyor belt backward at a set speed
-   */
-  public void moveConveyorBeltBackward(){
-    conveyorBeltMotor.set(Constants.conveyorBeltBackwardSpeed);
-  }
-
-  /**
-   * Stops the conveyor belt
-   */
-  public void stopConveyorBelt(){
-    conveyorBeltMotor.set(0);
+  public void setSpeed(double speed){
+    conveyorBeltMotor.set(speed);
   }
 
   /**

@@ -25,7 +25,7 @@ public class ExtendFrictionWheel extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {timer.reset();
+  public void initialize() {
     timer.reset();
     timer.start();
     RobotContainer.frictionWheel.extendMechanism();

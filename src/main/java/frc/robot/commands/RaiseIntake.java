@@ -29,7 +29,7 @@ public class RaiseIntake extends CommandBase {
     timer.reset();
     timer.start();
 
-    RobotContainer.intake.ExtendIntakePiston();
+    RobotContainer.intake.extend();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

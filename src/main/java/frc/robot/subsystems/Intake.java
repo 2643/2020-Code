@@ -42,33 +42,21 @@ public class Intake extends SubsystemBase {
   /**
    * Intakes the ball
    */
-  public void intake(){
-    intakeMotor.set(Constants.intakeSpeed);
+  public void setSpeed(double speed){
+    intakeMotor.set(speed);
   }
 
   /**
-   * Runs the intake in reverse
-   */
-  public void reverseIntake(){
-    intakeMotor.set(Constants.reverseIntakeSpeed);
-  }
-  /**
    * Retracts the intake piston
    */
-  public void RetractIntakePiston(){
+  public void retract(){
     IntakePiston.set(Value.kForward);//TODO Check which direction 
   }
   /**
    * Extends the intake piston
    */
-  public void ExtendIntakePiston(){
+  public void extend(){
     IntakePiston.set(Value.kReverse); // TODO Check which direction
-  }
-  /**
-   * Stops running the intake
-   */
-  public void stopIntake(){
-    intakeMotor.set(0);
   }
 
   @Override

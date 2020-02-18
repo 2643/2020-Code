@@ -11,6 +11,9 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.ControlType;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -19,16 +22,29 @@ public class Climber extends SubsystemBase {
   public static TalonFX leftWinchMotor = new TalonFX(Constants.leftWinchPort);
   public static TalonFX rightWinchMotor = new TalonFX(Constants.rightWinchPort);
 
-  //The climber delivery motors might become NEOs or NEO 550s
-  public static WPI_TalonSRX climberDeliveryMotor1 = new WPI_TalonSRX(Constants.climberDeliveryMotorPort1);
-  public static WPI_TalonSRX climberDeliveryMotor2 = new WPI_TalonSRX(Constants.climberDeliveryMotorPort2);
+  public static CANSparkMax climberDeliveryMotor1 = new CANSparkMax(Constants.climberDeliveryMotorPort1, MotorType.kBrushless);
+  public static CANSparkMax climberDeliveryMotor2 = new CANSparkMax(Constants.climberDeliveryMotorPort2, MotorType.kBrushless);
   
   //TODO Implement soft limits for delivery and winch
+
+  private double kP = 0.00016;//0.006;
+  private double kI = 0;//0.000002;
+  private double kD = 0;//0.004;//0.2;
+  private double kFF = 0.000156;
 
   /**
    * Creates a new Climber.
    */
   public Climber() {
+    climberDeliveryMotor1.getPIDController().setP(kP, 0);
+    climberDeliveryMotor1.getPIDController().setI(kI, 0);
+    climberDeliveryMotor1.getPIDController().setD(kD, 0);
+    climberDeliveryMotor1.getPIDController().setFF(kFF, 0);
+
+    climberDeliveryMotor2.getPIDController().setP(kP, 0);
+    climberDeliveryMotor2.getPIDController().setI(kI, 0);
+    climberDeliveryMotor2.getPIDController().setD(kD, 0);
+    climberDeliveryMotor2.getPIDController().setFF(kFF, 0);
     
   }
 
@@ -36,16 +52,22 @@ public class Climber extends SubsystemBase {
    * Raises the climber delivery hook
    */
   public void setDeliveryMotorSpeed(double speed){
-    climberDeliveryMotor1.set(speed); //TODO check whether climber delivery motors will be running in the same direction
-    climberDeliveryMotor2.set(speed);
+    climberDeliveryMotor1.getPIDController().setReference(speed, ControlType.kDutyCycle); //TODO check whether climber delivery motors will be running in the same direction
+    climberDeliveryMotor2.getPIDController().setReference(speed, ControlType.kDutyCycle);
   }
 
   /**
    * Makes the climber motor stay at the height it was released at
    */
   public void stay(){
-    climberDeliveryMotor1.setNeutralMode(NeutralMode.Brake);
-    climberDeliveryMotor2.setNeutralMode(NeutralMode.Brake);
+    if(climberDeliveryMotor1.getEncoder().getPosition() == Constants.deliveryBottomLimit 
+    && climberDeliveryMotor2.getEncoder().getPosition() == Constants.deliveryBottomLimit){
+      climberDeliveryMotor1.getPIDController().setReference(0, ControlType.kDutyCycle);
+      climberDeliveryMotor2.getPIDController().setReference(0, ControlType.kDutyCycle);
+    }else{
+      climberDeliveryMotor1.getPIDController().setReference(climberDeliveryMotor1.getEncoder().getPosition(), ControlType.kPosition);
+      climberDeliveryMotor2.getPIDController().setReference(climberDeliveryMotor2.getEncoder().getPosition(), ControlType.kPosition); 
+    }
   }
 
   /**

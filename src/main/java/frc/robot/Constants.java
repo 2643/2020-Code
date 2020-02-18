@@ -47,13 +47,12 @@ public final class Constants {
 
     public static final double allowedError = 0.05;
 
-
     //Shooter Constants
-    public static int leftShooterMotorPort = 6;
-    public static int rightShooterMotorPort = 5;
+    public static int leftShooterMotorPort = 5;
+    public static int rightShooterMotorPort = 6;
 
     //Turret Constants
-    public static int turretMotorPort = 8;
+    public static int turretMotorPort = 7;
     public static int leftLimitSwitchPort = 1;
     public static int rightLimitSwitchPort = 3;
 
@@ -64,11 +63,11 @@ public final class Constants {
     public static final int turretEncoderRightSoftLimit = 0; 
 
     //Hood Constants
-    public static int hoodMotorPort = 7;
+    public static int hoodMotorPort = 8;
     public static int hoodLimitPort = 0; //TODO find port of the limit switch on the hood
 
     //Friction Wheel Constants
-    public static final int frictionWheelMotorPort = 7;
+    public static final int frictionWheelMotorPort = 9;
 
     public static final int doubleSolenoidPort1 = 2;
     public static final int doubleSolenoidPort2 = 3;
@@ -76,7 +75,7 @@ public final class Constants {
     public static final int doubleSolenoidPort4 = 1;
 
     public static final double maxRPM = 5500;
-    public static final double frictionWheelSpeed = 0.3; 
+    public static final double frictionWheelSpeed = 0.3; //TODO check if control panel is spinned in the right direction
     
     public static final int pistonTimer = 1;
 
@@ -92,10 +91,10 @@ public final class Constants {
     public static BooleanSupplier frictionWheelToggle = () -> frictionWheelToggleVariable; 
 
     //Climber Constants
-    public static final int climberDeliveryMotorPort1 = 0; //TODO port of the first climber delivery motor
-    public static final int climberDeliveryMotorPort2 = 0; //TODO port of the secondclimber delivery motor 
-    public static final int leftWinchPort = 0;//TODO find the port o fthe climber left winch port
-    public static final int rightWinchPort = 0;//TODO find the port of the climber right winch port
+    public static final int climberDeliveryMotorPort1 = 10; 
+    public static final int climberDeliveryMotorPort2 = 11;  
+    public static final int leftWinchPort = 12;
+    public static final int rightWinchPort = 13;
     
     public static final double deliveryHookSpeed = 0.3; //TODO determine speed of hook delivery and retrieval
     
@@ -106,7 +105,7 @@ public final class Constants {
     public static final double winchBottomLimit = 0;
 
     //Intake Constants
-    public static final int intakeMotorPort = 0; //TODO Change to correct port for intake motor
+    public static final int intakeMotorPort = 14;
     public static final int intakeIRChannel = 0; //TODO change to correct port for intake infrared sensor
 
     public static final double intakeSpeed = -0.4;
@@ -121,14 +120,15 @@ public final class Constants {
     public static BooleanSupplier verticalIntakeToggle = () -> verticalIntakeToggleVariable;
     
     //Conveyor Constants
-    public static final int conveyorBeltMotorPort = 0; //TODO change to correct port for conveyor belt
+    public static final int conveyorBeltMotorPort = 15;
 
-    public static final double conveyorBeltForwardSpeed = -0.6; //TODO check if this speed works to move conveyor belt forward
-    public static final double conveyorBeltBackwardSpeed = 0.6; //TODO check if this speed works to move conveyor belt backward
+    public static final double conveyorBeltForwardSpeed = -0.6;
+    public static final double conveyorBeltBackwardSpeed = 0.6; 
 
-    public static final int conveyoriRSensor1Channel = 0; //TODO Change to correct channel for IR 1
-    public static final int conveyoriRSensor2Channel = 0; //TODO Change to correct channel for IR 2
-    public static final int conveyoriRSensor3Channel = 0; //TODO Change to correct channel for IR 3
-    public static final int conveyoriRSensor4Channel = 0; //TODO Change to correct channel for IR 4
-    public static final int conveyoriRSensor5Channel = 0; //TODO Change to correct channel for IR 5
+    //TODO change to correct ir sensor ports for the conveyor belt
+    public static final int conveyoriRSensor1Channel = 0; 
+    public static final int conveyoriRSensor2Channel = 0; 
+    public static final int conveyoriRSensor3Channel = 0; 
+    public static final int conveyoriRSensor4Channel = 0; 
+    public static final int conveyoriRSensor5Channel = 0; 
 }

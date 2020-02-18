@@ -61,7 +61,6 @@ public class Hood extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
 
-    //TODO: Use POV up and down to move hood to a specific position here
     if (RobotContainer.driveStick.getPOV()==0){
       if (index >=0 && index<= position.length-1) {
         index = index + 1;

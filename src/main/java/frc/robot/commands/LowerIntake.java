@@ -29,7 +29,7 @@ public class LowerIntake extends CommandBase {
     timer.reset();
     timer.start();
 
-    RobotContainer.intake.RetractIntakePiston();
+    RobotContainer.intake.retract();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
