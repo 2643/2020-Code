@@ -32,7 +32,7 @@ public class Intake extends SubsystemBase {
    */
   public boolean isBallThere(){
     //TODO Does this give the conveyor belt enough time to start moving?
-    if(intakeIR.get() == true){
+    if(intakeIR.get() == false){
       return true;
     }else{
       return false;

@@ -54,7 +54,7 @@ public class IntakeIndex extends CommandBase {
   @Override
   public boolean isFinished() {
     //If the iRSensor after the one last activated is activated, the command ends.
-    if(RobotContainer.conveyorBelt.getConveyorIRs()[lastIRActivated + 1].get() == true){
+    if(RobotContainer.conveyorBelt.getConveyorIRs()[lastIRActivated + 1].get() == false){
       finished = true; 
     }
     return finished; 
