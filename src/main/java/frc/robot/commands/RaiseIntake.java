@@ -29,7 +29,8 @@ public class RaiseIntake extends CommandBase {
     timer.reset();
     timer.start();
 
-    RobotContainer.intake.extend();
+      //TODO uncomment when pneumatics are installed
+    //RobotContainer.intake.extend();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

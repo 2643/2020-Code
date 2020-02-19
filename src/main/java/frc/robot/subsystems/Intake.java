@@ -19,7 +19,8 @@ import frc.robot.Constants;
 public class Intake extends SubsystemBase {
   private static DigitalInput intakeIR = new DigitalInput(Constants.intakeIRChannel);
   private static CANSparkMax intakeMotor = new CANSparkMax(Constants.intakeMotorPort, MotorType.kBrushless);
-  private static DoubleSolenoid IntakePiston = new DoubleSolenoid(Constants.intakeSolenoidPort1, Constants.intakeSolenoidPort2);
+  private static DoubleSolenoid intakePiston = new DoubleSolenoid(Constants.intakeSolenoidPort1, Constants.intakeSolenoidPort2);
+  
   /**
    * Creates a new Intake.
    */
@@ -31,7 +32,6 @@ public class Intake extends SubsystemBase {
    * Checks if the ball is passing through the intake 
    */
   public boolean isBallThere(){
-    //TODO Does this give the conveyor belt enough time to start moving?
     if(intakeIR.get() == false){
       return true;
     }else{
@@ -46,18 +46,21 @@ public class Intake extends SubsystemBase {
     intakeMotor.set(speed);
   }
 
-  /**
-   * Retracts the intake piston
-   */
-  public void retract(){
-    IntakePiston.set(Value.kForward);//TODO Check which direction 
-  }
-  /**
-   * Extends the intake piston
-   */
-  public void extend(){
-    IntakePiston.set(Value.kReverse); // TODO Check which direction
-  }
+    //TODO uncomment when pneumatics are installed
+  // /**
+  //  * Retracts the intake piston
+  //  */
+  // public void retract(){
+  //   intakePiston.set(Value.kForward);//TODO Check which direction to retract the intake pistons
+  // }
+
+    //TODO uncomment when pneumatics are installed
+  // /**
+  //  * Extends the intake piston
+  //  */
+  // public void extend(){
+  //   intakePiston.set(Value.kReverse); // TODO Check which direction to extend the intake pistons
+  // }
 
   @Override
   public void periodic() {
