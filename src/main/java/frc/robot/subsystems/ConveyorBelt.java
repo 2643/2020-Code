@@ -58,7 +58,7 @@ public class ConveyorBelt extends SubsystemBase {
         return c;
       }
     }
-    return 0;
+    return -1;
   }
 
   public int firstIndex(){
@@ -68,6 +68,6 @@ public class ConveyorBelt extends SubsystemBase {
         return c; 
       }
     }
-    return 0;
+    return -1;
   }
 }
