@@ -17,10 +17,9 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Intake extends SubsystemBase {
-
-  public static DigitalInput intakeiRSensor1 = new DigitalInput(Constants.intakeiRSensorChannel);
-  public static CANSparkMax intakeMotor = new CANSparkMax(Constants.intakeMotorPort, MotorType.kBrushless);
-DoubleSolenoid IntakePiston = new DoubleSolenoid(Constants.intakeSolenoidPort1, Constants.intakeSolenoidPort2);
+  private static DigitalInput intakeIR = new DigitalInput(Constants.intakeIRChannel);
+  private static CANSparkMax intakeMotor = new CANSparkMax(Constants.intakeMotorPort, MotorType.kBrushless);
+  private static DoubleSolenoid IntakePiston = new DoubleSolenoid(Constants.intakeSolenoidPort1, Constants.intakeSolenoidPort2);
   /**
    * Creates a new Intake.
    */
@@ -31,13 +30,9 @@ DoubleSolenoid IntakePiston = new DoubleSolenoid(Constants.intakeSolenoidPort1, 
   /**
    * Checks if the ball is passing through the intake 
    */
-
-
-
-
   public boolean isBallThere(){
     //TODO Does this give the conveyor belt enough time to start moving?
-    if(intakeiRSensor1.get() == true){
+    if(intakeIR.get() == false){
       return true;
     }else{
       return false;
@@ -47,33 +42,21 @@ DoubleSolenoid IntakePiston = new DoubleSolenoid(Constants.intakeSolenoidPort1, 
   /**
    * Intakes the ball
    */
-  public void intake(){
-    intakeMotor.set(Constants.intakeSpeed);
+  public void setSpeed(double speed){
+    intakeMotor.set(speed);
   }
 
   /**
-   * Runs the intake in reverse
+   * Retracts the intake piston
    */
-  public void reverseIntake(){
-    intakeMotor.set(Constants.reverseIntakeSpeed);
+  public void retract(){
+    IntakePiston.set(Value.kForward);//TODO Check which direction 
   }
-/**
- * Retracts the intake piston
- */
-public void RetractIntakePiston(){
-  IntakePiston.set(Value.kForward);//TODO Check which direction 
-}
-/**
- * Extends the intake piston
- */
-public void ExtendIntakePiston(){
-  IntakePiston.set(Value.kReverse); // TODO Check which direction
-}
   /**
-   * Stops running the intake
+   * Extends the intake piston
    */
-  public void stopIntake(){
-    intakeMotor.set(0);
+  public void extend(){
+    IntakePiston.set(Value.kReverse); // TODO Check which direction
   }
 
   @Override

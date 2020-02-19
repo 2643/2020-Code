@@ -41,24 +41,10 @@ public class ConveyorBelt extends SubsystemBase {
   }
 
   /**
-   * Moves the conveyor belt forward at a set speed
+   * Moves the conveyor belt at a set speed
    */
-  public void moveConveyorBeltForward(){
-    conveyorBeltMotor.set(Constants.conveyorBeltForwardSpeed);
-  }
-
-  /**
-   * Moves the conveyor belt backward at a set speed
-   */
-  public void moveConveyorBeltBackward(){
-    conveyorBeltMotor.set(Constants.conveyorBeltBackwardSpeed);
-  }
-
-  /**
-   * Stops the conveyor belt
-   */
-  public void stopConveyorBelt(){
-    conveyorBeltMotor.set(0);
+  public void setSpeed(double speed){
+    conveyorBeltMotor.set(speed);
   }
 
   /**
@@ -68,7 +54,7 @@ public class ConveyorBelt extends SubsystemBase {
   public int lastIndex(){
     // Returns the last iRSensor in the list that returns true
     for(int c = conveyoriRSensors.length-1; c >= 0; c--){
-      if(conveyoriRSensors[c].get() == true){
+      if(conveyoriRSensors[c].get() == false){
         return c;
       }
     }
@@ -78,7 +64,7 @@ public class ConveyorBelt extends SubsystemBase {
   public int firstIndex(){
     // Returns the first iRSensor in the list that returns true
     for(int c = 0; c < conveyoriRSensors.length; c++){
-      if(conveyoriRSensors[c].get() == true){
+      if(conveyoriRSensors[c].get() == false){
         return c; 
       }
     }

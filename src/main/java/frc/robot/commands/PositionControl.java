@@ -11,35 +11,61 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
-public class ReverseIntake extends CommandBase {
+public class PositionControl extends CommandBase {
+  String theColor; 
+  String destColor; 
+
   /**
-   * Creates a new ReverseIntake.
+   * Creates a new PositionControl.
    */
-  public ReverseIntake() {
+  public PositionControl() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.intake);
+    addRequirements(RobotContainer.frictionWheel);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    destColor = Constants.colorString;
+
+    if (destColor.equals("Yellow")){
+      destColor = "Green";
+    }else if (destColor.equals("Blue")){
+      destColor = "Red";
+    }else if (destColor.equals("Green")){
+      destColor = "Yellow";
+    }else if (destColor.equals("Red")){
+      destColor = "Blue";
+    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.intake.setSpeed(Constants.reverseIntakeSpeed);
+    theColor = RobotContainer.frictionWheel.getColor();
+    
+    RobotContainer.frictionWheel.setMotorSpeed(0.3);  
+    //0.3 is too fast because of intertia, 0.1 is too slow
+    //Number being set on friction wheel
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.intake.setSpeed(0); 
+    RobotContainer.frictionWheel.setBrakeMode();
+    RobotContainer.frictionWheel.setMotorSpeed(0.0);
+    RobotContainer.frictionWheel.neutralOutput();
+    RobotContainer.frictionWheel.setBrakeMode();
+    RobotContainer.frictionWheel.setMotorSpeed(0.0);
+    RobotContainer.frictionWheel.neutralOutput();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    if(theColor.equals(destColor)){
+      return true;
+    } 
     return false;
   }
 }

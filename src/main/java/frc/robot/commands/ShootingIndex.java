@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class ShootingIndex extends CommandBase {
@@ -35,13 +36,13 @@ public class ShootingIndex extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.conveyorBelt.moveConveyorBeltForward();
+    RobotContainer.conveyorBelt.setSpeed(Constants.conveyorBeltForwardSpeed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.conveyorBelt.stopConveyorBelt();
+    RobotContainer.conveyorBelt.setSpeed(0);
     finished = false; 
   }
 

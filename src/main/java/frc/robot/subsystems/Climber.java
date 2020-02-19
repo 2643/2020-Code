@@ -8,47 +8,92 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.ControlType;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Climber extends SubsystemBase {
-  public static TalonFX leftClimberMotor = new TalonFX(Constants.leftClimberPort); 
-  public static TalonFX rightClimberMotor = new TalonFX(Constants.rightClimberPort);
+  public static TalonFX leftWinchMotor = new TalonFX(Constants.leftWinchPort);
+  public static TalonFX rightWinchMotor = new TalonFX(Constants.rightWinchPort);
 
-  public static WPI_TalonSRX climberDeliveryMotor = new WPI_TalonSRX(Constants.climberDeliveryMotorPort);
+  public static CANSparkMax climberDeliveryMotor1 = new CANSparkMax(Constants.climberDeliveryMotorPort1, MotorType.kBrushless);
+  public static CANSparkMax climberDeliveryMotor2 = new CANSparkMax(Constants.climberDeliveryMotorPort2, MotorType.kBrushless);
   
+  //TODO Implement soft limits for delivery and winch
+
+  private double kP = 0.00016;//0.006;
+  private double kI = 0;//0.000002;
+  private double kD = 0;//0.004;//0.2;
+  private double kFF = 0.000156;
+
   /**
    * Creates a new Climber.
    */
   public Climber() {
+    climberDeliveryMotor1.getPIDController().setP(kP, 0);
+    climberDeliveryMotor1.getPIDController().setI(kI, 0);
+    climberDeliveryMotor1.getPIDController().setD(kD, 0);
+    climberDeliveryMotor1.getPIDController().setFF(kFF, 0);
+
+    climberDeliveryMotor2.getPIDController().setP(kP, 0);
+    climberDeliveryMotor2.getPIDController().setI(kI, 0);
+    climberDeliveryMotor2.getPIDController().setD(kD, 0);
+    climberDeliveryMotor2.getPIDController().setFF(kFF, 0);
     
   }
 
   /**
-   * Sets the speed of the climber delivery motor
+   * Raises the climber delivery hook
    */
-  public void deliverHook(double speed){
-    climberDeliveryMotor.set(speed);
+  public void setDeliveryMotorSpeed(double speed){
+    climberDeliveryMotor1.getPIDController().setReference(speed, ControlType.kDutyCycle); //TODO check whether climber delivery motors will be running in the same direction
+    climberDeliveryMotor2.getPIDController().setReference(speed, ControlType.kDutyCycle);
   }
 
   /**
-   * Sets the speed of the left winch to pull up the robot
+   * Makes the climber motor stay at the height it was released at
+   */
+  public void stay(){
+    if(climberDeliveryMotor1.getEncoder().getPosition() == Constants.deliveryBottomLimit 
+    && climberDeliveryMotor2.getEncoder().getPosition() == Constants.deliveryBottomLimit){
+      climberDeliveryMotor1.getPIDController().setReference(0, ControlType.kDutyCycle);
+      climberDeliveryMotor2.getPIDController().setReference(0, ControlType.kDutyCycle);
+    }else{
+      climberDeliveryMotor1.getPIDController().setReference(climberDeliveryMotor1.getEncoder().getPosition(), ControlType.kPosition);
+      climberDeliveryMotor2.getPIDController().setReference(climberDeliveryMotor2.getEncoder().getPosition(), ControlType.kPosition); 
+    }
+  }
+
+  /**
+   * Sets the speed of both the winches to pull up the robot
    * @param speed double from -1 to 1
    */
-  public void setLeftClimberWinch(double speed){
-    leftClimberMotor.set(ControlMode.PercentOutput, speed);
+  public void setBothWinch(double speed){
+    leftWinchMotor.set(ControlMode.PercentOutput, speed);
+    rightWinchMotor.set(ControlMode.PercentOutput, speed);
   }
 
   /**
    * Sets the speed of the right winch to pull up the robot
    * @param speed double from -1 to 1
    */
-  public void setRightClimberWinch(double speed){
-    rightClimberMotor.set(ControlMode.PercentOutput, speed);
+  public void setRightWinch(double speed){
+    rightWinchMotor.set(ControlMode.PercentOutput, speed);
   }
+
+  /**
+   * Sets the speed of the left winch to pull up the robot
+   */
+  public void setLeftWinch(double speed){
+    leftWinchMotor.set(ControlMode.PercentOutput, speed);
+  }
+
 
   @Override
   public void periodic() {

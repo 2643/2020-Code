@@ -11,13 +11,13 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
-public class ReverseIntake extends CommandBase {
+public class DropHook extends CommandBase {
   /**
-   * Creates a new ReverseIntake.
+   * Creates a new DropHook.
    */
-  public ReverseIntake() {
+  public DropHook() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.intake);
+    addRequirements(RobotContainer.climber);
   }
 
   // Called when the command is initially scheduled.
@@ -28,13 +28,13 @@ public class ReverseIntake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.intake.setSpeed(Constants.reverseIntakeSpeed);
+    RobotContainer.climber.setDeliveryMotorSpeed(-Constants.deliveryHookSpeed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.intake.setSpeed(0); 
+    RobotContainer.climber.stay();
   }
 
   // Returns true when the command should end.

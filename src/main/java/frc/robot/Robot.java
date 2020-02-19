@@ -21,7 +21,7 @@ import frc.robot.commands.*;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
-  private RobotContainer m_robotContainer;
+  private static RobotContainer m_robotContainer;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -33,6 +33,7 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
 
+    RobotContainer.drivetrain.resetAllEncoder();
   }
 
   /**
@@ -103,6 +104,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    CommandScheduler.getInstance().run();
   }
 
   @Override
@@ -117,22 +119,5 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
 
-    // //Testing the intake
-    // if(RobotContainer.driveStick.getRawButton(1)){
-    //   RobotContainer.intake.intake();
-    // }else if(RobotContainer.driveStick.getRawButton(2)){
-    //   RobotContainer.intake.reverseIntake(); 
-    // }else{
-    //   RobotContainer.intake.stopIntake();
-    // }
-
-    // //Testing the conveyor belt
-    // if(RobotContainer.driveStick.getRawButton(3)){
-    //   RobotContainer.conveyorBelt.moveConveyorBeltForward();
-    // }else if(RobotContainer.driveStick.getRawButton(4)){
-    //   RobotContainer.intake.reverseIntake(); 
-    // }else {
-    //   RobotContainer.conveyorBelt.stopConveyorBelt();
-    // }
   }
 }

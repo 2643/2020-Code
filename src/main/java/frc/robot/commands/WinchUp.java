@@ -11,13 +11,15 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
-public class ReverseIntake extends CommandBase {
+/**
+ * Winching the robot up to the generator switch bar
+ */
+public class WinchUp extends CommandBase {
   /**
-   * Creates a new ReverseIntake.
+   * Creates a new WinchIn.
    */
-  public ReverseIntake() {
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.intake);
+  public WinchUp() {
+    addRequirements(RobotContainer.climber);
   }
 
   // Called when the command is initially scheduled.
@@ -28,13 +30,15 @@ public class ReverseIntake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.intake.setSpeed(Constants.reverseIntakeSpeed);
+    RobotContainer.climber.setLeftWinch(Constants.deliveryHookSpeed);
+    RobotContainer.climber.setRightWinch(Constants.deliveryHookSpeed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.intake.setSpeed(0); 
+    RobotContainer.climber.setLeftWinch(0);
+    RobotContainer.climber.setRightWinch(0);
   }
 
   // Returns true when the command should end.
