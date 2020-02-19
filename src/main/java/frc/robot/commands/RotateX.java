@@ -54,7 +54,7 @@ public class RotateX extends CommandBase {
   @Override
   public boolean isFinished() {
     //TODO Make sure if logic works 
-    if((RobotContainer.drivetrain.getLeftMotorEncoder() == Constants.rotate180) && (RobotContainer.drivetrain.getRightMotorEncoder() == Constants.rotatex(angle)))
+    if((RobotContainer.drivetrain.getLeftMotorEncoder() == Constants.rotateX(angle)) && (RobotContainer.drivetrain.getRightMotorEncoder() == Constants.rotateX(angle)))
       return true;
     return false;
   }

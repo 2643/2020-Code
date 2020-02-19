@@ -32,7 +32,7 @@ public class IntakeIndex extends CommandBase {
   public void initialize() {
     lastIRActivated = RobotContainer.conveyorBelt.lastIndex();
     // If the fifth iRSensor is activated, the command will stop running
-    if(lastIRActivated >= 4){
+    if(lastIRActivated >= 4 || !RobotContainer.intake.isBallThere() ){
       finished = true; 
     }
   }

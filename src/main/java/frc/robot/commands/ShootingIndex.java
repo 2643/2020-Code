@@ -49,8 +49,9 @@ public class ShootingIndex extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    lastIRActivated = RobotContainer.conveyorBelt.lastIndex();
     //If the iRSensor after the one last activated is activated, the command ends.
-    if(RobotContainer.conveyorBelt.getConveyorIRs()[lastIRActivated + 1].get() == true){
+    if(lastIRActivated == 4){
       finished = true; 
     }
     return finished; 

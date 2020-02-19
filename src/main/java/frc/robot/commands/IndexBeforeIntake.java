@@ -51,7 +51,8 @@ public class IndexBeforeIntake extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(RobotContainer.conveyorBelt.getConveyorIRs()[0].get() == false){
+    firstIRActivated = RobotContainer.conveyorBelt.firstIndex(); 
+    if(firstIRActivated == 0){
       finished = true; 
     }
     return finished; 
