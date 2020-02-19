@@ -7,29 +7,36 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.revrobotics.CANSparkMax;
 import com.revrobotics.ColorMatch;
 import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorSensorV3;
+import com.revrobotics.ControlType;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class FrictionWheel extends SubsystemBase {
-  private static DoubleSolenoid frictionWheelPiston = new DoubleSolenoid(Constants.doubleSolenoidPort1, Constants.doubleSolenoidPort2);
-  private static WPI_TalonSRX frictionWheelMotor = new WPI_TalonSRX(Constants.frictionWheelMotorPort);
+  //TODO uncomment when pneumatics are installed
+  //private static DoubleSolenoid frictionWheelPiston = new DoubleSolenoid(Constants.doubleSolenoidPort1, Constants.doubleSolenoidPort2);
+  private static CANSparkMax frictionWheelMotor = new CANSparkMax(Constants.frictionWheelMotorPort, MotorType.kBrushless);
   
   private final I2C.Port i2cPort = I2C.Port.kOnboard;
   private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
   private final ColorMatch m_colorMatcher = new ColorMatch();
   private String globalColor;
+
+  final double kP = 0.00016;
+  final double kI = 0;
+  final double kD = 0;
+  final double kFF = 0;
+  final int slotID_frictionwheel = 0;
 
   
   /**
@@ -73,10 +80,7 @@ public class FrictionWheel extends SubsystemBase {
       
       globalColor = colorString;
 
-      for (int i = 999; i > 0; i--)
-      {
-        
-      }
+
       final Color detectedColor_temp = m_colorSensor.getColor();
       final ColorMatchResult match_temp = m_colorMatcher.matchClosestColor(detectedColor_temp);
       String colorString_temp = "initialized coloring temp";
@@ -128,7 +132,6 @@ public class FrictionWheel extends SubsystemBase {
     {
       globalColor = "Too Far Away";
     }
-    SmartDashboard.putString("Detected Color", globalColor);
   }
 
   /**
@@ -139,36 +142,41 @@ public class FrictionWheel extends SubsystemBase {
     return globalColor;
   }
 
-  public void setBrakeMode(){
-    frictionWheelMotor.setNeutralMode(NeutralMode.Brake);
-  }
-
-  public void neutralOutput(){
-    frictionWheelMotor.stopMotor();
-  }
-
-  /**
-   * Extends the FrictionWheel mechanism
-   */
-  public void extendMechanism(){
-    frictionWheelPiston.set(Value.kForward); //TODO Check direction of piston to extend FrictionWheel
-  }
-
-  /**
-   * Retracts the FrictionWheel mechanism
-   */
-  public void retractMechanism(){
-    frictionWheelPiston.set(Value.kReverse); //TODO Check direction of piston to retract FrictionWheel
-  }
+    //TODO uncomment when pneumatics are installed
+  // /**
+  //  * Extends the FrictionWheel mechanism
+  //  */
+  // public void extendMechanism(){
+  //   frictionWheelPiston.set(Value.kForward); //TODO Check direction of piston to extend FrictionWheel
+  // }
+  
+      //TODO uncomment when pneumatics are installed
+  // /**
+  //  * Retracts the FrictionWheel mechanism
+  //  */
+  // public void retractMechanism(){
+  //   frictionWheelPiston.set(Value.kReverse); //TODO Check direction of piston to retract FrictionWheel
+  // }
 
   /**
    * Sets the speed of the friction wheel
    * @param speed
    */
-  public void setMotorSpeed(final double speed){
-    frictionWheelMotor.set(speed);
+  public void setMotorSpeed(double speed){
+    frictionWheelMotor.getPIDController().setReference(speed, ControlType.kDutyCycle, slotID_frictionwheel);
   }
 
+  /**
+   * Sets the position of the friction wheel
+   * @param position
+   */
+  public void stop(){
+    frictionWheelMotor.getPIDController().setReference(frictionWheelMotor.getEncoder().getPosition(), ControlType.kPosition, slotID_frictionwheel);
+  }
+
+  /**
+   * Gets the color to turn to in position control
+   */
   private void colorForPositionControl(){
     String message = DriverStation.getInstance().getGameSpecificMessage();
 

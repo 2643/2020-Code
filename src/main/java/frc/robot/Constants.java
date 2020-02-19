@@ -53,14 +53,14 @@ public final class Constants {
 
     //Turret Constants
     public static int turretMotorPort = 7;
-    public static int leftLimitSwitchPort = 1;
-    public static int rightLimitSwitchPort = 3;
+    public static int leftLimitSwitchPort = 0; //TODO find port of left limit switch on turret
+    public static int rightLimitSwitchPort = 0; //TODO find port of right limit switch on turret
 
-    public static double leftTurretSpeed = 0.2;
-    public static double rightTurretSpeed = -0.2;
+    public static double leftTurretSpeed = 0.2; //TODO determine if this turns the turret left
+    public static double rightTurretSpeed = -0.2; //TODO determine if this turns the turret right
 
-    public static final int turretEncoderLeftSoftLimit = 0; 
-    public static final int turretEncoderRightSoftLimit = 0; 
+    public static final int turretEncoderLeftSoftLimit = 0; //TODO determine encoder value for turret left limit
+    public static final int turretEncoderRightSoftLimit = 0; //TODO determine encoder value for turret right limit
 
     //Hood Constants
     public static int hoodMotorPort = 8;
@@ -98,11 +98,11 @@ public final class Constants {
     
     public static final double deliveryHookSpeed = 0.3; //TODO determine speed of hook delivery and retrieval
     
-    public static final double deliveryTopLimit = 0;
-    public static final double deliveryBottomLimit = 0; 
+    public static final double deliveryTopLimit = 0; //TODO determine encoder value for top limit of the winch
+    public static final double deliveryBottomLimit = 0; //TODO determine encoder value for bottom limit of the winch
 
-    public static final double winchTopLimit = 0;
-    public static final double winchBottomLimit = 0;
+    public static final double winchTopLimit = 0; //TODO determine encoder value for the top limit of the winch
+    public static final double winchBottomLimit = 0;//TODO detrmine encoder value fort he bottom limit of the winch
 
     //Intake Constants
     public static final int intakeMotorPort = 14;
@@ -125,10 +125,9 @@ public final class Constants {
     public static final double conveyorBeltForwardSpeed = -0.6;
     public static final double conveyorBeltBackwardSpeed = 0.6; 
 
-    //TODO change to correct ir sensor ports for the conveyor belt
-    public static final int conveyoriRSensor1Channel = 0; 
-    public static final int conveyoriRSensor2Channel = 0; 
-    public static final int conveyoriRSensor3Channel = 0; 
-    public static final int conveyoriRSensor4Channel = 0; 
-    public static final int conveyoriRSensor5Channel = 0; 
+    public static final int conveyoriRSensor1Channel = 1; 
+    public static final int conveyoriRSensor2Channel = 2; 
+    public static final int conveyoriRSensor3Channel = 3; 
+    public static final int conveyoriRSensor4Channel = 4; 
+    public static final int conveyoriRSensor5Channel = 5; 
 }
