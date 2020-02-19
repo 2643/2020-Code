@@ -5,19 +5,19 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class DrivetrainTargetAlign extends CommandBase {
-  
+
   private boolean finished = false;
 
   public DrivetrainTargetAlign() {
     addRequirements(RobotContainer.drivetrain);
   }
-  
+
   @Override
   public void initialize() {
   }
 
   @Override
-  protected void execute() {
+  public void execute() {
     boolean [] movement = Constants.visionTable.getEntry("movement_array");
 
     System.out.println("Turn left: "+movement[0]+", Turn right: "+movement[1]+", Move Back: "+movement[2]+", Move Forwards: "+movement[3]);
@@ -50,13 +50,14 @@ public class DrivetrainTargetAlign extends CommandBase {
   }
 
   @Override
-  protected void end(boolean interrupted) {
+  public void end(boolean interrupted) {
     RobotContainer.drivetrain.setLeftMotorSpeed(0);
     RobotContainer.drivetrain.setRightMotorSpeed(0);
   }
 
+  // Returns true when the command should end
   @Override
-  protected boolean isFinished() {
+  public boolean isFinished() {
     if (finished == true) {
     return true;
     }
