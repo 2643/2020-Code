@@ -1,8 +1,8 @@
-import frc.robot.commands.*;
+import frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 public class DrivetrainTargetAlign extends CommandBase {
   
@@ -18,7 +18,7 @@ public class DrivetrainTargetAlign extends CommandBase {
 
   @Override
   protected void execute() {
-    boolean [] movement = RobotMap.visionTable.getEntry("movement_array");
+    boolean [] movement = Constants.visionTable.getEntry("movement_array");
 
     System.out.println("Turn left: "+movement[0]+", Turn right: "+movement[1]+", Move Back: "+movement[2]+", Move Forwards: "+movement[3]);
 
