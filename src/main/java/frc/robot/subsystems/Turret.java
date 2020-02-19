@@ -52,11 +52,10 @@ public class Turret extends SubsystemBase {
 
   /**
    * Moves the turret to an angle
-   * @param position angle to move turret to
+   * @param position to move turret to
    */
   public void aimTurret(double position){ //TODO add functionality to accept angles to move turret to
     if(leftLimitSwitch.get() == true){
-      //turretMotor.getPIDController().setReference(0, ControlType.kDutyCycle, slotID_turret);
       if(position <= Constants.turretEncoderLeftSoftLimit){ //TODO check which direction is positive/negative
         turretMotor.getPIDController().setReference(position, ControlType.kSmartMotion, slotID_turret);
       }
@@ -66,7 +65,7 @@ public class Turret extends SubsystemBase {
       }
     }
     else{
-      turretMotor.getPIDController().setReference(0, ControlType.kDutyCycle, slotID_turret);
+      turretMotor.getPIDController().setReference(turretMotor.getEncoder().getPosition(), ControlType.kPosition, slotID_turret);
     }
   }
 
@@ -76,6 +75,8 @@ public class Turret extends SubsystemBase {
   public void moveTurretLeft(){
     if(RobotContainer.driveStick.getPOV() == 270 && leftLimitSwitch.get() == false){
       turretMotor.getPIDController().setReference(Constants.leftTurretSpeed, ControlType.kDutyCycle, slotID_turret);
+    }else{
+      turretMotor.getPIDController().setReference(0, ControlType.kDutyCycle, slotID_turret);
     }
   }
 
@@ -83,6 +84,8 @@ public class Turret extends SubsystemBase {
   public void moveTurretRight(){
     if(RobotContainer.driveStick.getPOV() == 90 && rightLimitSwitch.get() == false){
       turretMotor.getPIDController().setReference(Constants.rightTurretSpeed, ControlType.kDutyCycle, slotID_turret);
+    }else{
+      turretMotor.getPIDController().setReference(0, ControlType.kDutyCycle, slotID_turret);
     }
   }
   @Override

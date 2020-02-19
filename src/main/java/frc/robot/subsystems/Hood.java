@@ -57,6 +57,22 @@ public class Hood extends SubsystemBase {
     hoodMotor.getPIDController().setReference(position, ControlType.kSmartMotion, slotID_hood);
   }
 
+  /**
+   * Gets the current position of the encoder
+   * @return double position
+   */
+  public double getPosition(){
+    return hoodMotor.getEncoder().getPosition();
+  }
+
+  /**
+   * Resets the encoder
+   * SHOULD ONLY BE USED IN ROBOTINIT
+   */
+  public void resetEncoder(){
+    hoodMotor.getEncoder().setPosition(0);
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

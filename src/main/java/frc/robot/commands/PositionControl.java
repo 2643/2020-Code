@@ -52,12 +52,8 @@ public class PositionControl extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.frictionWheel.setBrakeMode();
-    RobotContainer.frictionWheel.setMotorSpeed(0.0);
-    RobotContainer.frictionWheel.neutralOutput();
-    RobotContainer.frictionWheel.setBrakeMode();
-    RobotContainer.frictionWheel.setMotorSpeed(0.0);
-    RobotContainer.frictionWheel.neutralOutput();
+    RobotContainer.frictionWheel.setMotorSpeed(0);
+    RobotContainer.frictionWheel.stop();
   }
 
   // Returns true when the command should end.
