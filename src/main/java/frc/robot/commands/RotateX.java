@@ -15,14 +15,11 @@ import frc.robot.RobotContainer;
 public class RotateX extends CommandBase {
 
   private double angle;
-  private String direction;
-  private String compare = "Left";
 
-  public RotateX(int a, String directionOfTurn) {
+  public RotateX(int a) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.drivetrain);
     angle = a;
-    direction = directionOfTurn;
   }
 
   // Called when the command is initially scheduled.
@@ -31,16 +28,9 @@ public class RotateX extends CommandBase {
     // Reset the drivetrain encoders
     RobotContainer.drivetrain.resetLeftEncoder();
     RobotContainer.drivetrain.resetRightEncoder();
+    RobotContainer.drivetrain.setRightMotorPosition(-Constants.rotateX(angle));
+    RobotContainer.drivetrain.setLeftMotorPosition(Constants.rotateX(angle));
 
-    //Set the drivetrain to move to the angle using PID
-    //TODO check if this rotates in the right direction
-    if ((direction.compareToIgnoreCase(compare)) == 0) {
-      RobotContainer.drivetrain.setLeftMotorPosition(-Constants.rotateX(angle));
-      RobotContainer.drivetrain.setRightMotorPosition(Constants.rotateX(angle));
-    } else {
-      RobotContainer.drivetrain.setLeftMotorPosition(Constants.rotateX(angle));
-      RobotContainer.drivetrain.setRightMotorPosition(-Constants.rotateX(angle));
-    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -56,17 +46,16 @@ public class RotateX extends CommandBase {
 
     if(interrupted == true){
       RobotContainer.drivetrain.setLeftMotorSpeed(0);
-      RobotContainer.drivetrain.setRightMotorSpeed(0);
+      RobotContainer.drivetrain.setLeftMotorSpeed(0);
     }
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if((Math.abs(RobotContainer.drivetrain.getLeftMotorEncoder()) == Constants.rotateX(angle)) 
-    && (Math.abs(RobotContainer.drivetrain.getRightMotorEncoder()) == Constants.rotateX(angle)))
-      return true;    
+    //TODO Make sure if logic works 
+    if((RobotContainer.drivetrain.getLeftMotorEncoder() == Constants.rotate180) && (RobotContainer.drivetrain.getRightMotorEncoder() == Constants.rotatex(angle)))
+      return true;
     return false;
   }
 }
-
