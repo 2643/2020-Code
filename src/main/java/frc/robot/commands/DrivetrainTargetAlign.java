@@ -18,9 +18,9 @@ public class DrivetrainTargetAlign extends CommandBase {
 
   @Override
   public void execute() {
-    boolean [] movement = Constants.visionTable.getEntry("movement_array");
+    boolean[] movement = Constants.visionTable.getEntry("movement_array").getBooleanArray();
 
-    System.out.println("Turn left: "+movement[0]+", Turn right: "+movement[1]+", Move Back: "+movement[2]+", Move Forwards: "+movement[3]);
+//     System.out.println("Turn left: "+movement[0]+", Turn right: "+movement[1]+", Move Back: "+movement[2]+", Move Forwards: "+movement[3]);
 
     if (movement[0] == true){
       // Turn Left
@@ -46,7 +46,8 @@ public class DrivetrainTargetAlign extends CommandBase {
       RobotContainer.drivetrain.setRightMotorSpeed(0.3);
     }
 
-    finished = true;
+//     finished = true;
+//   }
   }
 
   @Override
@@ -59,13 +60,11 @@ public class DrivetrainTargetAlign extends CommandBase {
   @Override
   public boolean isFinished() {
     if (finished == true) {
-    return true;
+      return true;
     }
-
-    else {
-      return false;
-    }
+    return false; 
   }
 }
+
 
 

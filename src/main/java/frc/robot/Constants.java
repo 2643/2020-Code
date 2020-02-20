@@ -12,6 +12,8 @@ import java.util.function.BooleanSupplier;
 import com.revrobotics.ColorMatch;
 
 import edu.wpi.first.wpilibj.util.Color;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
@@ -34,6 +36,8 @@ public final class Constants {
     public static int leftBackMotorPort = 2;
     public static int rightFrontMotorPort = 3; 
     public static int rightBackMotorPort = 4; 
+
+    public static NetworkTable visionTable = NetworkTableInstance.getDefault().getTable("vision");
 
     /**
      * Determines the number of encoder ticks necessary for drivetrain to turn at certain angle
@@ -85,7 +89,7 @@ public final class Constants {
     public static final Color kRedTarget = ColorMatch.makeColor(0.561, 0.232, 0.114);
     public static final Color kYellowTarget = ColorMatch.makeColor(0.361, 0.524, 0.113);
 
-    public static String colorString; 
+    public static String fieldColorString; 
 
     public static boolean frictionWheelToggleVariable = false; 
     public static BooleanSupplier frictionWheelToggle = () -> frictionWheelToggleVariable; 
@@ -116,6 +120,8 @@ public final class Constants {
 
     public static final int intakeRaiseTime = 1;
 
+    public static boolean intakingBall = false; 
+
     public static boolean verticalIntakeToggleVariable = false; 
     public static BooleanSupplier verticalIntakeToggle = () -> verticalIntakeToggleVariable;
     
@@ -130,4 +136,7 @@ public final class Constants {
     public static final int conveyoriRSensor3Channel = 3; 
     public static final int conveyoriRSensor4Channel = 4; 
     public static final int conveyoriRSensor5Channel = 5; 
+
+    public static int ballsHeld = 0;
+
 }
