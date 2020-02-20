@@ -27,8 +27,9 @@ public class FrictionWheel extends SubsystemBase {
   //private static DoubleSolenoid frictionWheelPiston = new DoubleSolenoid(Constants.doubleSolenoidPort1, Constants.doubleSolenoidPort2);
   private static CANSparkMax frictionWheelMotor = new CANSparkMax(Constants.frictionWheelMotorPort, MotorType.kBrushless);
   
-  private final I2C.Port i2cPort = I2C.Port.kOnboard;
-  private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
+  //TODO uncomment when color sensor is added to the robot
+  //private final I2C.Port i2cPort = I2C.Port.kOnboard;
+  //private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
   private final ColorMatch m_colorMatcher = new ColorMatch();
   private String globalColor;
 
@@ -50,89 +51,89 @@ public class FrictionWheel extends SubsystemBase {
     m_colorMatcher.addColorMatch(Constants.kYellowTarget);
   }
 
-  /**
-   * Returns the color detected by the color sensor
-   */
-  private void detectColor() {
-    final int proximity = m_colorSensor.getProximity();
-    final Color detectedColor = m_colorSensor.getColor();
-    final ColorMatchResult match = m_colorMatcher.matchClosestColor(detectedColor);
-    String colorString = "initialized colorstring";
-    if (proximity > Constants.colorSensorOptimalRange)
-    {
-      if (match.color == Constants.kBlueTarget) 
-      {
-        colorString = "Blue";
-      } else if (match.color == Constants.kRedTarget) 
-      {
-        colorString = "Red";
-      } else if (match.color == Constants.kGreenTarget) 
-      {
-        colorString = "Green";
-      } else if (match.color == Constants.kYellowTarget) 
-      {
-        colorString = "Yellow";
-      }
-      else
-      {
-        colorString = "Unknown";
-      }
+  //TODO uncomment when color sensor is added to the robot
+  // /**
+  //  * Returns the color detected by the color sensor
+  //  */
+  // private void detectColor() {
+  //   final int proximity = m_colorSensor.getProximity();
+  //   final Color detectedColor = m_colorSensor.getColor();
+  //   final ColorMatchResult match = m_colorMatcher.matchClosestColor(detectedColor);
+  //   String colorString = "initialized colorstring";
+  //   if (proximity > Constants.colorSensorOptimalRange)
+  //   {
+  //     if (match.color == Constants.kBlueTarget) 
+  //     {
+  //       colorString = "Blue";
+  //     } else if (match.color == Constants.kRedTarget) 
+  //     {
+  //       colorString = "Red";
+  //     } else if (match.color == Constants.kGreenTarget) 
+  //     {
+  //       colorString = "Green";
+  //     } else if (match.color == Constants.kYellowTarget) 
+  //     {
+  //       colorString = "Yellow";
+  //     }
+  //     else
+  //     {
+  //       colorString = "Unknown";
+  //     }
       
-      globalColor = colorString;
+  //     globalColor = colorString;
 
 
-      final Color detectedColor_temp = m_colorSensor.getColor();
-      final ColorMatchResult match_temp = m_colorMatcher.matchClosestColor(detectedColor_temp);
-      String colorString_temp = "initialized coloring temp";
-      if (match_temp.color == Constants.kGreenTarget) {
-        colorString_temp = "Blue";
-      } else if (match_temp.color == Constants.kRedTarget) {
-        colorString_temp = "Red";
-      } else if (match_temp.color == Constants.kGreenTarget) {
-        colorString_temp = "Green";
-      } else if (match_temp.color == Constants.kYellowTarget) {
-        colorString_temp = "Yellow";
-      }
+  //     final Color detectedColor_temp = m_colorSensor.getColor();
+  //     final ColorMatchResult match_temp = m_colorMatcher.matchClosestColor(detectedColor_temp);
+  //     String colorString_temp = "initialized coloring temp";
+  //     if (match_temp.color == Constants.kGreenTarget) {
+  //       colorString_temp = "Blue";
+  //     } else if (match_temp.color == Constants.kRedTarget) {
+  //       colorString_temp = "Red";
+  //     } else if (match_temp.color == Constants.kGreenTarget) {
+  //       colorString_temp = "Green";
+  //     } else if (match_temp.color == Constants.kYellowTarget) {
+  //       colorString_temp = "Yellow";
+  //     }
 
 
-      if (!colorString_temp.equals(colorString))
-      {
-
-          if (colorString.equals("Yellow"))
-          {
-            if (colorString_temp.equals("Blue") && !colorString_temp.equals("Green"))
-            {
-                globalColor = "Blue";
-            }
-          }
-          else if (colorString.equals("Green"))
-          {
-            if (colorString_temp.equals("Red") && !colorString_temp.equals("Yellow"))
-            {
-              globalColor = "Red";
-            }
-          }
-          else if (colorString.equals("Red"))
-          {
-            if (colorString_temp.equals("Yellow"))
-            {
-              globalColor = "Yellow";
-            }
-          }
-          else if (colorString.equals("Blue"))
-          {
-            if (colorString_temp.equals("Green"))
-            {
-                globalColor = "Green";
-            }
-          }
-      }
-    }
-    else
-    {
-      globalColor = "Too Far Away";
-    }
-  }
+  //     if (!colorString_temp.equals(colorString))
+  //     {
+  //         if (colorString.equals("Yellow"))
+  //         {
+  //           if (colorString_temp.equals("Blue") && !colorString_temp.equals("Green"))
+  //           {
+  //               globalColor = "Blue";
+  //           }
+  //         }
+  //         else if (colorString.equals("Green"))
+  //         {
+  //           if (colorString_temp.equals("Red") && !colorString_temp.equals("Yellow"))
+  //           {
+  //             globalColor = "Red";
+  //           }
+  //         }
+  //         else if (colorString.equals("Red"))
+  //         {
+  //           if (colorString_temp.equals("Yellow"))
+  //           {
+  //             globalColor = "Yellow";
+  //           }
+  //         }
+  //         else if (colorString.equals("Blue"))
+  //         {
+  //           if (colorString_temp.equals("Green"))
+  //           {
+  //               globalColor = "Green";
+  //           }
+  //         }
+  //     }
+  //   }
+  //   else
+  //   {
+  //     globalColor = "Too Far Away";
+  //   }
+  // }
 
   /**
    * Give the color detected by the color sensor
@@ -142,7 +143,7 @@ public class FrictionWheel extends SubsystemBase {
     return globalColor;
   }
 
-    //TODO uncomment when pneumatics are installed
+  //TODO uncomment when pneumatics are installed
   // /**
   //  * Extends the FrictionWheel mechanism
   //  */
@@ -150,7 +151,7 @@ public class FrictionWheel extends SubsystemBase {
   //   frictionWheelPiston.set(Value.kForward); //TODO Check direction of piston to extend FrictionWheel
   // }
   
-      //TODO uncomment when pneumatics are installed
+  //TODO uncomment when pneumatics are installed
   // /**
   //  * Retracts the FrictionWheel mechanism
   //  */
@@ -174,6 +175,7 @@ public class FrictionWheel extends SubsystemBase {
     frictionWheelMotor.getPIDController().setReference(frictionWheelMotor.getEncoder().getPosition(), ControlType.kPosition, slotID_frictionwheel);
   }
 
+
   /**
    * Gets the color to turn to in position control
    */
@@ -182,27 +184,28 @@ public class FrictionWheel extends SubsystemBase {
 
     if(message.length() > 0){
       if(message.charAt(0) == 'B'){
-        Constants.colorString = "Blue";
+        Constants.fieldColorString = "Blue";
       }else if(message.charAt(0) == 'G'){
-        Constants.colorString =  "Green";
+        Constants.fieldColorString =  "Green";
       }else if(message.charAt(0) == 'R'){
-        Constants.colorString = "Red";
+        Constants.fieldColorString = "Red";
       }else if(message.charAt(0) == 'Y'){
-        Constants.colorString = "Yellow";
+        Constants.fieldColorString = "Yellow";
       }
     }
   }
 
   @Override
   public void periodic() {
-    detectColor();
-
-    if(!Constants.colorString.equals("Green") 
-    || !Constants.colorString.equals("Red")
-    || !Constants.colorString.equals("Blue")
-    || !Constants.colorString.equals("Yellow")){
-      colorForPositionControl(); 
-    }
+    // TODO uncomment when color sensor is added to the robot
+    // detectColor();
+    
+    // if(!Constants.colorString.equals("Green") 
+    // || !Constants.colorString.equals("Red")
+    // || !Constants.colorString.equals("Blue")
+    // || !Constants.colorString.equals("Yellow")){
+    //   colorForPositionControl(); 
+    // }
   }
 
 }

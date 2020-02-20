@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 public class ConveyorBelt extends SubsystemBase {
 
@@ -23,6 +24,7 @@ public class ConveyorBelt extends SubsystemBase {
   public static DigitalInput conveyoriRSensor5 = new DigitalInput(Constants.conveyoriRSensor5Channel);
   public static DigitalInput[] conveyoriRSensors = {conveyoriRSensor1,conveyoriRSensor2, conveyoriRSensor3, conveyoriRSensor4, conveyoriRSensor5};
 
+  private int ballsHeld_temp = 0; 
 
   /**
    * Creates a new ConveyorBelt.
@@ -33,11 +35,6 @@ public class ConveyorBelt extends SubsystemBase {
 
   public DigitalInput[] getConveyorIRs(){
     return conveyoriRSensors;
-  }
-
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
   }
 
   /**
@@ -69,5 +66,20 @@ public class ConveyorBelt extends SubsystemBase {
       }
     }
     return -1;
+  }
+
+  @Override
+  public void periodic() {
+    // This method will be called once per scheduler run
+    for(int c = 0; c < RobotContainer.conveyorBelt.getConveyorIRs().length; c++){
+      if(RobotContainer.conveyorBelt.getConveyorIRs()[c].get() == false)
+        ballsHeld_temp++;
+    }
+      
+    if(ballsHeld_temp != Constants.ballsHeld){
+      Constants.ballsHeld = ballsHeld_temp;
+    }
+      
+    System.out.println("Balls Held: " + Constants.ballsHeld);
   }
 }

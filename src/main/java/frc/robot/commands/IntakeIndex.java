@@ -32,7 +32,7 @@ public class IntakeIndex extends CommandBase {
   public void initialize() {
     lastIRActivated = RobotContainer.conveyorBelt.lastIndex();
     // If the fifth iRSensor is activated, the command will stop running
-    if(lastIRActivated >= 4 || !RobotContainer.intake.isBallThere() ){
+    if(lastIRActivated >= 4){
       finished = true; 
     }
   }
@@ -40,7 +40,8 @@ public class IntakeIndex extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.conveyorBelt.setSpeed(Constants.conveyorBeltForwardSpeed);
+    if(Constants.intakingBall)
+      RobotContainer.conveyorBelt.setSpeed(Constants.conveyorBeltForwardSpeed);
   }
 
   // Called once the command ends or is interrupted.
@@ -54,7 +55,9 @@ public class IntakeIndex extends CommandBase {
   @Override
   public boolean isFinished() {
     //If the iRSensor after the one last activated is activated, the command ends.
-    if(RobotContainer.conveyorBelt.getConveyorIRs()[lastIRActivated + 1].get() == false){
+    if(lastIRActivated >=4){
+      finished = true;
+    }else if(RobotContainer.conveyorBelt.getConveyorIRs()[lastIRActivated + 1].get() == false){
       finished = true; 
     }
     return finished; 

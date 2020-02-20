@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -18,8 +19,10 @@ import frc.robot.Constants;
 
 public class Intake extends SubsystemBase {
   private static DigitalInput intakeIR = new DigitalInput(Constants.intakeIRChannel);
-  private static CANSparkMax intakeMotor = new CANSparkMax(Constants.intakeMotorPort, MotorType.kBrushless);
-  private static DoubleSolenoid intakePiston = new DoubleSolenoid(Constants.intakeSolenoidPort1, Constants.intakeSolenoidPort2);
+  private static WPI_TalonSRX intakeMotor = new WPI_TalonSRX(Constants.intakeMotorPort);
+
+  // TODO uncomment when pneumatics are added to the intake system
+  //private static DoubleSolenoid intakePiston = new DoubleSolenoid(Constants.intakeSolenoidPort1, Constants.intakeSolenoidPort2);
   
   /**
    * Creates a new Intake.
@@ -31,11 +34,11 @@ public class Intake extends SubsystemBase {
   /**
    * Checks if the ball is passing through the intake 
    */
-  public boolean isBallThere(){
+  public void isBallThere(){
     if(intakeIR.get() == false){
-      return true;
+      Constants.intakingBall = true;
     }else{
-      return false;
+      Constants.intakingBall = false; 
     }
   }
 
@@ -46,7 +49,7 @@ public class Intake extends SubsystemBase {
     intakeMotor.set(speed);
   }
 
-    //TODO uncomment when pneumatics are installed
+    //TODO uncomment when pneumatics are installed for intake system
   // /**
   //  * Retracts the intake piston
   //  */
@@ -54,7 +57,7 @@ public class Intake extends SubsystemBase {
   //   intakePiston.set(Value.kForward);//TODO Check which direction to retract the intake pistons
   // }
 
-    //TODO uncomment when pneumatics are installed
+    //TODO uncomment when pneumatics are installed for intake system
   // /**
   //  * Extends the intake piston
   //  */
@@ -65,5 +68,7 @@ public class Intake extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    isBallThere();
+    
   }
 }
