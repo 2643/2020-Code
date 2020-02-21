@@ -35,6 +35,7 @@ public class Robot extends TimedRobot {
 
     //RobotContainer.hood.resetEncoder();
     RobotContainer.drivetrain.resetAllEncoder();
+    RobotContainer.conveyorBelt.updateBallsHeld();
   }
 
   /**
@@ -106,6 +107,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     CommandScheduler.getInstance().run();
+    System.out.println(Constants.ballsHeld);
   }
 
   @Override
@@ -128,7 +130,7 @@ public class Robot extends TimedRobot {
      * Drivetrain Testing
      */
     //Check if encoders have reset
-    System.out.println(RobotContainer.drivetrain.getLeftMotorEncoder() + " " + RobotContainer.drivetrain.getRightMotorEncoder());
+    //System.out.println(RobotContainer.drivetrain.getLeftMotorEncoder() + " " + RobotContainer.drivetrain.getRightMotorEncoder());
     //Test MoveForward with the new allowed error -- schedule this in AutonomousInit
     //Test RotateX to make sure it turns in the right direction - schedule this in AutonomousInit
 

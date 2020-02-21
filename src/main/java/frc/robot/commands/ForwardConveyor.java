@@ -29,7 +29,6 @@ public class ForwardConveyor extends CommandBase {
   @Override
   public void execute() {
     RobotContainer.conveyorBelt.setSpeed(Constants.conveyorBeltForwardSpeed);
-    System.out.println("Forward Conveyor");
   }
 
   // Called once the command ends or is interrupted.

@@ -20,7 +20,6 @@
 // public class Hood extends SubsystemBase {
 //   private static CANSparkMax hoodMotor = new CANSparkMax(Constants.hoodMotorPort, MotorType.kBrushless);
 
-//TODO incorporate soft limits for the hood
 
 //   //Hood PID Constants
 //   double kP_hood = 0.00016;//0.006;
@@ -35,7 +34,7 @@
 //   int minVel_hood = 0;
 //   double allowedErr_hood = 0.1;
 //   int index = 0;
-//   double[] position = {1, 2, 3, 4};//TODO add specific encoder ticks for the hood to turn to
+//   double[] position = {5, 15, 20, 25};//TODO add specific encoder ticks for the hood to turn to - these values are currently in rotations of the housing
 //   /**
 //    * Creates a new Hood.
 //    */

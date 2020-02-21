@@ -23,10 +23,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class FrictionWheel extends SubsystemBase {
+  private static CANSparkMax frictionWheelMotor = new CANSparkMax(Constants.frictionWheelMotorPort, MotorType.kBrushless);
   //TODO uncomment when pneumatics are installed
   //private static DoubleSolenoid frictionWheelPiston = new DoubleSolenoid(Constants.doubleSolenoidPort1, Constants.doubleSolenoidPort2);
-  private static CANSparkMax frictionWheelMotor = new CANSparkMax(Constants.frictionWheelMotorPort, MotorType.kBrushless);
-  
+
   //TODO uncomment when color sensor is added to the robot
   //private final I2C.Port i2cPort = I2C.Port.kOnboard;
   //private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
@@ -51,7 +51,7 @@ public class FrictionWheel extends SubsystemBase {
     m_colorMatcher.addColorMatch(Constants.kYellowTarget);
   }
 
-  //TODO uncomment when color sensor is added to the robot
+  // TODO uncomment when color sensor is added to the robot
   // /**
   //  * Returns the color detected by the color sensor
   //  */

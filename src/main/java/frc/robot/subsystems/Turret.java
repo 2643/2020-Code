@@ -16,10 +16,11 @@
 // import frc.robot.Constants;
 // import frc.robot.RobotContainer;
 
-// TODO uncomment when turret is added to the robot
+// //TODO uncomment when turret is added to the robot
 // public class Turret extends SubsystemBase {
 //   private static CANSparkMax turretMotor = new CANSparkMax(Constants.turretMotorPort, MotorType.kBrushless);
 
+//   // TODO uncomment when turret limit switches are added
 //   // private static DigitalInput leftLimitSwitch = new DigitalInput(Constants.leftLimitSwitchPort);  
 //   // private static DigitalInput rightLimitSwitch = new DigitalInput(Constants.rightLimitSwitchPort);
 
@@ -57,15 +58,16 @@
 //    */
 //   public void aimTurret(double position){ //TODO add functionality to accept angles to move turret to
     
-//     //if(leftLimitSwitch.get() == true){
+//     //TODO uncomment when turret limit switches are added
+//     if(leftLimitSwitch.get() == true){
 //       if(position <= Constants.turretEncoderLeftSoftLimit){ //TODO check which direction is positive/negative
 //         turretMotor.getPIDController().setReference(position, ControlType.kSmartMotion, slotID_turret);
 //       }
-//     //} else if(rightLimitSwitch.get() == true){
+//     } else if(rightLimitSwitch.get() == true){
 //       if(position <= Constants.turretEncoderRightSoftLimit){
 //         turretMotor.getPIDController().setReference(position, ControlType.kSmartMotion, slotID_turret);
 //       }
-//     //}
+//     }
 //     else{
 //       turretMotor.getPIDController().setReference(turretMotor.getEncoder().getPosition(), ControlType.kPosition, slotID_turret);
 //     }
@@ -75,7 +77,7 @@
 //    * Move the turret using duty cycle, or constantly changing the target
 //    */
 //   public void moveTurretLeft(){
-//     if(RobotContainer.driveStick.getPOV() == 270){ //&& leftLimitSwitch.get() == false){
+//     if(RobotContainer.driveStick.getPOV() == 270 && leftLimitSwitch.get() == false){
 //       turretMotor.getPIDController().setReference(Constants.leftTurretSpeed, ControlType.kDutyCycle, slotID_turret);
 //     }else{
 //       turretMotor.getPIDController().setReference(0, ControlType.kDutyCycle, slotID_turret);
@@ -84,7 +86,7 @@
 
 
 //   public void moveTurretRight(){
-//     if(RobotContainer.driveStick.getPOV() == 90){ //&& rightLimitSwitch.get() == false){
+//     if(RobotContainer.driveStick.getPOV() == 90 && rightLimitSwitch.get() == false){
 //       turretMotor.getPIDController().setReference(Constants.rightTurretSpeed, ControlType.kDutyCycle, slotID_turret);
 //     }else{
 //       turretMotor.getPIDController().setReference(0, ControlType.kDutyCycle, slotID_turret);
