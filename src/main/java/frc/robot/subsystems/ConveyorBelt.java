@@ -38,6 +38,9 @@ public class ConveyorBelt extends SubsystemBase {
     
   }
 
+  /**
+   * Checks the number of balls held in the conveyor belt 
+   */
   public void updateBallsHeld(){
     if(conveyoriRSensor1.get() == false){
       ballsHeldArray[0] = true;
