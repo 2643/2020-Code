@@ -61,7 +61,6 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledInit() {
 
-
   }
 
   @Override
@@ -80,6 +79,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
+    RobotContainer.conveyorBelt.updateBallsHeld();
   }
 
   /**
@@ -99,6 +99,8 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    RobotContainer.conveyorBelt.updateBallsHeld();
+
   }
 
   /**
@@ -119,7 +121,7 @@ public class Robot extends TimedRobot {
   }
 
   int index = 0;
-  double[] position = {1, 2, 3, 4}; //TODO add specific encoder ticks for the hood to turn to
+  double[] position = {5, 10, 15, 20, 25}; //TODO add specific encoder ticks for the hood to turn to
 
   /**
    * This function is called periodically during test mode.

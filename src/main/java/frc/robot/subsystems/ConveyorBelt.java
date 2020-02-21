@@ -40,51 +40,23 @@ public class ConveyorBelt extends SubsystemBase {
 
   /**
    * Checks the number of balls held in the conveyor belt 
+   * 
+   * why so many individual check statements, nothing nested
+   * 
+   * 
    */
   public void updateBallsHeld(){
-    if(conveyoriRSensor1.get() == false){
-      ballsHeldArray[0] = true;
-    }else{
-      ballsHeldArray[0] = false;
-    }
-
-    if(conveyoriRSensor2.get() == false && conveyoriRSensor3.get() == false){
-      ballsHeldArray[1] = true;
-    }else{
-      ballsHeldArray[1] = false;
-    }
-
-    if(conveyoriRSensor4.get() == false && conveyoriRSensor5.get() == false){
-      ballsHeldArray[2] = true;
-    }else{
-      ballsHeldArray[2] = false;
-    }
-
-    if(conveyoriRSensor6.get() == false && conveyoriRSensor7.get() == false){
-      ballsHeldArray[3] = true;
-    }else{
-      ballsHeldArray[3] = false;
-    }
-    
-    if(conveyoriRSensor8.get() == false && conveyoriRSensor9.get() == false){
-      ballsHeldArray[4] = true;  
-    }else{
-      ballsHeldArray[4] = false;
-    }
-
-
-
     for(int c = ballsHeldArray.length-1; c >= 0; c--){
       if(ballsHeldArray[c] == true){
         ballsHeld_temp++;
       }
     }
 
-    ballsHeld_temp = 0;
-
     if(ballsHeld_temp != Constants.ballsHeld){
       Constants.ballsHeld = ballsHeld_temp; 
     }
+
+    ballsHeld_temp = 0;
   }
 
   public boolean[] getBallsHeldArray(){
@@ -126,5 +98,35 @@ public class ConveyorBelt extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    if(conveyoriRSensor1.get() == false){
+      ballsHeldArray[0] = true;
+    }else{
+      ballsHeldArray[0] = false;
+    }
+
+    if(conveyoriRSensor2.get() == false && conveyoriRSensor3.get() == false){
+      ballsHeldArray[1] = true;
+    }else{
+      ballsHeldArray[1] = false;
+    }
+
+    if(conveyoriRSensor4.get() == false && conveyoriRSensor5.get() == false){
+      ballsHeldArray[2] = true;
+    }else{
+      ballsHeldArray[2] = false;
+    }
+
+    if(conveyoriRSensor6.get() == false && conveyoriRSensor7.get() == false){
+      ballsHeldArray[3] = true;
+    }else{
+      ballsHeldArray[3] = false;
+    }
+    
+    if(conveyoriRSensor8.get() == false && conveyoriRSensor9.get() == false){
+      ballsHeldArray[4] = true;  
+    }else{
+      ballsHeldArray[4] = false;
+    }
+
   }
 }
