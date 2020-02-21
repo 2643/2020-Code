@@ -136,7 +136,11 @@ public final class Constants {
     public static final int conveyoriRSensor3Channel = 3; 
     public static final int conveyoriRSensor4Channel = 4; 
     public static final int conveyoriRSensor5Channel = 5; 
+    public static final int conveyoriRSensor6Channel = 6;
+    public static final int conveyoriRSensor7Channel = 7;
+    public static final int conveyoriRSensor8Channel = 8; 
+    public static final int conveyoriRSensor9Channel = 9;
 
-    public static int ballsHeld = 0;
+    public static int ballsHeld = 0; 
 
 }

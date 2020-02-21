@@ -12,7 +12,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.RobotContainer;
 
 public class ConveyorBelt extends SubsystemBase {
 
@@ -22,9 +21,15 @@ public class ConveyorBelt extends SubsystemBase {
   public static DigitalInput conveyoriRSensor3 = new DigitalInput(Constants.conveyoriRSensor3Channel);
   public static DigitalInput conveyoriRSensor4 = new DigitalInput(Constants.conveyoriRSensor4Channel);
   public static DigitalInput conveyoriRSensor5 = new DigitalInput(Constants.conveyoriRSensor5Channel);
-  public static DigitalInput[] conveyoriRSensors = {conveyoriRSensor1,conveyoriRSensor2, conveyoriRSensor3, conveyoriRSensor4, conveyoriRSensor5};
+  public static DigitalInput conveyoriRSensor6 = new DigitalInput(Constants.conveyoriRSensor6Channel);
+  public static DigitalInput conveyoriRSensor7 = new DigitalInput(Constants.conveyoriRSensor7Channel);
+  public static DigitalInput conveyoriRSensor8 = new DigitalInput(Constants.conveyoriRSensor8Channel);
+  public static DigitalInput conveyoriRSensor9 = new DigitalInput(Constants.conveyoriRSensor9Channel);
+  public static DigitalInput[] conveyoriRSensors = {conveyoriRSensor1,conveyoriRSensor2, conveyoriRSensor3, conveyoriRSensor4, conveyoriRSensor5, conveyoriRSensor6, conveyoriRSensor7, conveyoriRSensor8, conveyoriRSensor9};
 
-  private int ballsHeld_temp = 0; 
+  private static int ballsHeld_temp = 0;
+
+  private static boolean[] ballsHeldArray = {false, false, false, false, false};
 
   /**
    * Creates a new ConveyorBelt.
@@ -33,10 +38,55 @@ public class ConveyorBelt extends SubsystemBase {
     
   }
 
-  public DigitalInput[] getConveyorIRs(){
-    return conveyoriRSensors;
+  public void updateBallsHeld(){
+    if(conveyoriRSensor1.get() == false){
+      ballsHeldArray[0] = true;
+    }else{
+      ballsHeldArray[0] = false;
+    }
+
+    if(conveyoriRSensor2.get() == false && conveyoriRSensor3.get() == false){
+      ballsHeldArray[1] = true;
+    }else{
+      ballsHeldArray[1] = false;
+    }
+
+    if(conveyoriRSensor4.get() == false && conveyoriRSensor5.get() == false){
+      ballsHeldArray[2] = true;
+    }else{
+      ballsHeldArray[2] = false;
+    }
+
+    if(conveyoriRSensor6.get() == false && conveyoriRSensor7.get() == false){
+      ballsHeldArray[3] = true;
+    }else{
+      ballsHeldArray[3] = false;
+    }
+    
+    if(conveyoriRSensor8.get() == false && conveyoriRSensor9.get() == false){
+      ballsHeldArray[4] = true;  
+    }else{
+      ballsHeldArray[4] = false;
+    }
+
+
+
+    for(int c = ballsHeldArray.length-1; c >= 0; c--){
+      if(ballsHeldArray[c] == true){
+        ballsHeld_temp++;
+      }
+    }
+
+    ballsHeld_temp = 0;
+
+    if(ballsHeld_temp != Constants.ballsHeld){
+      Constants.ballsHeld = ballsHeld_temp; 
+    }
   }
 
+  public boolean[] getBallsHeldArray(){
+    return ballsHeldArray;
+  }
   /**
    * Moves the conveyor belt at a set speed
    */
@@ -46,23 +96,25 @@ public class ConveyorBelt extends SubsystemBase {
 
   /**
    * Returns the index of the last IR activated
-   * @return int index 0 - 4; default return 0 when none activated
+   * @return int index 0 - 4; default return -1 when none activated
    */
   public int lastIndex(){
-    // Returns the last iRSensor in the list that returns true
-    for(int c = conveyoriRSensors.length-1; c >= 0; c--){
-      if(conveyoriRSensors[c].get() == false){
-        return c;
+      for(int c = ballsHeldArray.length-1; c >= 0; c--){
+        if(ballsHeldArray[c] == true){
+          return c;
+        }
       }
-    }
-    return -1;
+      return -1;
   }
 
+  /**
+   * Returns the index of the first IR activated
+   * @return int index 0 - 4; default return -1 when none activated 
+   */
   public int firstIndex(){
-    // Returns the first iRSensor in the list that returns true
-    for(int c = 0; c < conveyoriRSensors.length; c++){
-      if(conveyoriRSensors[c].get() == false){
-        return c; 
+    for(int c = 0; c < ballsHeldArray.length; c++){
+      if(ballsHeldArray[c] == true){
+        return c;
       }
     }
     return -1;
@@ -71,15 +123,5 @@ public class ConveyorBelt extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    for(int c = 0; c < RobotContainer.conveyorBelt.getConveyorIRs().length; c++){
-      if(RobotContainer.conveyorBelt.getConveyorIRs()[c].get() == false)
-        ballsHeld_temp++;
-    }
-      
-    if(ballsHeld_temp != Constants.ballsHeld){
-      Constants.ballsHeld = ballsHeld_temp;
-    }
-      
-    System.out.println("Balls Held: " + Constants.ballsHeld);
   }
 }

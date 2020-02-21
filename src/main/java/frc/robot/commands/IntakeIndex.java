@@ -48,6 +48,7 @@ public class IntakeIndex extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     RobotContainer.conveyorBelt.setSpeed(0);
+    RobotContainer.conveyorBelt.updateBallsHeld();
     finished = false; 
   }
 
@@ -57,7 +58,7 @@ public class IntakeIndex extends CommandBase {
     //If the iRSensor after the one last activated is activated, the command ends.
     if(lastIRActivated >=4){
       finished = true;
-    }else if(RobotContainer.conveyorBelt.getConveyorIRs()[lastIRActivated + 1].get() == false){
+    }else if(RobotContainer.conveyorBelt.getBallsHeldArray()[lastIRActivated + 1] == true){
       finished = true; 
     }
     return finished; 
