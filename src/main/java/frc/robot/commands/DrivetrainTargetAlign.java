@@ -6,7 +6,9 @@ import frc.robot.RobotContainer;
 
 public class DrivetrainTargetAlign extends CommandBase {
 
-  private boolean finished = false;
+  boolean[] defaultArray = {false, false, false, false};
+  boolean[] movement = Constants.visionTable.getEntry("movement_array").getBooleanArray(defaultArray);
+
 
   public DrivetrainTargetAlign() {
     addRequirements(RobotContainer.drivetrain);
@@ -18,9 +20,8 @@ public class DrivetrainTargetAlign extends CommandBase {
 
   @Override
   public void execute() {
-    boolean[] movement = Constants.visionTable.getEntry("movement_array").getBooleanArray();
-
-//     System.out.println("Turn left: "+movement[0]+", Turn right: "+movement[1]+", Move Back: "+movement[2]+", Move Forwards: "+movement[3]);
+//  System.out.println("Turn left: "+movement[0]+", Turn right: "+movement[1]+", Move Back: "+movement[2]+", Move Forwards: "+movement[3]);
+    movement = Constants.visionTable.getEntry("movement_array").getBooleanArray(defaultArray);
 
     if (movement[0] == true){
       // Turn Left
@@ -45,9 +46,6 @@ public class DrivetrainTargetAlign extends CommandBase {
       RobotContainer.drivetrain.setLeftMotorSpeed(0.3);
       RobotContainer.drivetrain.setRightMotorSpeed(0.3);
     }
-
-//     finished = true;
-//   }
   }
 
   @Override
@@ -59,7 +57,10 @@ public class DrivetrainTargetAlign extends CommandBase {
   // Returns true when the command should end
   @Override
   public boolean isFinished() {
-    if (finished == true) {
+    if (movement[0] == false 
+    && movement[1] == false 
+    && movement[2] == false
+    && movement[3] == false) {
       return true;
     }
     return false; 
