@@ -27,7 +27,7 @@
 //   // Called every time the scheduler runs while the command is scheduled.
 //   @Override
 //   public void execute() {
-//     RobotContainer.climber.setLeftWinch(1);
+//     RobotContainer.climber.setLeftWinch(Constants.leftWinchUpSpeed);
 //   }
 
 //   // Called once the command ends or is interrupted.

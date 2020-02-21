@@ -102,6 +102,9 @@ public final class Constants {
     
     public static final double deliveryHookSpeed = 0.3; //TODO determine speed of hook delivery and retrieval
     
+    public static final double leftWinchUpSpeed = 1; //TODO determine speed for the left winch
+    public static final double rightWinchUpSpeed = 1; //TODO determine speed for the right winch
+    
     public static final double deliveryTopLimit = 0; //TODO determine encoder value for top limit of the winch
     public static final double deliveryBottomLimit = 0; //TODO determine encoder value for bottom limit of the winch
 
