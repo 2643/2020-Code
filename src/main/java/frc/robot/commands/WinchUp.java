@@ -11,7 +11,6 @@
 // import frc.robot.Constants;
 // import frc.robot.RobotContainer;
 
-//TODO uncomment when climber is added to the robot
 // /**
 //  * Winching the robot up to the generator switch bar
 //  */
@@ -31,8 +30,8 @@
 //   // Called every time the scheduler runs while the command is scheduled.
 //   @Override
 //   public void execute() {
-//     RobotContainer.climber.setLeftWinch(Constants.leftWinchUpSpeed);
-//     RobotContainer.climber.setRightWinch(Constants.rightWinchUpSpeed);
+//     RobotContainer.climber.setLeftWinch(Constants.deliveryHookSpeed);
+//     RobotContainer.climber.setRightWinch(Constants.deliveryHookSpeed);
 //   }
 
 //   // Called once the command ends or is interrupted.

@@ -16,13 +16,11 @@
 // import frc.robot.Constants;
 // import frc.robot.RobotContainer;
 
-// //TODO uncomment when turret is added to the robot
 // public class Turret extends SubsystemBase {
 //   private static CANSparkMax turretMotor = new CANSparkMax(Constants.turretMotorPort, MotorType.kBrushless);
 
-//   // TODO uncomment when turret limit switches are added
-//   // private static DigitalInput leftLimitSwitch = new DigitalInput(Constants.leftLimitSwitchPort);  
-//   // private static DigitalInput rightLimitSwitch = new DigitalInput(Constants.rightLimitSwitchPort);
+//   private static DigitalInput leftLimitSwitch = new DigitalInput(Constants.leftLimitSwitchPort);  
+//   private static DigitalInput rightLimitSwitch = new DigitalInput(Constants.rightLimitSwitchPort);
 
 //   //Turret PID Constants
 //   double kP_turret = 0.00016;//0.006;
@@ -57,8 +55,6 @@
 //    * @param position to move turret to
 //    */
 //   public void aimTurret(double position){ //TODO add functionality to accept angles to move turret to
-    
-//     //TODO uncomment when turret limit switches are added
 //     if(leftLimitSwitch.get() == true){
 //       if(position <= Constants.turretEncoderLeftSoftLimit){ //TODO check which direction is positive/negative
 //         turretMotor.getPIDController().setReference(position, ControlType.kSmartMotion, slotID_turret);

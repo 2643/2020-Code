@@ -30,7 +30,7 @@ public class IndexBeforeIntake extends CommandBase {
   @Override
   public void initialize() {
     firstIRActivated = RobotContainer.conveyorBelt.firstIndex();
-    if(firstIRActivated == 0 || firstIRActivated == -1){
+    if(firstIRActivated == 0){
       finished = true; 
     }
   }

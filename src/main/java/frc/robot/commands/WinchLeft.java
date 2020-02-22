@@ -10,7 +10,6 @@
 // import edu.wpi.first.wpilibj2.command.CommandBase;
 // import frc.robot.RobotContainer;
 
-//TODO uncomment when climber is added
 // public class WinchLeft extends CommandBase {
 //   /**
 //    * Creates a new WinchLeft.
@@ -27,7 +26,7 @@
 //   // Called every time the scheduler runs while the command is scheduled.
 //   @Override
 //   public void execute() {
-//     RobotContainer.climber.setLeftWinch(Constants.leftWinchUpSpeed);
+//     RobotContainer.climber.setLeftWinch(1);
 //   }
 
 //   // Called once the command ends or is interrupted.

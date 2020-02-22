@@ -27,13 +27,13 @@ public class RobotContainer {
 
   //Subsystems
   public static Drivetrain drivetrain = new Drivetrain();
-  //public static Shooter shooter = new Shooter();
-  //public static Turret turret = new Turret(); 
-  //public static Hood hood = new Hood();
+  // public static Shooter shooter = new Shooter();
+  // public static Turret turret = new Turret(); 
+  // public static Hood hood = new Hood();
   public static Intake intake = new Intake();
   public static ConveyorBelt conveyorBelt = new ConveyorBelt();
   public static FrictionWheel frictionWheel = new FrictionWheel();
-  //public static Climber climber = new Climber();
+  // public static Climber climber = new Climber();
 
   //Autonomous Command
   AutonomousRoutine auto = new AutonomousRoutine(); 
@@ -79,8 +79,8 @@ public class RobotContainer {
     reverseConveyor.whileHeld(new ReverseConveyor());
     manualIntake.whileHeld(new ForwardIntake());
     reverseIntake.whileHeld(new ReverseIntake());
-    manualControlPanel.whileHeld(new MoveWheel());
-    autoIntake.whileHeld(new IndexBeforeIntake().andThen(new ForwardIntake().alongWith(new IntakeIndex())));
+
+    autoIntake.whenPressed(new IndexBeforeIntake().andThen(new ForwardIntake().alongWith(new IntakeIndex())));
     // rotationControl.whileHeld(new RotationControl()); 
     // positionControl.whileHeld(new PositionControl()); 
 

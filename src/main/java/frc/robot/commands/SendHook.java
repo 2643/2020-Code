@@ -11,7 +11,6 @@
 // import frc.robot.Constants;
 // import frc.robot.RobotContainer;
 
-// TODO uncomment this after climber is added
 // public class SendHook extends CommandBase {
 //   /**
 //    * Creates a new SendHook.

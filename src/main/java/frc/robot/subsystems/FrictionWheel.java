@@ -51,7 +51,6 @@ public class FrictionWheel extends SubsystemBase {
     m_colorMatcher.addColorMatch(Constants.kYellowTarget);
   }
 
-  // TODO uncomment when color sensor is added to the robot
   // /**
   //  * Returns the color detected by the color sensor
   //  */
@@ -99,6 +98,7 @@ public class FrictionWheel extends SubsystemBase {
 
   //     if (!colorString_temp.equals(colorString))
   //     {
+
   //         if (colorString.equals("Yellow"))
   //         {
   //           if (colorString_temp.equals("Blue") && !colorString_temp.equals("Green"))
@@ -173,7 +173,6 @@ public class FrictionWheel extends SubsystemBase {
     frictionWheelMotor.getPIDController().setReference(frictionWheelMotor.getEncoder().getPosition(), ControlType.kPosition, slotID_frictionwheel);
   }
 
-
   /**
    * Gets the color to turn to in position control
    */
@@ -195,15 +194,14 @@ public class FrictionWheel extends SubsystemBase {
 
   @Override
   public void periodic() {
-    // TODO uncomment when color sensor is added to the robot
-    // detectColor();
-    
-    // if(!Constants.colorString.equals("Green") 
-    // || !Constants.colorString.equals("Red")
-    // || !Constants.colorString.equals("Blue")
-    // || !Constants.colorString.equals("Yellow")){
-    //   colorForPositionControl(); 
-    // }
+   // detectColor();
+
+    if(!Constants.fieldColorString.equals("Green") 
+    || !Constants.fieldColorString.equals("Red")
+    || !Constants.fieldColorString.equals("Blue")
+    || !Constants.fieldColorString.equals("Yellow")){
+      colorForPositionControl(); 
+    }
   }
 
 }
