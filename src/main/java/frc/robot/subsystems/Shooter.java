@@ -57,6 +57,13 @@ public class Shooter extends SubsystemBase {
     rightShooterMotor.getPIDController().setReference(-speed, ControlType.kVelocity);
   }
 
+//   /**
+//    * Stops the shooter motors using duty cycle
+//    */
+//   public void stopMotors(){
+//       leftShooterMotor.getPIDController().setReference(0, ControlType.kDutyCycle);
+//       rightShooterMotor.getPIDController().setReference(0, ControlType.kDutyCycle);
+//   }
 
   @Override
   public void periodic() {

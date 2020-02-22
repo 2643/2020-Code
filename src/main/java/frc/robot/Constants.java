@@ -37,6 +37,8 @@ public final class Constants {
     public static int rightFrontMotorPort = 3; 
     public static int rightBackMotorPort = 4; 
 
+    public static NetworkTable visionTable = NetworkTableInstance.getDefault().getTable("vision");
+
     /**
      * Determines the number of encoder ticks necessary for drivetrain to turn at certain angle
      * @param angle the angle to turn
@@ -55,14 +57,14 @@ public final class Constants {
 
     //Turret Constants
     public static int turretMotorPort = 7;
-    public static int leftLimitSwitchPort = 1;
-    public static int rightLimitSwitchPort = 3;
+    public static int leftLimitSwitchPort = 0; //TODO find port of left limit switch on turret
+    public static int rightLimitSwitchPort = 0; //TODO find port of right limit switch on turret
 
-    public static double leftTurretSpeed = 0.2;
-    public static double rightTurretSpeed = -0.2;
+    public static double leftTurretSpeed = 0.2; //TODO determine if this turns the turret left
+    public static double rightTurretSpeed = -0.2; //TODO determine if this turns the turret right
 
-    public static final int turretEncoderLeftSoftLimit = 0; 
-    public static final int turretEncoderRightSoftLimit = 0; 
+    public static final int turretEncoderLeftSoftLimit = 0; //TODO determine encoder value for turret left limit
+    public static final int turretEncoderRightSoftLimit = 0; //TODO determine encoder value for turret right limit
 
     //Hood Constants
     public static int hoodMotorPort = 8;
@@ -71,10 +73,8 @@ public final class Constants {
     //Friction Wheel Constants
     public static final int frictionWheelMotorPort = 9;
 
-    public static final int doubleSolenoidPort1 = 2;
-    public static final int doubleSolenoidPort2 = 3;
-    public static final int doubleSolenoidPort3 = 0;
-    public static final int doubleSolenoidPort4 = 1;
+    public static final int doubleSolenoidPort1 = 4;
+    public static final int doubleSolenoidPort2 = 6;
 
     public static final double maxRPM = 5500;
     public static final double frictionWheelSpeed = 0.3; //TODO check if control panel is spinned in the right direction
@@ -87,7 +87,7 @@ public final class Constants {
     public static final Color kRedTarget = ColorMatch.makeColor(0.561, 0.232, 0.114);
     public static final Color kYellowTarget = ColorMatch.makeColor(0.361, 0.524, 0.113);
 
-    public static String colorString; 
+    public static String fieldColorString; 
 
     public static boolean frictionWheelToggleVariable = false; 
     public static BooleanSupplier frictionWheelToggle = () -> frictionWheelToggleVariable; 
@@ -100,11 +100,14 @@ public final class Constants {
     
     public static final double deliveryHookSpeed = 0.3; //TODO determine speed of hook delivery and retrieval
     
-    public static final double deliveryTopLimit = 0;
-    public static final double deliveryBottomLimit = 0; 
+    public static final double leftWinchUpSpeed = 1; //TODO determine speed for the left winch
+    public static final double rightWinchUpSpeed = 1; //TODO determine speed for the right winch
+    
+    public static final double deliveryTopLimit = 0; //TODO determine encoder value for top limit of the winch
+    public static final double deliveryBottomLimit = 0; //TODO determine encoder value for bottom limit of the winch
 
-    public static final double winchTopLimit = 0;
-    public static final double winchBottomLimit = 0;
+    public static final double winchTopLimit = 0; //TODO determine encoder value for the top limit of the winch
+    public static final double winchBottomLimit = 0;//TODO detrmine encoder value fort he bottom limit of the winch
 
     //Intake Constants
     public static final int intakeMotorPort = 14;
@@ -113,10 +116,12 @@ public final class Constants {
     public static final double intakeSpeed = -0.4;
     public static final double reverseIntakeSpeed = 0.4;
 
-    public static final int intakeSolenoidPort1 = 0;
-    public static final int intakeSolenoidPort2 = 1;
+    public static final int intakeSolenoidPort1 = 5;
+    public static final int intakeSolenoidPort2 = 7;
 
     public static final int intakeRaiseTime = 1;
+
+    public static boolean intakingBall = false; 
 
     public static boolean verticalIntakeToggleVariable = false; 
     public static BooleanSupplier verticalIntakeToggle = () -> verticalIntakeToggleVariable;
@@ -127,13 +132,16 @@ public final class Constants {
     public static final double conveyorBeltForwardSpeed = -0.6;
     public static final double conveyorBeltBackwardSpeed = 0.6; 
 
-    //Networktables for vision
-    public static NetworkTable visionTable = NetworkTableInstance.getDefault().getTable("vision");
+    public static final int conveyoriRSensor1Channel = 1; 
+    public static final int conveyoriRSensor2Channel = 2; 
+    public static final int conveyoriRSensor3Channel = 3; 
+    public static final int conveyoriRSensor4Channel = 4; 
+    public static final int conveyoriRSensor5Channel = 5; 
+    public static final int conveyoriRSensor6Channel = 6;
+    public static final int conveyoriRSensor7Channel = 7;
+    public static final int conveyoriRSensor8Channel = 8; 
+    public static final int conveyoriRSensor9Channel = 9;
 
-    //TODO change to correct ir sensor ports for the conveyor belt
-    public static final int conveyoriRSensor1Channel = 0; 
-    public static final int conveyoriRSensor2Channel = 0; 
-    public static final int conveyoriRSensor3Channel = 0; 
-    public static final int conveyoriRSensor4Channel = 0; 
-    public static final int conveyoriRSensor5Channel = 0; 
+    public static int ballsHeld = 0; 
+
 }

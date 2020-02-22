@@ -22,10 +22,15 @@ public class Drivetrain extends SubsystemBase {
 
 
   // Sets the PID and FF variables
-  private final double kP = 0.00016;//0.006;
-  private final double kI = 0;//0.000002;
-  private final double kD = 0;//0.004;//0.2;
-  private final double kFF = 0.000156;
+  private final double SmartMotionP = 0.00016;//0.006;
+  private final double SmartMotionI = 0;//0.000002;
+  private final double SmartMotionD = 0;//0.004;//0.2;
+  private final double SmartMotionFF = 0.000156;
+
+  private final double SmartVelocityP = 0.00001;
+  private final double SmartVelocityI = 0;
+  private final double SmartVelocityD = 0;
+  private final double SmartVelocityFF = 0;
 
   // Sets the max and min output for the motor speed
   private final double MaxOutput = 1;
@@ -33,8 +38,9 @@ public class Drivetrain extends SubsystemBase {
 
   // Sets the max acceleration for the motors
   private final double maxAccel = 3000;
-  private final int slotID = 0;
-  private final int maxVel = 7000;
+  private final int SmartMotionID = 0;
+  private final int SmartVelocityID = 1;
+  private final int maxVel = 5000;
   private final int minVel = 0;
 
   public final double allowedError = 0.05;
@@ -44,50 +50,74 @@ public class Drivetrain extends SubsystemBase {
    */
   public Drivetrain() {
     // Set the PID Controller for Left Front Motor
-    leftFrontMotor.getPIDController().setP(kP, slotID);
-    leftFrontMotor.getPIDController().setI(kI, slotID);
-    leftFrontMotor.getPIDController().setD(kD, slotID);
-    leftFrontMotor.getPIDController().setFF(kFF, slotID);
-    leftFrontMotor.getPIDController().setOutputRange(MinOutput, MaxOutput, slotID);
-    leftFrontMotor.getPIDController().setSmartMotionMaxAccel(maxAccel, slotID);
-    leftFrontMotor.getPIDController().setSmartMotionAllowedClosedLoopError(allowedError, slotID);
-    leftFrontMotor.getPIDController().setSmartMotionMaxVelocity(maxVel, slotID);
-    leftFrontMotor.getPIDController().setSmartMotionMinOutputVelocity(minVel, slotID);
+    leftFrontMotor.getPIDController().setP(SmartMotionP, SmartMotionID);
+    leftFrontMotor.getPIDController().setI(SmartMotionI, SmartMotionID);
+    leftFrontMotor.getPIDController().setD(SmartMotionD, SmartMotionID);
+    leftFrontMotor.getPIDController().setFF(SmartMotionFF, SmartMotionID);
+    leftFrontMotor.getPIDController().setOutputRange(MinOutput, MaxOutput, SmartMotionID);
+
+    leftFrontMotor.getPIDController().setP(SmartVelocityP, SmartVelocityID);
+    leftFrontMotor.getPIDController().setI(SmartVelocityI, SmartVelocityID);
+    leftFrontMotor.getPIDController().setD(SmartVelocityD, SmartVelocityID);
+    leftFrontMotor.getPIDController().setFF(SmartVelocityFF, SmartVelocityID);
+
+    leftFrontMotor.getPIDController().setSmartMotionMaxAccel(maxAccel, SmartVelocityID);
+    leftFrontMotor.getPIDController().setSmartMotionAllowedClosedLoopError(allowedError, SmartVelocityID);
+    leftFrontMotor.getPIDController().setSmartMotionMaxVelocity(maxVel, SmartVelocityID);
+    leftFrontMotor.getPIDController().setSmartMotionMinOutputVelocity(minVel, SmartVelocityID);
 
     // Set the PID Controller for Left Back Motor
-    leftBackMotor.getPIDController().setP(kP, slotID);
-    leftBackMotor.getPIDController().setI(kI, slotID);
-    leftBackMotor.getPIDController().setD(kD, slotID);
-    leftBackMotor.getPIDController().setFF(kFF, slotID);
-    leftBackMotor.getPIDController().setOutputRange(MinOutput, MaxOutput, slotID);
-    leftBackMotor.getPIDController().setSmartMotionMaxAccel(maxAccel, slotID);
-    leftBackMotor.getPIDController().setSmartMotionAllowedClosedLoopError(allowedError, slotID);
-    leftBackMotor.getPIDController().setSmartMotionMaxVelocity(maxVel, slotID);
-    leftBackMotor.getPIDController().setSmartMotionMinOutputVelocity(minVel, slotID);
+    leftBackMotor.getPIDController().setP(SmartMotionP, SmartMotionID);
+    leftBackMotor.getPIDController().setI(SmartMotionI, SmartMotionID);
+    leftBackMotor.getPIDController().setD(SmartMotionD, SmartMotionID);
+    leftBackMotor.getPIDController().setFF(SmartMotionFF, SmartMotionID);
+    leftBackMotor.getPIDController().setOutputRange(MinOutput, MaxOutput, SmartMotionID);
+
+    leftBackMotor.getPIDController().setP(SmartVelocityP, SmartVelocityID);
+    leftBackMotor.getPIDController().setI(SmartVelocityI, SmartVelocityID);
+    leftBackMotor.getPIDController().setD(SmartVelocityD, SmartVelocityID);
+    leftBackMotor.getPIDController().setFF(SmartVelocityFF, SmartVelocityID);
+
+    leftBackMotor.getPIDController().setSmartMotionMaxAccel(maxAccel, SmartVelocityID);
+    leftBackMotor.getPIDController().setSmartMotionAllowedClosedLoopError(allowedError, SmartVelocityID);
+    leftBackMotor.getPIDController().setSmartMotionMaxVelocity(maxVel, SmartVelocityID);
+    leftBackMotor.getPIDController().setSmartMotionMinOutputVelocity(minVel, SmartVelocityID);
 
     // Set the PID Controller for Right Front Motor
     rightFrontMotor.restoreFactoryDefaults();
-    rightFrontMotor.getPIDController().setP(kP, slotID);
-    rightFrontMotor.getPIDController().setI(kI, slotID);
-    rightFrontMotor.getPIDController().setD(kD, slotID);
-    rightFrontMotor.getPIDController().setFF(kFF, slotID);
-    rightFrontMotor.getPIDController().setOutputRange(MinOutput, MaxOutput, slotID);
-    rightFrontMotor.getPIDController().setSmartMotionMaxAccel(maxAccel, slotID);
-    rightFrontMotor.getPIDController().setSmartMotionAllowedClosedLoopError(allowedError, slotID);
-    rightFrontMotor.getPIDController().setSmartMotionMaxVelocity(maxVel, slotID);
-    rightFrontMotor.getPIDController().setSmartMotionMinOutputVelocity(minVel, slotID);
+    rightFrontMotor.getPIDController().setP(SmartMotionP, SmartMotionID);
+    rightFrontMotor.getPIDController().setI(SmartMotionI, SmartMotionID);
+    rightFrontMotor.getPIDController().setD(SmartMotionD, SmartMotionID);
+    rightFrontMotor.getPIDController().setFF(SmartMotionFF, SmartMotionID);
+    rightFrontMotor.getPIDController().setOutputRange(MinOutput, MaxOutput, SmartMotionID);
+
+    rightFrontMotor.getPIDController().setP(SmartVelocityP, SmartVelocityID);
+    rightFrontMotor.getPIDController().setI(SmartVelocityI, SmartVelocityID);
+    rightFrontMotor.getPIDController().setD(SmartVelocityD, SmartVelocityID);
+    rightFrontMotor.getPIDController().setFF(SmartVelocityFF, SmartVelocityID);
+
+    rightFrontMotor.getPIDController().setSmartMotionMaxAccel(maxAccel, SmartVelocityID);
+    rightFrontMotor.getPIDController().setSmartMotionAllowedClosedLoopError(allowedError, SmartVelocityID);
+    rightFrontMotor.getPIDController().setSmartMotionMaxVelocity(maxVel, SmartVelocityID);
+    rightFrontMotor.getPIDController().setSmartMotionMinOutputVelocity(minVel, SmartVelocityID);
 
     // Set the PID Controller for Right Back Motor
     rightBackMotor.restoreFactoryDefaults();
-    rightBackMotor.getPIDController().setP(kP, slotID);
-    rightBackMotor.getPIDController().setI(kI, slotID);
-    rightBackMotor.getPIDController().setD(kD, slotID);
-    rightBackMotor.getPIDController().setFF(kFF, slotID);
-    rightBackMotor.getPIDController().setOutputRange(MinOutput, MaxOutput, slotID);
-    rightBackMotor.getPIDController().setSmartMotionMaxAccel(maxAccel, slotID);
-    rightBackMotor.getPIDController().setSmartMotionAllowedClosedLoopError(allowedError, slotID);
-    rightBackMotor.getPIDController().setSmartMotionMaxVelocity(maxVel, slotID);
-    rightBackMotor.getPIDController().setSmartMotionMinOutputVelocity(minVel, slotID);
+    rightBackMotor.getPIDController().setP(SmartMotionP, SmartMotionID);
+    rightBackMotor.getPIDController().setI(SmartMotionI, SmartMotionID);
+    rightBackMotor.getPIDController().setD(SmartMotionD, SmartMotionID);
+    rightBackMotor.getPIDController().setFF(SmartMotionFF, SmartMotionID);
+    rightBackMotor.getPIDController().setOutputRange(MinOutput, MaxOutput, SmartMotionID);
+
+    rightBackMotor.getPIDController().setP(SmartVelocityP, SmartVelocityID);
+    rightBackMotor.getPIDController().setI(SmartVelocityI, SmartVelocityID);
+    rightBackMotor.getPIDController().setD(SmartVelocityD, SmartVelocityID);
+    rightBackMotor.getPIDController().setFF(SmartVelocityFF, SmartVelocityID);
+
+    rightBackMotor.getPIDController().setSmartMotionMaxAccel(maxAccel, SmartVelocityID);
+    rightBackMotor.getPIDController().setSmartMotionAllowedClosedLoopError(allowedError, SmartVelocityID);
+    rightBackMotor.getPIDController().setSmartMotionMaxVelocity(maxVel, SmartVelocityID);
+    rightBackMotor.getPIDController().setSmartMotionMinOutputVelocity(minVel, SmartVelocityID);
   }
 
   /**
@@ -114,8 +144,8 @@ public class Drivetrain extends SubsystemBase {
    * @param speed from -1 to 1, speed to set motor
    */
   public void setLeftMotorSpeed(double speed) {
-    leftFrontMotor.getPIDController().setReference(-speed, ControlType.kDutyCycle, slotID, 0);
-    leftBackMotor.getPIDController().setReference(-speed, ControlType.kDutyCycle, slotID, 0);
+    leftFrontMotor.getPIDController().setReference(-(speed * maxVel), ControlType.kSmartVelocity, SmartVelocityID, 0);
+    leftBackMotor.getPIDController().setReference(-(speed * maxVel), ControlType.kSmartVelocity, SmartVelocityID, 0);
   }
 
   /**
@@ -124,10 +154,10 @@ public class Drivetrain extends SubsystemBase {
    * @param speed -1 to 1, speed to set motor
    */
   public void setRightMotorSpeed(double speed) {
-    rightFrontMotor.getPIDController().setReference(speed, ControlType.kDutyCycle, slotID, 0);
-    rightBackMotor.getPIDController().setReference(speed, ControlType.kDutyCycle, slotID, 0);
+    rightFrontMotor.getPIDController().setReference((speed * maxVel), ControlType.kSmartVelocity, SmartVelocityID, 0);
+    rightBackMotor.getPIDController().setReference((speed * maxVel), ControlType.kSmartVelocity, SmartVelocityID, 0);
   }
-
+ 
   /**
    * Sets the speed of the drivetrain using Duty Cycle
    * 
@@ -144,8 +174,8 @@ public class Drivetrain extends SubsystemBase {
    * @param rotations
    */
   public void setLeftMotorPosition(double rotations) {
-    leftFrontMotor.getPIDController().setReference(rotations, ControlType.kSmartMotion, slotID, 0);
-    leftBackMotor.getPIDController().setReference(rotations, ControlType.kSmartMotion, slotID, 0);
+    leftFrontMotor.getPIDController().setReference(rotations, ControlType.kSmartMotion, SmartMotionID, 0);
+    leftBackMotor.getPIDController().setReference(rotations, ControlType.kSmartMotion, SmartMotionID, 0);
   }
 
   /**
@@ -154,8 +184,8 @@ public class Drivetrain extends SubsystemBase {
    * @param rotations
    */
   public void setRightMotorPosition(double rotations) {
-    rightFrontMotor.getPIDController().setReference(-rotations, ControlType.kSmartMotion, slotID, 0);
-    rightBackMotor.getPIDController().setReference(-rotations, ControlType.kSmartMotion, slotID, 0);
+    rightFrontMotor.getPIDController().setReference(-rotations, ControlType.kSmartMotion, SmartMotionID, 0);
+    rightBackMotor.getPIDController().setReference(-rotations, ControlType.kSmartMotion, SmartMotionID, 0);
   }
 
   public void setAllMotorPosition(double rotations) {

@@ -7,6 +7,7 @@ import frc.robot.RobotContainer;
 public class DrivetrainTargetAlign extends CommandBase {
 
   private boolean finished = false;
+  private boolean[] defaultArray = {false, false, false, false};
 
   public DrivetrainTargetAlign() {
     addRequirements(RobotContainer.drivetrain);
@@ -18,7 +19,7 @@ public class DrivetrainTargetAlign extends CommandBase {
 
   @Override
   public void execute() {
-    boolean [] movement = Constants.visionTable.getEntry("movement_array");
+    boolean [] movement = Constants.visionTable.getEntry("movement_array").getBooleanArray(defaultArray);
 
     System.out.println("Turn left: "+movement[0]+", Turn right: "+movement[1]+", Move Back: "+movement[2]+", Move Forwards: "+movement[3]);
 

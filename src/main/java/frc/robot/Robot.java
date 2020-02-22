@@ -33,8 +33,9 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
 
-    RobotContainer.hood.resetEncoder();
+    //RobotContainer.hood.resetEncoder();
     RobotContainer.drivetrain.resetAllEncoder();
+    RobotContainer.conveyorBelt.updateBallsHeld();
   }
 
   /**
@@ -60,7 +61,6 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledInit() {
 
-
   }
 
   @Override
@@ -79,6 +79,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
+    RobotContainer.conveyorBelt.updateBallsHeld();
   }
 
   /**
@@ -98,6 +99,8 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    RobotContainer.conveyorBelt.updateBallsHeld();
+
   }
 
   /**
@@ -106,6 +109,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     CommandScheduler.getInstance().run();
+    System.out.println(Constants.ballsHeld);
   }
 
   @Override
@@ -117,7 +121,7 @@ public class Robot extends TimedRobot {
   }
 
   int index = 0;
-  double[] position = {1, 2, 3, 4}; //TODO add specific encoder ticks for the hood to turn to
+  double[] position = {5, 10, 15, 20, 25}; //TODO add specific encoder ticks for the hood to turn to
 
   /**
    * This function is called periodically during test mode.
@@ -128,8 +132,7 @@ public class Robot extends TimedRobot {
      * Drivetrain Testing
      */
     //Check if encoders have reset
-    System.out.println(RobotContainer.drivetrain.getLeftMotorEncoder() + " " + RobotContainer.drivetrain.getRightMotorEncoder());
-    //Test tank drive -- do this in TeleopPeriodic
+    //System.out.println(RobotContainer.drivetrain.getLeftMotorEncoder() + " " + RobotContainer.drivetrain.getRightMotorEncoder());
     //Test MoveForward with the new allowed error -- schedule this in AutonomousInit
     //Test RotateX to make sure it turns in the right direction - schedule this in AutonomousInit
 
@@ -138,20 +141,18 @@ public class Robot extends TimedRobot {
      * Shooter Testing
      */
     //Check whether the shooter goes in the right direction
-    if(RobotContainer.driveStick.getRawButton(1)){
-      RobotContainer.shooter.spinMotors(0.5);
-    }else{
-      RobotContainer.shooter.spinMotors(0);
-    }
-    //Fix PID to reduce kickback and fix problem of its speed decreasing
-        //-- increase P constant maybe ???
+    // if(RobotContainer.driveStick.getRawButton(1)){
+    //   RobotContainer.shooter.spinMotors(0.5);
+    // }else{
+    //   RobotContainer.shooter.spinMotors(0);
+    // }
 
     /**
      * Turret Testing
      */
     //teleop control using POV
-    RobotContainer.turret.moveTurretLeft(); //These currently stop with duty cycle,
-    RobotContainer.turret.moveTurretRight(); //Check if they need to stop with some kind of PID
+    //RobotContainer.turret.moveTurretLeft(); //These currently stop with duty cycle,
+    //RobotContainer.turret.moveTurretRight(); //Check if they need to stop with some kind of PID
 
 
     /**
@@ -159,21 +160,21 @@ public class Robot extends TimedRobot {
      */
     //Find out if the encoder in the hood reset when the robot turned on
     //Find hood encoder angles, then put them into the position array above
-    System.out.println(RobotContainer.hood.getPosition());
+    //System.out.println(RobotContainer.hood.getPosition());
 
     //Next test whether this successfully switches between all of positions listed in the array
-    if (RobotContainer.driveStick.getPOV()==0){
-      if (index >=0 && index<= position.length-1) {
-        index = index + 1;
-        RobotContainer.hood.moveHood(position[index]);
-      }
-    }
-    else if (RobotContainer.driveStick.getPOV()==180){
-      if (index >=0 && index<= position.length-1) {
-        index = index - 1;
-        RobotContainer.hood.moveHood(position[index]); 
-      }
-    }
+    // if (RobotContainer.driveStick.getPOV()==0){
+    //   if (index >=0 && index<= position.length-1) {
+    //     index = index + 1;
+    //     RobotContainer.hood.moveHood(position[index]);
+    //   }
+    // }
+    // else if (RobotContainer.driveStick.getPOV()==180){
+    //   if (index >=0 && index<= position.length-1) {
+    //     index = index - 1;
+    //     RobotContainer.hood.moveHood(position[index]); 
+    //   }
+    // }
 
     /**
      * Intake + Conveyor Belt

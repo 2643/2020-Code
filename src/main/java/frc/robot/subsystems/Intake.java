@@ -7,8 +7,7 @@
 
 package frc.robot.subsystems;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -18,7 +17,8 @@ import frc.robot.Constants;
 
 public class Intake extends SubsystemBase {
   private static DigitalInput intakeIR = new DigitalInput(Constants.intakeIRChannel);
-  private static CANSparkMax intakeMotor = new CANSparkMax(Constants.intakeMotorPort, MotorType.kBrushless);
+  private static WPI_TalonSRX intakeMotor = new WPI_TalonSRX(Constants.intakeMotorPort);
+
   private static DoubleSolenoid intakePiston = new DoubleSolenoid(Constants.intakeSolenoidPort1, Constants.intakeSolenoidPort2);
   
   /**
@@ -46,21 +46,21 @@ public class Intake extends SubsystemBase {
     intakeMotor.set(speed);
   }
 
-    //TODO uncomment when pneumatics are installed
-  // /**
-  //  * Retracts the intake piston
-  //  */
-  // public void retract(){
-  //   intakePiston.set(Value.kForward);//TODO Check which direction to retract the intake pistons
-  // }
+    
+  /**
+   * Retracts the intake piston
+   */
+  public void retract(){
+    intakePiston.set(Value.kForward);//TODO Check which direction to retract the intake pistons
+  }
 
-    //TODO uncomment when pneumatics are installed
-  // /**
-  //  * Extends the intake piston
-  //  */
-  // public void extend(){
-  //   intakePiston.set(Value.kReverse); // TODO Check which direction to extend the intake pistons
-  // }
+   
+  /**
+   * Extends the intake piston
+   */
+  public void extend(){
+    intakePiston.set(Value.kReverse); // TODO Check which direction to extend the intake pistons
+  }
 
   @Override
   public void periodic() {
