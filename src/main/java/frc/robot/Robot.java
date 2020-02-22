@@ -182,6 +182,7 @@ public class Robot extends TimedRobot {
     //Does indexing algorithm work? -- this will have to be tested in TeleopPeriodic
     //Check which direction extends/retracts the pistons -- are they both controlled by the same DoubleSolenoid??
     //Test toggle for raising/lowering intake -- do this in TeleopPeriodic
+    RobotContainer.frictionWheel.retractMechanism();
 
     /**
      * Friction Wheel Testing

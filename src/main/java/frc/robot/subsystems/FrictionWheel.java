@@ -24,8 +24,8 @@ import frc.robot.Constants;
 
 public class FrictionWheel extends SubsystemBase {
   private static CANSparkMax frictionWheelMotor = new CANSparkMax(Constants.frictionWheelMotorPort, MotorType.kBrushless);
-  //TODO uncomment when pneumatics are installed
-  //private static DoubleSolenoid frictionWheelPiston = new DoubleSolenoid(Constants.doubleSolenoidPort1, Constants.doubleSolenoidPort2);
+
+  private static DoubleSolenoid frictionWheelPiston = new DoubleSolenoid(Constants.doubleSolenoidPort1, Constants.doubleSolenoidPort2);
 
   //TODO uncomment when color sensor is added to the robot
   //private final I2C.Port i2cPort = I2C.Port.kOnboard;
@@ -143,21 +143,19 @@ public class FrictionWheel extends SubsystemBase {
     return globalColor;
   }
 
-  //TODO uncomment when pneumatics are installed
-  // /**
-  //  * Extends the FrictionWheel mechanism
-  //  */
-  // public void extendMechanism(){
-  //   frictionWheelPiston.set(Value.kForward); //TODO Check direction of piston to extend FrictionWheel
-  // }
+  /**
+   * Extends the FrictionWheel mechanism
+   */
+  public void extendMechanism(){
+    frictionWheelPiston.set(Value.kForward); //TODO Check direction of piston to extend FrictionWheel
+  }
   
-  //TODO uncomment when pneumatics are installed
-  // /**
-  //  * Retracts the FrictionWheel mechanism
-  //  */
-  // public void retractMechanism(){
-  //   frictionWheelPiston.set(Value.kReverse); //TODO Check direction of piston to retract FrictionWheel
-  // }
+  /**
+   * Retracts the FrictionWheel mechanism
+   */
+  public void retractMechanism(){
+    frictionWheelPiston.set(Value.kReverse); //TODO Check direction of piston to retract FrictionWheel
+  }
 
   /**
    * Sets the speed of the friction wheel

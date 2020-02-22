@@ -32,7 +32,7 @@ public class RetractFrictionWheel extends CommandBase {
   public void initialize() {
     timer.reset();
     timer.start();
-    //RobotContainer.frictionWheel.retractMechanism(); TODO uncomment when pneumatics are installed
+    RobotContainer.frictionWheel.retractMechanism(); 
   }
 
   // Called every time the scheduler runs while the command is scheduled.

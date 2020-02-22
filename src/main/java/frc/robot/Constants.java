@@ -73,10 +73,8 @@ public final class Constants {
     //Friction Wheel Constants
     public static final int frictionWheelMotorPort = 9;
 
-    public static final int doubleSolenoidPort1 = 2;
-    public static final int doubleSolenoidPort2 = 3;
-    public static final int doubleSolenoidPort3 = 0;
-    public static final int doubleSolenoidPort4 = 1;
+    public static final int doubleSolenoidPort1 = 4;
+    public static final int doubleSolenoidPort2 = 6;
 
     public static final double maxRPM = 5500;
     public static final double frictionWheelSpeed = 0.3; //TODO check if control panel is spinned in the right direction
@@ -118,8 +116,8 @@ public final class Constants {
     public static final double intakeSpeed = -0.4;
     public static final double reverseIntakeSpeed = 0.4;
 
-    public static final int intakeSolenoidPort1 = 0;
-    public static final int intakeSolenoidPort2 = 1;
+    public static final int intakeSolenoidPort1 = 5;
+    public static final int intakeSolenoidPort2 = 7;
 
     public static final int intakeRaiseTime = 1;
 

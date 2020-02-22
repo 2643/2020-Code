@@ -19,8 +19,7 @@ public class Intake extends SubsystemBase {
   private static DigitalInput intakeIR = new DigitalInput(Constants.intakeIRChannel);
   private static WPI_TalonSRX intakeMotor = new WPI_TalonSRX(Constants.intakeMotorPort);
 
-  // TODO uncomment when pneumatics are added to the intake system
-  //private static DoubleSolenoid intakePiston = new DoubleSolenoid(Constants.intakeSolenoidPort1, Constants.intakeSolenoidPort2);
+  private static DoubleSolenoid intakePiston = new DoubleSolenoid(Constants.intakeSolenoidPort1, Constants.intakeSolenoidPort2);
   
   /**
    * Creates a new Intake.
@@ -47,21 +46,21 @@ public class Intake extends SubsystemBase {
     intakeMotor.set(speed);
   }
 
-    //TODO uncomment when pneumatics are installed for intake system
-  // /**
-  //  * Retracts the intake piston
-  //  */
-  // public void retract(){
-  //   intakePiston.set(Value.kForward);//TODO Check which direction to retract the intake pistons
-  // }
+    
+  /**
+   * Retracts the intake piston
+   */
+  public void retract(){
+    intakePiston.set(Value.kForward);//TODO Check which direction to retract the intake pistons
+  }
 
-    //TODO uncomment when pneumatics are installed for intake system
-  // /**
-  //  * Extends the intake piston
-  //  */
-  // public void extend(){
-  //   intakePiston.set(Value.kReverse); // TODO Check which direction to extend the intake pistons
-  // }
+   
+  /**
+   * Extends the intake piston
+   */
+  public void extend(){
+    intakePiston.set(Value.kReverse); // TODO Check which direction to extend the intake pistons
+  }
 
   @Override
   public void periodic() {

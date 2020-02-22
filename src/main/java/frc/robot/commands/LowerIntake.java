@@ -29,8 +29,7 @@ public class LowerIntake extends CommandBase {
     timer.reset();
     timer.start();
     
-    //TODO uncomment when pneumatics are installed
-    //RobotContainer.intake.retract();
+    RobotContainer.intake.retract();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

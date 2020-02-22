@@ -60,7 +60,7 @@ public class RobotContainer {
   public static JoystickButton rightClimb = new JoystickButton(opBoard, 14); 
   public static JoystickButton bothWinchClimb = new JoystickButton(opBoard, 15); 
   
-  /**
+  /**            
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
@@ -84,8 +84,8 @@ public class RobotContainer {
     // rotationControl.whileHeld(new RotationControl()); 
     // positionControl.whileHeld(new PositionControl()); 
 
-    //autoShoot
-    //manualShooting
+    // autoShoot
+    // manualShooting
 
     // hookDelivery.whileHeld(new SendHook());
     // dropTelescope.whileHeld(new DropHook());
@@ -94,8 +94,8 @@ public class RobotContainer {
     // bothWinchClimb.whileHeld(new WinchUp());
     // rightClimb.whileHeld(new WinchRight());
     
-    // controlPanel.whenPressed(new ConditionalCommand(new ExtendFrictionWheel(), new RetractFrictionWheel(), Constants.frictionWheelToggle));
-    // verticalIntake.whenPressed(new ConditionalCommand(new LowerIntake(), new RaiseIntake(), Constants.verticalIntakeToggle));
+    controlPanel.whenPressed(new ConditionalCommand(new ExtendFrictionWheel(), new RetractFrictionWheel(), Constants.frictionWheelToggle));
+    verticalIntake.whenPressed(new ConditionalCommand(new LowerIntake(), new RaiseIntake(), Constants.verticalIntakeToggle));
   }
 
 
