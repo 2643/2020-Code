@@ -27,10 +27,10 @@ public class RobotContainer {
 
   //Subsystems
   public static Drivetrain drivetrain = new Drivetrain();
-  public static Shooter shooter = new Shooter();
-  public static Turret turret = new Turret(); 
-  public static Hood hood = new Hood();
-  public static TFMini tfmini = new TFMini();
+  // public static Shooter shooter = new Shooter();
+  // public static Turret turret = new Turret(); 
+  // public static Hood hood = new Hood();
+  // public static TFMini tfmini = new TFMini();
   public static Intake intake = new Intake();
   public static ConveyorBelt conveyorBelt = new ConveyorBelt();
   public static FrictionWheel frictionWheel = new FrictionWheel();
