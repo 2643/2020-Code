@@ -1,0 +1,9 @@
+HAL Extensions: Attempting to load: libhalsim_gui
+Simulator GUI Initializing.
+windowScale = 1.000000e+00Simulator GUI Initialized!
+HAL Extensions: Successfully loaded extension
+********** Robot program starting **********
+[phoenix] Library shutdown cleanly
+	
+[phoenix-diagnostics] Server shutdown cleanly. (dur:30|0)
+	

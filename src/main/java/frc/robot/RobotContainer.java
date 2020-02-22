@@ -27,13 +27,14 @@ public class RobotContainer {
 
   //Subsystems
   public static Drivetrain drivetrain = new Drivetrain();
-  // public static Shooter shooter = new Shooter();
-  // public static Turret turret = new Turret(); 
-  // public static Hood hood = new Hood();
+  public static Shooter shooter = new Shooter();
+  public static Turret turret = new Turret(); 
+  public static Hood hood = new Hood();
+  public static TFMini tfmini = new TFMini();
   public static Intake intake = new Intake();
   public static ConveyorBelt conveyorBelt = new ConveyorBelt();
   public static FrictionWheel frictionWheel = new FrictionWheel();
-  // public static Climber climber = new Climber();
+  //public static Climber climber = new Climber();
 
   //Autonomous Command
   AutonomousRoutine auto = new AutonomousRoutine(); 
@@ -60,7 +61,7 @@ public class RobotContainer {
   public static JoystickButton rightClimb = new JoystickButton(opBoard, 14); 
   public static JoystickButton bothWinchClimb = new JoystickButton(opBoard, 15); 
   
-  /**            
+  /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
@@ -79,13 +80,13 @@ public class RobotContainer {
     reverseConveyor.whileHeld(new ReverseConveyor());
     manualIntake.whileHeld(new ForwardIntake());
     reverseIntake.whileHeld(new ReverseIntake());
-
-    autoIntake.whenPressed(new IndexBeforeIntake().andThen(new ForwardIntake().alongWith(new IntakeIndex())));
+    manualControlPanel.whileHeld(new MoveWheel());
+    autoIntake.whileHeld(new IndexBeforeIntake().andThen(new ForwardIntake().alongWith(new IntakeIndex())));
     // rotationControl.whileHeld(new RotationControl()); 
     // positionControl.whileHeld(new PositionControl()); 
 
-    // autoShoot
-    // manualShooting
+    //autoShoot
+    //manualShooting
 
     // hookDelivery.whileHeld(new SendHook());
     // dropTelescope.whileHeld(new DropHook());
@@ -94,8 +95,8 @@ public class RobotContainer {
     // bothWinchClimb.whileHeld(new WinchUp());
     // rightClimb.whileHeld(new WinchRight());
     
-    controlPanel.whenPressed(new ConditionalCommand(new ExtendFrictionWheel(), new RetractFrictionWheel(), Constants.frictionWheelToggle));
-    verticalIntake.whenPressed(new ConditionalCommand(new LowerIntake(), new RaiseIntake(), Constants.verticalIntakeToggle));
+    // controlPanel.whenPressed(new ConditionalCommand(new ExtendFrictionWheel(), new RetractFrictionWheel(), Constants.frictionWheelToggle));
+    // verticalIntake.whenPressed(new ConditionalCommand(new LowerIntake(), new RaiseIntake(), Constants.verticalIntakeToggle));
   }
 
 
