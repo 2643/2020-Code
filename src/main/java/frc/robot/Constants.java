@@ -87,7 +87,7 @@ public final class Constants {
     public static final Color kRedTarget = ColorMatch.makeColor(0.561, 0.232, 0.114);
     public static final Color kYellowTarget = ColorMatch.makeColor(0.361, 0.524, 0.113);
 
-    public static String fieldColorString; 
+    public static String fieldColorString = "initialized"; 
 
     public static boolean frictionWheelToggleVariable = false; 
     public static BooleanSupplier frictionWheelToggle = () -> frictionWheelToggleVariable; 

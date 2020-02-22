@@ -40,10 +40,6 @@ public class ConveyorBelt extends SubsystemBase {
 
   /**
    * Checks the number of balls held in the conveyor belt 
-   * 
-   * why so many individual check statements, nothing nested
-   * 
-   * 
    */
   public void updateBallsHeld(){
     for(int c = ballsHeldArray.length-1; c >= 0; c--){
