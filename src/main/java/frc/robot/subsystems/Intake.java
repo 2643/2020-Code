@@ -31,11 +31,11 @@ public class Intake extends SubsystemBase {
   /**
    * Checks if the ball is passing through the intake 
    */
-  public boolean isBallThere(){
+  public void isBallThere(){
     if(intakeIR.get() == false){
-      return true;
+      Constants.intakingBall = true;
     }else{
-      return false;
+      Constants.intakingBall = false; 
     }
   }
 
@@ -65,5 +65,6 @@ public class Intake extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    isBallThere();
   }
 }
