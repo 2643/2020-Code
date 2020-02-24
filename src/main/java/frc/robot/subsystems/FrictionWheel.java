@@ -147,14 +147,14 @@ public class FrictionWheel extends SubsystemBase {
    * Extends the FrictionWheel mechanism
    */
   public void extendMechanism(){
-    frictionWheelPiston.set(Value.kForward); //TODO Check direction of piston to extend FrictionWheel
+    frictionWheelPiston.set(Value.kForward);
   }
   
   /**
    * Retracts the FrictionWheel mechanism
    */
   public void retractMechanism(){
-    frictionWheelPiston.set(Value.kReverse); //TODO Check direction of piston to retract FrictionWheel
+    frictionWheelPiston.set(Value.kReverse); 
   }
 
   /**
