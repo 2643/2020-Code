@@ -34,7 +34,7 @@ public class RobotContainer {
   public static Intake intake = new Intake();
   public static ConveyorBelt conveyorBelt = new ConveyorBelt();
   public static FrictionWheel frictionWheel = new FrictionWheel();
-  public static Climber climber = new Climber();
+  // public static Climber climber = new Climber();
 
   //Autonomous Command
   AutonomousRoutine auto = new AutonomousRoutine(); 
