@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import com.revrobotics.ControlType;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -117,6 +119,8 @@ public class Robot extends TimedRobot {
     // Cancels all running commands at the start of test mode.
     CommandScheduler.getInstance().cancelAll();
 
+    RobotContainer.climber.climberDeliveryMotor1.getEncoder().setPosition(0);
+    RobotContainer.climber.climberDeliveryMotor2.getEncoder().setPosition(0);
     
   }
 
@@ -190,6 +194,9 @@ public class Robot extends TimedRobot {
     //Test whether end condition for position control works
     //Test toggle for raising/lowering frictionwheel mechanism -- do this in TeleopPeriodic
     
+    /**
+     * Climber Testing
+     */
 
   }
 }

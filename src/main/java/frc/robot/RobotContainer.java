@@ -34,7 +34,7 @@ public class RobotContainer {
   public static Intake intake = new Intake();
   public static ConveyorBelt conveyorBelt = new ConveyorBelt();
   public static FrictionWheel frictionWheel = new FrictionWheel();
-  // public static Climber climber = new Climber();
+  public static Climber climber = new Climber();
 
   //Autonomous Command
   AutonomousRoutine auto = new AutonomousRoutine(); 
@@ -45,7 +45,7 @@ public class RobotContainer {
   public static JoystickButton verticalIntake = new JoystickButton(driveStick, 6);
 
   public static Joystick opBoard = new Joystick(1); //TODO change the operator board buttons to the correct ones
-  public static JoystickButton forwardConveyor = new JoystickButton(opBoard, 1); 
+  public static JoystickButton forwardConveyor = new JoystickButton(opBoard, 12); 
   public static JoystickButton reverseConveyor = new JoystickButton(opBoard, 2); 
   public static JoystickButton manualIntake = new JoystickButton(opBoard, 3); 
   public static JoystickButton reverseIntake = new JoystickButton(opBoard, 4); 
@@ -56,10 +56,10 @@ public class RobotContainer {
   public static JoystickButton autoShoot = new JoystickButton(opBoard, 9); 
   public static JoystickButton manualShooting = new JoystickButton(opBoard, 10); 
   public static JoystickButton hookDelivery = new JoystickButton(opBoard, 11); 
-  public static JoystickButton dropTelescope = new JoystickButton(opBoard, 12); 
-  public static JoystickButton leftClimb = new JoystickButton(opBoard, 13); 
-  public static JoystickButton rightClimb = new JoystickButton(opBoard, 14); 
-  public static JoystickButton bothWinchClimb = new JoystickButton(opBoard, 15); 
+  public static JoystickButton dropTelescope = new JoystickButton(opBoard, 1); 
+  //public static JoystickButton leftClimb = new JoystickButton(opBoard, 13); 
+  //public static JoystickButton rightClimb = new JoystickButton(opBoard, 14); 
+  public static JoystickButton bothWinchClimb = new JoystickButton(opBoard, 13); 
   
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -88,12 +88,12 @@ public class RobotContainer {
     //autoShoot
     //manualShooting
 
-    // hookDelivery.whileHeld(new SendHook());
-    // dropTelescope.whileHeld(new DropHook());
+    hookDelivery.whileHeld(new SendHook());
+    dropTelescope.whileHeld(new DropHook());
 
-    // leftClimb.whileHeld(new WinchLeft());
-    // bothWinchClimb.whileHeld(new WinchUp());
-    // rightClimb.whileHeld(new WinchRight());
+    //leftClimb.whileHeld(new WinchLeft());
+    bothWinchClimb.whileHeld(new WinchUp());
+    //rightClimb.whileHeld(new WinchRight());
     
     controlPanel.whenPressed(new ConditionalCommand(new ExtendFrictionWheel(), new RetractFrictionWheel(), Constants.frictionWheelToggle));
     verticalIntake.whenPressed(new ConditionalCommand(new LowerIntake(), new RaiseIntake(), Constants.verticalIntakeToggle));

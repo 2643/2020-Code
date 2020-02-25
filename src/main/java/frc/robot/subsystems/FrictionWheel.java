@@ -25,7 +25,7 @@ import frc.robot.Constants;
 public class FrictionWheel extends SubsystemBase {
   private static CANSparkMax frictionWheelMotor = new CANSparkMax(Constants.frictionWheelMotorPort, MotorType.kBrushless);
 
-  private static DoubleSolenoid frictionWheelPiston = new DoubleSolenoid(Constants.doubleSolenoidPort1, Constants.doubleSolenoidPort2);
+  // private static DoubleSolenoid frictionWheelPiston = new DoubleSolenoid(Constants.doubleSolenoidPort1, Constants.doubleSolenoidPort2);
 
   //TODO uncomment when color sensor is added to the robot
   //private final I2C.Port i2cPort = I2C.Port.kOnboard;
@@ -143,19 +143,19 @@ public class FrictionWheel extends SubsystemBase {
     return globalColor;
   }
 
-  /**
-   * Extends the FrictionWheel mechanism
-   */
-  public void extendMechanism(){
-    frictionWheelPiston.set(Value.kForward);
-  }
+  // /**
+  //  * Extends the FrictionWheel mechanism
+  //  */
+  // public void extendMechanism(){
+  //   frictionWheelPiston.set(Value.kForward);
+  // }
   
-  /**
-   * Retracts the FrictionWheel mechanism
-   */
-  public void retractMechanism(){
-    frictionWheelPiston.set(Value.kReverse); 
-  }
+  // /**
+  //  * Retracts the FrictionWheel mechanism
+  //  */
+  // public void retractMechanism(){
+  //   frictionWheelPiston.set(Value.kReverse); 
+  // }
 
   /**
    * Sets the speed of the friction wheel
