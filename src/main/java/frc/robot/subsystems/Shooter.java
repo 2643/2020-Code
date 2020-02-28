@@ -14,7 +14,6 @@
 // import edu.wpi.first.wpilibj2.command.SubsystemBase;
 // import frc.robot.Constants;
 
-// TODO uncomment when shooter is added to the robot
 // public class Shooter extends SubsystemBase {
 //   public static CANSparkMax leftShooterMotor = new CANSparkMax(Constants.leftShooterMotorPort, MotorType.kBrushless);
 //   public static CANSparkMax rightShooterMotor = new CANSparkMax(Constants.rightShooterMotorPort, MotorType.kBrushless);

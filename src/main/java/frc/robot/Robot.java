@@ -7,7 +7,7 @@
 
 package frc.robot;
 
-import com.revrobotics.ControlType;
+import com.revrobotics.ColorMatch;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -35,7 +35,8 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
 
-    //RobotContainer.hood.resetEncoder();
+    //TODO uncomment when hood is added to the robot
+    // RobotContainer.hood.resetEncoder();
     RobotContainer.drivetrain.resetAllEncoder();
     RobotContainer.conveyorBelt.updateBallsHeld();
   }
@@ -67,7 +68,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledPeriodic() {
-    RobotContainer.drivetrain.resetAllEncoder();
+
   }
 
   /**
@@ -75,13 +76,17 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    RobotContainer.drivetrain.resetAllEncoder();
+    RobotContainer.conveyorBelt.updateBallsHeld();
+    //TODO uncomment when hood is added to the robot
+    // RobotContainer.hood.resetEncoder();
+
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
-    RobotContainer.conveyorBelt.updateBallsHeld();
   }
 
   /**
@@ -102,7 +107,6 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
     RobotContainer.conveyorBelt.updateBallsHeld();
-
   }
 
   /**
@@ -111,7 +115,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     CommandScheduler.getInstance().run();
-    System.out.println(Constants.ballsHeld);
+    System.out.println(RobotContainer.frictionWheel.getColor());
   }
 
   @Override
@@ -119,14 +123,11 @@ public class Robot extends TimedRobot {
     // Cancels all running commands at the start of test mode.
     CommandScheduler.getInstance().cancelAll();
 
-    RobotContainer.climber.climberDeliveryMotor1.getEncoder().setPosition(0);
-    RobotContainer.climber.climberDeliveryMotor2.getEncoder().setPosition(0);
-    
+
   }
 
-  int index = 0;
-  double[] position = {5, 10, 15, 20, 25}; //TODO add specific encoder ticks for the hood to turn to
 
+  ColorMatch matcher = new ColorMatch(); 
   /**
    * This function is called periodically during test mode.
    */
@@ -139,7 +140,7 @@ public class Robot extends TimedRobot {
     //System.out.println(RobotContainer.drivetrain.getLeftMotorEncoder() + " " + RobotContainer.drivetrain.getRightMotorEncoder());
     //Test MoveForward with the new allowed error -- schedule this in AutonomousInit
     //Test RotateX to make sure it turns in the right direction - schedule this in AutonomousInit
-
+    //Make/test autonomous routine - with/without shooting
 
     /**
      * Shooter Testing
@@ -183,20 +184,20 @@ public class Robot extends TimedRobot {
     /**
      * Intake + Conveyor Belt
      */
-    //Does indexing algorithm work? -- this will have to be tested in TeleopPeriodic
-    //Check which direction extends/retracts the pistons -- are they both controlled by the same DoubleSolenoid??
-    //Test toggle for raising/lowering intake -- do this in TeleopPeriodic
+
 
     /**
      * Friction Wheel Testing
      */
     //Configure SmartVelocity for the motor
     //Test whether end condition for position control works
-    //Test toggle for raising/lowering frictionwheel mechanism -- do this in TeleopPeriodic
     
     /**
      * Climber Testing
      */
+    //test soft stops for delivery 
+
+    //System.out.println(RobotContainer.hood.getPosition());
 
   }
 }

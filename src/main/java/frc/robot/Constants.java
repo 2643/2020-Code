@@ -77,17 +77,18 @@ public final class Constants {
     public static final int doubleSolenoidPort2 = 6;
 
     public static final double maxRPM = 5500;
-    public static final double frictionWheelSpeed = 0.3; //TODO check if control panel is spinned in the right direction
+    public static final double frictionWheelSpeed = -0.3;
     
     public static final int pistonTimer = 1;
 
-    public static final int colorSensorOptimalRange = 190;
+    public static final int colorSensorOptimalRange = 180;
     public static final Color kBlueTarget = ColorMatch.makeColor(0.143, 0.427, 0.429);
     public static final Color kGreenTarget = ColorMatch.makeColor(0.197, 0.561, 0.240);
     public static final Color kRedTarget = ColorMatch.makeColor(0.561, 0.232, 0.114);
     public static final Color kYellowTarget = ColorMatch.makeColor(0.361, 0.524, 0.113);
 
     public static String fieldColorString = "initialized"; 
+    public static boolean colorShifted = false; 
 
     public static boolean frictionWheelToggleVariable = false; 
     public static BooleanSupplier frictionWheelToggle = () -> frictionWheelToggleVariable; 
@@ -100,21 +101,18 @@ public final class Constants {
     
     public static final double deliveryHookSpeed = 0.3;
     
-    public static final double leftWinchUpSpeed = 0.3; //TODO determine speed for the left winch
-    public static final double rightWinchUpSpeed =  0.3; //TODO determine speed for the right winch
+    public static final double leftWinchUpSpeed = 0.3; 
+    public static final double rightWinchUpSpeed =  0.3; 
     
-    public static final double deliveryTopLimit = 39; //TODO determine encoder value for top limit of the winch
+    public static final double deliveryTopLimit = 0; //TODO determine encoder value for top limit of the winch
     public static final double deliveryBottomLimit = 0; 
-
-    public static final double winchTopLimit = 0; //TODO determine encoder value for the top limit of the winch
-    public static final double winchBottomLimit = 0;//TODO detrmine encoder value fort he bottom limit of the winch
 
     //Intake Constants
     public static final int intakeMotorPort = 14;
-    public static final int intakeIRChannel = 0; //TODO change to correct port for intake infrared sensor
+    public static final int intakeIRChannel = 0;
 
-    public static final double intakeSpeed = -0.4;
-    public static final double reverseIntakeSpeed = 0.4;
+    public static final double intakeSpeed = -0.6;
+    public static final double reverseIntakeSpeed = 0.6;
 
     public static final int intakeSolenoidPort1 = 5;
     public static final int intakeSolenoidPort2 = 7;
