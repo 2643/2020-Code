@@ -26,6 +26,8 @@ import edu.wpi.first.networktables.NetworkTableInstance;
  * wherever the constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    //Debug Options
+    public static final boolean debugConveyorBelt = true;
     //OI Constants
     public static final int leftAxis = 1;
     public static final int rightAxis = 5; 
