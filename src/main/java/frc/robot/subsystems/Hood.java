@@ -18,7 +18,7 @@ import frc.robot.RobotContainer;
 
 public class Hood extends SubsystemBase {
   private static CANSparkMax hoodMotor = new CANSparkMax(Constants.hoodMotorPort, MotorType.kBrushless);
-  private static DigitalInput upperHoodLimit = new DigitalInput(Constants.upperHoodLimitPort); 
+  private static DigitalInput upperHoodLimit = new DigitalInput(Constants.upperHoodLimitPort);  //TODO implement limit switches for hood
   private static DigitalInput lowerHoodLimit = new DigitalInput(Constants.lowerHoodLimitPort);
 
   //Hood PID Constants
@@ -37,7 +37,7 @@ public class Hood extends SubsystemBase {
 
 
   int index = 0;
-  double[] position = {1, 5, 10, 15, 20, 25}; //TODO verify these encoder positions for the hood - should be 5, 10, 15, 20, 25 rotations
+  double[] position = {1, 5, 10, 15, 20, 25};
   boolean pressed1 = false; 
   boolean pressed2 = false; 
 
@@ -57,7 +57,8 @@ public class Hood extends SubsystemBase {
    * @param position angle for the hood
    */
   public void moveHood(double position){
-    hoodMotor.getPIDController().setReference(position, ControlType.kPosition, slotID_hood);
+    if(position >=0 && position <= 26)
+      hoodMotor.getPIDController().setReference(position, ControlType.kPosition, slotID_hood);
   }
 
   /**

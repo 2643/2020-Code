@@ -29,8 +29,7 @@ public class ExtendFrictionWheel extends CommandBase {
     timer.reset();
     timer.start();
 
-    // TODO uncomment when friction wheel pneumatics are added
-    //RobotContainer.frictionWheel.extendMechanism();   
+    RobotContainer.frictionWheel.extendMechanism();   
   }
 
   // Called every time the scheduler runs while the command is scheduled.
