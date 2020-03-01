@@ -152,8 +152,8 @@ public class Drivetrain extends SubsystemBase {
    * @param speed from -1 to 1, speed to set motor
    */
   public void setLeftMotorSpeed(double speed) {
-    leftFrontMotor.getPIDController().setReference(-(speed * maxVel), ControlType.kSmartVelocity, SmartVelocityID, 0);
-    leftBackMotor.getPIDController().setReference(-(speed * maxVel), ControlType.kSmartVelocity, SmartVelocityID, 0);
+    leftFrontMotor.getPIDController().setReference(-speed, ControlType.kDutyCycle);
+    leftBackMotor.getPIDController().setReference(-speed, ControlType.kDutyCycle);
   }
 
   /**
@@ -162,8 +162,8 @@ public class Drivetrain extends SubsystemBase {
    * @param speed -1 to 1, speed to set motor
    */
   public void setRightMotorSpeed(double speed) {
-    rightFrontMotor.getPIDController().setReference((speed * maxVel), ControlType.kSmartVelocity, SmartVelocityID, 0);
-    rightBackMotor.getPIDController().setReference((speed * maxVel), ControlType.kSmartVelocity, SmartVelocityID, 0);
+    rightFrontMotor.getPIDController().setReference(speed, ControlType.kDutyCycle);
+    rightBackMotor.getPIDController().setReference(speed, ControlType.kDutyCycle);
   }
  
   /**

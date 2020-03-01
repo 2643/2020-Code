@@ -18,7 +18,7 @@
 
 // public class Hood extends SubsystemBase {
 //   private static CANSparkMax hoodMotor = new CANSparkMax(Constants.hoodMotorPort, MotorType.kBrushless);
-//   private static DigitalInput hoodLimit = new DigitalInput(Constants.hoodLimitPort); //TODO incorporate soft limits for the hood
+//   private static DigitalInput hoodLimit = new DigitalInput(Constants.hoodLimitPort); 
 
 //   //Hood PID Constants
 //   double kP_hood = 0.00016;//0.006;
@@ -32,8 +32,10 @@
 //   int maxVel_hood = 7000;
 //   int minVel_hood = 0;
 //   double allowedErr_hood = 0.1;
+
 //   int index = 0;
-//   double[] position = {1, 2, 3, 4};//TODO add specific encoder ticks for the hood to turn to
+//   double[] position = {210, 420, 630, 840, 1050}; //TODO verify these encoder positions for the hood - should be 5, 10, 15, 20, 25 rotations
+  
 //   /**
 //    * Creates a new Hood.
 //    */
@@ -67,7 +69,6 @@
 
 //   /**
 //    * Resets the encoder
-//    * SHOULD ONLY BE USED IN ROBOTINIT
 //    */
 //   public void resetEncoder(){
 //     hoodMotor.getEncoder().setPosition(0);

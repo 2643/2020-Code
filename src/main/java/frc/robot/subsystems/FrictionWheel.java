@@ -25,18 +25,20 @@ import frc.robot.Constants;
 public class FrictionWheel extends SubsystemBase {
   private static CANSparkMax frictionWheelMotor = new CANSparkMax(Constants.frictionWheelMotorPort, MotorType.kBrushless);
 
+  // TODO uncomment when friction wheel pneumatics are added
   // private static DoubleSolenoid frictionWheelPiston = new DoubleSolenoid(Constants.doubleSolenoidPort1, Constants.doubleSolenoidPort2);
 
-  //TODO uncomment when color sensor is added to the robot
-  //private final I2C.Port i2cPort = I2C.Port.kOnboard;
-  //private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
+  private final I2C.Port i2cPort = I2C.Port.kOnboard;
+  public final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
   private final ColorMatch m_colorMatcher = new ColorMatch();
   private String globalColor;
 
-  final double kP = 0.00016;
+  final double kP = 0.0001;
   final double kI = 0;
   final double kD = 0;
   final double kFF = 0;
+  final double maxAccel = 1500;
+  final double maxVel = 5000;
   final int slotID_frictionwheel = 0;
 
   
@@ -49,91 +51,98 @@ public class FrictionWheel extends SubsystemBase {
     m_colorMatcher.addColorMatch(Constants.kGreenTarget);
     m_colorMatcher.addColorMatch(Constants.kRedTarget);
     m_colorMatcher.addColorMatch(Constants.kYellowTarget);
+
+    frictionWheelMotor.getPIDController().setP(kP, slotID_frictionwheel);
+    frictionWheelMotor.getPIDController().setI(kI, slotID_frictionwheel);
+    frictionWheelMotor.getPIDController().setD(kD, slotID_frictionwheel);
+    frictionWheelMotor.getPIDController().setFF(kFF, slotID_frictionwheel);
+    frictionWheelMotor.getPIDController().setSmartMotionMaxAccel(maxAccel, slotID_frictionwheel);
+    frictionWheelMotor.getPIDController().setSmartMotionMaxVelocity(maxVel, slotID_frictionwheel);
   }
 
-  // /**
-  //  * Returns the color detected by the color sensor
-  //  */
-  // private void detectColor() {
-  //   final int proximity = m_colorSensor.getProximity();
-  //   final Color detectedColor = m_colorSensor.getColor();
-  //   final ColorMatchResult match = m_colorMatcher.matchClosestColor(detectedColor);
-  //   String colorString = "initialized colorstring";
-  //   if (proximity > Constants.colorSensorOptimalRange)
-  //   {
-  //     if (match.color == Constants.kBlueTarget) 
-  //     {
-  //       colorString = "Blue";
-  //     } else if (match.color == Constants.kRedTarget) 
-  //     {
-  //       colorString = "Red";
-  //     } else if (match.color == Constants.kGreenTarget) 
-  //     {
-  //       colorString = "Green";
-  //     } else if (match.color == Constants.kYellowTarget) 
-  //     {
-  //       colorString = "Yellow";
-  //     }
-  //     else
-  //     {
-  //       colorString = "Unknown";
-  //     }
+  /**
+   * Returns the color detected by the color sensor
+   */
+  private void detectColor() {
+    final int proximity = m_colorSensor.getProximity();
+    final Color detectedColor = m_colorSensor.getColor();
+    final ColorMatchResult match = m_colorMatcher.matchClosestColor(detectedColor);
+    String colorString = "initialized colorstring";
+    if (proximity > Constants.colorSensorOptimalRange)
+    {
+      if (match.color == Constants.kBlueTarget) 
+      {
+        colorString = "Blue";
+      } else if (match.color == Constants.kRedTarget) 
+      {
+        colorString = "Red";
+      } else if (match.color == Constants.kGreenTarget) 
+      {
+        colorString = "Green";
+      } else if (match.color == Constants.kYellowTarget) 
+      {
+        colorString = "Yellow";
+      }
+      else
+      {
+        colorString = "Unknown";
+      }
       
-  //     globalColor = colorString;
+      globalColor = colorString;
 
 
-  //     final Color detectedColor_temp = m_colorSensor.getColor();
-  //     final ColorMatchResult match_temp = m_colorMatcher.matchClosestColor(detectedColor_temp);
-  //     String colorString_temp = "initialized coloring temp";
-  //     if (match_temp.color == Constants.kGreenTarget) {
-  //       colorString_temp = "Blue";
-  //     } else if (match_temp.color == Constants.kRedTarget) {
-  //       colorString_temp = "Red";
-  //     } else if (match_temp.color == Constants.kGreenTarget) {
-  //       colorString_temp = "Green";
-  //     } else if (match_temp.color == Constants.kYellowTarget) {
-  //       colorString_temp = "Yellow";
-  //     }
+      final Color detectedColor_temp = m_colorSensor.getColor();
+      final ColorMatchResult match_temp = m_colorMatcher.matchClosestColor(detectedColor_temp);
+      String colorString_temp = "initialized coloring temp";
+      if (match_temp.color == Constants.kGreenTarget) {
+        colorString_temp = "Blue";
+      } else if (match_temp.color == Constants.kRedTarget) {
+        colorString_temp = "Red";
+      } else if (match_temp.color == Constants.kGreenTarget) {
+        colorString_temp = "Green";
+      } else if (match_temp.color == Constants.kYellowTarget) {
+        colorString_temp = "Yellow";
+      }
 
 
-  //     if (!colorString_temp.equals(colorString))
-  //     {
+      if (!colorString_temp.equals(colorString))
+      {
 
-  //         if (colorString.equals("Yellow"))
-  //         {
-  //           if (colorString_temp.equals("Blue") && !colorString_temp.equals("Green"))
-  //           {
-  //               globalColor = "Blue";
-  //           }
-  //         }
-  //         else if (colorString.equals("Green"))
-  //         {
-  //           if (colorString_temp.equals("Red") && !colorString_temp.equals("Yellow"))
-  //           {
-  //             globalColor = "Red";
-  //           }
-  //         }
-  //         else if (colorString.equals("Red"))
-  //         {
-  //           if (colorString_temp.equals("Yellow"))
-  //           {
-  //             globalColor = "Yellow";
-  //           }
-  //         }
-  //         else if (colorString.equals("Blue"))
-  //         {
-  //           if (colorString_temp.equals("Green"))
-  //           {
-  //               globalColor = "Green";
-  //           }
-  //         }
-  //     }
-  //   }
-  //   else
-  //   {
-  //     globalColor = "Too Far Away";
-  //   }
-  // }
+          if (colorString.equals("Yellow"))
+          {
+            if (colorString_temp.equals("Blue") && !colorString_temp.equals("Green"))
+            {
+                globalColor = "Blue";
+            }
+          }
+          else if (colorString.equals("Green"))
+          {
+            if (colorString_temp.equals("Red") && !colorString_temp.equals("Yellow"))
+            {
+              globalColor = "Red";
+            }
+          }
+          else if (colorString.equals("Red"))
+          {
+            if (colorString_temp.equals("Yellow"))
+            {
+              globalColor = "Yellow";
+            }
+          }
+          else if (colorString.equals("Blue"))
+          {
+            if (colorString_temp.equals("Green"))
+            {
+                globalColor = "Green";
+            }
+          }
+      }
+    }
+    else
+    {
+      globalColor = "Too Far Away";
+    }
+  }
 
   /**
    * Give the color detected by the color sensor
@@ -143,13 +152,15 @@ public class FrictionWheel extends SubsystemBase {
     return globalColor;
   }
 
+  // TODO uncomment when friction wheel pneumatics are added
   // /**
   //  * Extends the FrictionWheel mechanism
   //  */
   // public void extendMechanism(){
   //   frictionWheelPiston.set(Value.kForward);
   // }
-  
+
+  // TODO uncomment when friction wheel pneumatics are added
   // /**
   //  * Retracts the FrictionWheel mechanism
   //  */
@@ -170,7 +181,7 @@ public class FrictionWheel extends SubsystemBase {
    * @param position
    */
   public void stop(){
-    frictionWheelMotor.getPIDController().setReference(frictionWheelMotor.getEncoder().getPosition(), ControlType.kPosition, slotID_frictionwheel);
+    frictionWheelMotor.getPIDController().setReference(0, ControlType.kSmartVelocity, slotID_frictionwheel);
   }
 
   /**
@@ -194,7 +205,7 @@ public class FrictionWheel extends SubsystemBase {
 
   @Override
   public void periodic() {
-   // detectColor();
+    detectColor();
 
     if(!Constants.fieldColorString.equals("Green") 
     || !Constants.fieldColorString.equals("Red")

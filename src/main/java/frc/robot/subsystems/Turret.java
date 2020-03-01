@@ -16,6 +16,7 @@
 // import frc.robot.Constants;
 // import frc.robot.RobotContainer;
 
+// TODO uncomment when turret is added to the robot
 // public class Turret extends SubsystemBase {
 //   private static CANSparkMax turretMotor = new CANSparkMax(Constants.turretMotorPort, MotorType.kBrushless);
 
@@ -79,7 +80,6 @@
 //       turretMotor.getPIDController().setReference(0, ControlType.kDutyCycle, slotID_turret);
 //     }
 //   }
-
 
 //   public void moveTurretRight(){
 //     if(RobotContainer.driveStick.getPOV() == 90 && rightLimitSwitch.get() == false){
