@@ -123,6 +123,13 @@ public class ConveyorBelt extends SubsystemBase {
     }else{
       ballsHeldArray[4] = false;
     }
-
+    if(Constants.debugConveyorBelt) {
+      int sum = 0;
+      for (int i = 0; i < ballsHeldArray.length; i++) 
+        if(ballsHeldArray[i]) {
+          sum += 1;
+        }
+      System.out.println(sum);
+    }
   }
 }
