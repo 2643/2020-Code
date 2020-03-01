@@ -43,8 +43,9 @@
          if (num % 5 < 2.5) {
              hoodAngle = hoodAngle - hoodAngle % 5;
          }
-         else if (num % 5 > 2.5)
+         else if (num % 5 > 2.5) {
              hoodAngle = hoodAngle + (5 - hoodAngle % 5);
+         }
 
          // Shoot Bruh
          RobotContainer.hood.moveHood(hoodAngle);
