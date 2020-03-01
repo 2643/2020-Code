@@ -96,7 +96,7 @@ public class RobotContainer {
     reverseIntake.whileHeld(new ReverseIntake());
     manualControlPanel.whileHeld(new MoveWheel());
     autoIntake.whileHeld(new IndexBeforeIntake().andThen(new ForwardIntake().alongWith(new IntakeIndex())));
-    rotationControl.whileHeld(new RotationControl().andThen(new WaitCommand(4))); 
+    rotationControl.whileHeld(new RotationControl().andThen(new WaitCommand(666))); 
     positionControl.whileHeld(new PositionControl().andThen(new WaitCommand(4))); 
 
     //autoShoot

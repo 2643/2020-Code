@@ -28,6 +28,7 @@ public class PositionControl extends CommandBase {
     public void initialize() {
         destColor = Constants.fieldColorString;
         Constants.colorShifted = true;
+        System.out.println("The thing is initialzed");
 
         if (!Constants.colorShifted) {
             if (destColor.charAt(0) == 'Y') {
@@ -46,6 +47,7 @@ public class PositionControl extends CommandBase {
     @Override
     public void execute() {
         theColor = RobotContainer.frictionWheel.getColor();
+        System.out.println("The execute() method");
 
         RobotContainer.frictionWheel.setMotorSpeed(Constants.frictionWheelSpeed);
     }
@@ -54,11 +56,13 @@ public class PositionControl extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         RobotContainer.frictionWheel.setMotorSpeed(0);
+        System.out.println("The thing is finished.");
     }
 
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
+        System.out.println("Joemama finished");
         if (theColor.equals(destColor)) {
             return true;
         }

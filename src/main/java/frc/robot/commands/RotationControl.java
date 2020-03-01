@@ -48,12 +48,14 @@ public class RotationControl extends CommandBase {
     // RobotContainer.frictionWheel.setMotorSpeed(Constants.frictionWheelSpeed);
 
     if(RobotContainer.frictionWheel.getColor().equals("Blue")){
-        firstColor = true; 
-    }else if(RobotContainer.frictionWheel.getColor().equals("Blue") && firstColor){
+        keepgoing = true;
+    }
+    
+    if(!RobotContainer.frictionWheel.getColor().equals("Blue") && keepgoing==true){
         x++;
-        firstColor = false; 
-    }else{
-        firstColor = false; 
+        keepgoing = false; 
+    // }else{
+    //     firstColor = false; 
     }
 
     System.out.println("X " + x);

@@ -77,7 +77,7 @@ public final class Constants {
     public static final int doubleSolenoidPort2 = 6;
 
     public static final double maxRPM = 5500;
-    public static final double frictionWheelSpeed = -0.3;
+    public static final double frictionWheelSpeed = -0.2;
     
     public static final int pistonTimer = 1;
 
@@ -87,7 +87,7 @@ public final class Constants {
     public static final Color kRedTarget = ColorMatch.makeColor(0.561, 0.232, 0.114);
     public static final Color kYellowTarget = ColorMatch.makeColor(0.361, 0.524, 0.113);
 
-    public static String fieldColorString = "initialized"; 
+    public static String fieldColorString = "B"; 
     public static boolean colorShifted = false; 
 
     public static boolean frictionWheelToggleVariable = false; 
