@@ -37,8 +37,8 @@ public class Robot extends TimedRobot {
 
     //TODO uncomment when hood is added to the robot
     // RobotContainer.hood.resetEncoder();
-    RobotContainer.drivetrain.resetAllEncoder();
-    RobotContainer.conveyorBelt.updateBallsHeld();
+    // RobotContainer.drivetrain.resetAllEncoder();
+    // RobotContainer.conveyorBelt.updateBallsHeld();
   }
 
   /**
@@ -68,6 +68,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledPeriodic() {
+    RobotContainer.hood.resetEncoder();
 
   }
 
@@ -79,7 +80,7 @@ public class Robot extends TimedRobot {
     RobotContainer.drivetrain.resetAllEncoder();
     RobotContainer.conveyorBelt.updateBallsHeld();
     //TODO uncomment when hood is added to the robot
-    // RobotContainer.hood.resetEncoder();
+    RobotContainer.hood.resetEncoder();
 
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
@@ -107,6 +108,8 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
     RobotContainer.conveyorBelt.updateBallsHeld();
+    RobotContainer.hood.resetEncoder();
+
   }
 
   /**
@@ -115,19 +118,15 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     CommandScheduler.getInstance().run();
-    System.out.println(RobotContainer.frictionWheel.getColor());
   }
 
   @Override
   public void testInit() {
     // Cancels all running commands at the start of test mode.
     CommandScheduler.getInstance().cancelAll();
-
-
   }
 
 
-  ColorMatch matcher = new ColorMatch(); 
   /**
    * This function is called periodically during test mode.
    */
@@ -196,8 +195,5 @@ public class Robot extends TimedRobot {
      * Climber Testing
      */
     //test soft stops for delivery 
-
-    //System.out.println(RobotContainer.hood.getPosition());
-
   }
 }

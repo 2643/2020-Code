@@ -28,18 +28,10 @@ public class RobotContainer {
 
   //Subsystems
   public static Drivetrain drivetrain = new Drivetrain();
-  
-  // //TODO uncomment when shooter is added to the robot
-  // public static Shooter shooter = new Shooter();
-
-  // //TODO uncomment when turret is added to the robot
-  // // public static Turret turret = new Turret(); 
-
-  // //TODO uncomment when hood is added to the robot
-  // public static Hood hood = new Hood();
-
-  // //TODO uncomment when tfmini is added to the robot
-  // public static TFMini tfmini = new TFMini();
+  public static Shooter shooter = new Shooter();
+  public static Turret turret = new Turret(); 
+  public static Hood hood = new Hood();
+  public static TFMini tfmini = new TFMini();
 
   public static Intake intake = new Intake();
   public static ConveyorBelt conveyorBelt = new ConveyorBelt();
@@ -51,8 +43,8 @@ public class RobotContainer {
   
   // //Operator Interface
   public static Joystick driveStick = new Joystick(0);
-  // public static JoystickButton controlPanel = new JoystickButton(driveStick, 5);
-  // public static JoystickButton verticalIntake = new JoystickButton(driveStick, 6);
+  public static JoystickButton controlPanel = new JoystickButton(driveStick, 5);
+  public static JoystickButton verticalIntake = new JoystickButton(driveStick, 6);
 
   public static Joystick opBoard = new Joystick(1); //TODO change the operator board buttons to the correct ones
   public static JoystickButton forwardConveyor = new JoystickButton(opBoard, 1); 
@@ -72,8 +64,7 @@ public class RobotContainer {
   public static JoystickButton bothWinchClimb = new JoystickButton(opBoard, 15); 
 
   //Shooter Testing
-  // public static Joystick driveStick = new Joystick(0);
-  // public static JoystickButton button  = new JoystickButton(driveStick, 1);
+  public static JoystickButton button  = new JoystickButton(driveStick, 1);
   
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -99,21 +90,21 @@ public class RobotContainer {
     rotationControl.whileHeld(new RotationControl().andThen(new WaitCommand(666))); 
     positionControl.whileHeld(new PositionControl().andThen(new WaitCommand(4))); 
 
-    //autoShoot
-    //manualShooting
+    // autoShoot
+    // manualShooting
 
-    // hookDelivery.whileHeld(new SendHook());
-    // dropTelescope.whileHeld(new DropHook());
+    hookDelivery.whileHeld(new SendHook());
+    dropTelescope.whileHeld(new DropHook());
 
-    //leftClimb.whileHeld(new WinchLeft());
-    // bothWinchClimb.whileHeld(new WinchUp());
-    //rightClimb.whileHeld(new WinchRight());
+    // leftClimb.whileHeld(new WinchLeft());
+    bothWinchClimb.whileHeld(new WinchUp());
+    // rightClimb.whileHeld(new WinchRight());
     
-    // controlPanel.whenPressed(new ConditionalCommand(new ExtendFrictionWheel(), new RetractFrictionWheel(), Constants.frictionWheelToggle));
-    // verticalIntake.whenPressed(new ConditionalCommand(new LowerIntake(), new RaiseIntake(), Constants.verticalIntakeToggle));
+    controlPanel.whenPressed(new ConditionalCommand(new ExtendFrictionWheel(), new RetractFrictionWheel(), Constants.frictionWheelToggle));
+    verticalIntake.whenPressed(new ConditionalCommand(new LowerIntake(), new RaiseIntake(), Constants.verticalIntakeToggle));
 
     // Shooter Testing
-    // button.whileHeld(new AimShooterRPM());
+    button.whileHeld(new AimShooterRPM());
   }
 
 
@@ -124,7 +115,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return auto;
+    return null;
   }
 
 }

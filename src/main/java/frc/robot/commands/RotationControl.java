@@ -31,21 +31,11 @@ public class RotationControl extends CommandBase {
     //Starting the counter
     x=0;
     keepgoing=false;
-    firstColor = false; 
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // //make the control panel pass 7 times over Green
-    // if(RobotContainer.frictionWheel.getColor().equals("Blue")){
-    //   keepgoing=true;
-    // }
-    // if(RobotContainer.frictionWheel.getColor().equals("Blue") && keepgoing==true){
-    //   x+=1;
-    //   keepgoing=false;
-    // }
-    // RobotContainer.frictionWheel.setMotorSpeed(Constants.frictionWheelSpeed);
 
     if(RobotContainer.frictionWheel.getColor().equals("Blue")){
         keepgoing = true;
@@ -54,11 +44,8 @@ public class RotationControl extends CommandBase {
     if(!RobotContainer.frictionWheel.getColor().equals("Blue") && keepgoing==true){
         x++;
         keepgoing = false; 
-    // }else{
-    //     firstColor = false; 
     }
 
-    System.out.println("X " + x);
     RobotContainer.frictionWheel.setMotorSpeed(Constants.frictionWheelSpeed);
   }
 
@@ -72,10 +59,6 @@ public class RotationControl extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    // if (x>=80){
-    //   return true;
-    // }
-    // return false;
 
     if(x>=7){
         return true;

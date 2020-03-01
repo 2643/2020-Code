@@ -70,7 +70,8 @@ public final class Constants {
 
     //Hood Constants
     public static int hoodMotorPort = 8;
-    public static int hoodLimitPort = 0; //TODO find port of the limit switch on the hood
+    public static int upperHoodLimitPort = 9; 
+    public static int lowerHoodLimitPort = 7; 
 
     //Friction Wheel Constants
     public static final int frictionWheelMotorPort = 9;
