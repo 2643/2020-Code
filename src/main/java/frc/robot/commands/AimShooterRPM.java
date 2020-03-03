@@ -21,7 +21,8 @@
      @Override
      public void execute() {
          // Find distance from the target
-        XfromTarget = RobotContainer.tfmini.getDistance(); 
+        XfromTarget = RobotContainer.tfmini.getDistance();
+        //XfromTarget = 571.5; 
 
          // Compute shooter RPM
          // Linear function:
@@ -37,7 +38,6 @@
          // logorithmic function
          double hoodRotation = -15.7 + (5.71*Math.log(XfromTarget));
 
-
         //  if (num % 5 < 2.5) {
         //      hoodAngle = hoodAngle - hoodAngle % 5;
         //  }
@@ -51,7 +51,7 @@
 
      @Override
      public void end (boolean interrupted) {
-         RobotContainer.shooter.spinMotors(0);
+         RobotContainer.shooter.stopMotors();
      }
 
      @Override

@@ -107,7 +107,7 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
     RobotContainer.conveyorBelt.updateBallsHeld();
-
+    RobotContainer.hood.resetEncoder();
   }
 
   /**
@@ -116,6 +116,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     CommandScheduler.getInstance().run();
+    //System.out.println(RobotContainer.tfmini.getDistance());
   }
 
   /**

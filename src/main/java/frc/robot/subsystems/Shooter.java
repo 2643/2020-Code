@@ -19,13 +19,13 @@ public class Shooter extends SubsystemBase {
   public static CANSparkMax rightShooterMotor = new CANSparkMax(Constants.rightShooterMotorPort, MotorType.kBrushless);
 
   //Shooter PID Constants
-  private static final double kP = 0.00015;
-  private static final double kI = 0;
-  private static final double kD = 0;
-  private static final double kIz = 0;
-  private static final double kFF = 0.000015;
-  private static final double kMaxOutput = 1;
-  private static final double kMinOutput = -1;
+  private static final double kP = 0.00067;
+  private static final double kI = 0.000001;
+  private static final double kD = 0.0002;
+  private static final double kIz = 100;
+  private static final double kFF = 0.0002;
+  private static final double kMaxOutput = 0.7;
+  private static final double kMinOutput = -0.7;
   private static final double maxRPM = 5700;
   
   private static int slotID = 0; 
@@ -68,6 +68,11 @@ public class Shooter extends SubsystemBase {
   public void spinMotorsDutyCycle(double speed){
     leftShooterMotor.getPIDController().setReference(-speed, ControlType.kDutyCycle);
     rightShooterMotor.getPIDController().setReference(speed, ControlType.kDutyCycle);
+  }
+
+  public double[] getShooterSpeed(){
+    double[] speed = {leftShooterMotor.getEncoder().getVelocity(), rightShooterMotor.getEncoder().getVelocity()};
+    return speed; 
   }
 
   @Override

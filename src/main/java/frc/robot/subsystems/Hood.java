@@ -18,16 +18,16 @@ import frc.robot.RobotContainer;
 
 public class Hood extends SubsystemBase {
   private static CANSparkMax hoodMotor = new CANSparkMax(Constants.hoodMotorPort, MotorType.kBrushless);
-  private static DigitalInput upperHoodLimit = new DigitalInput(Constants.upperHoodLimitPort);  //TODO implement limit switches for hood
-  private static DigitalInput lowerHoodLimit = new DigitalInput(Constants.lowerHoodLimitPort);
+  //private static DigitalInput upperHoodLimit = new DigitalInput(Constants.upperHoodLimitPort);  //TODO implement limit switches for hood
+  //private static DigitalInput lowerHoodLimit = new DigitalInput(Constants.lowerHoodLimitPort);
 
   //Hood PID Constants
-  double kP_hood = 0.08;//0.006;
+  double kP_hood = 0.095;//0.006;
   double kI_hood = 0;//0.000002;
   double kD_hood = 0;//0.004;//0.2;
   double kFF_hood = 0;
-  double MaxOutput_hood = 0.2;
-  double MinOutput_hood = -0.2;
+  double MaxOutput_hood = 0.3;
+  double MinOutput_hood = -0.3;
   double maxAccel_hood = 300;
   int slotID_hood = 0;
   int maxVel_hood = 2000;

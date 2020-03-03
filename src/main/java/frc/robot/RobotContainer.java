@@ -64,7 +64,7 @@ public class RobotContainer {
   public static JoystickButton bothWinchClimb = new JoystickButton(opBoard, 15); 
 
   //Shooter Testing
-  public static JoystickButton button  = new JoystickButton(driveStick, 1);
+  //public static JoystickButton button  = new JoystickButton(driveStick, 1);
   
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -104,7 +104,7 @@ public class RobotContainer {
     verticalIntake.whenPressed(new ConditionalCommand(new LowerIntake(), new RaiseIntake(), Constants.verticalIntakeToggle));
 
     // Shooter Testing
-    button.whileHeld(new AimShooterRPM());
+    //button.whileHeld(new AimShooterRPM());
   }
 
 
@@ -115,7 +115,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return null;
+    return auto;
   }
 
 }
