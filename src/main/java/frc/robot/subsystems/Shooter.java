@@ -51,11 +51,14 @@ public class Shooter extends SubsystemBase {
 
   /**
    * Spins the motor at a given speed in RPM
+   * DO NOT USE FOR STOPPING MOTOR
    * @param speed RPM to spin motor at
    */
   public void spinMotors(double speed){
-    leftShooterMotor.getPIDController().setReference(-speed, ControlType.kVelocity);
-    rightShooterMotor.getPIDController().setReference(speed, ControlType.kVelocity);
+    if(speed != 0){
+      leftShooterMotor.getPIDController().setReference(-speed, ControlType.kVelocity);
+      rightShooterMotor.getPIDController().setReference(speed, ControlType.kVelocity);
+    }
   }
 
   /**
@@ -67,8 +70,7 @@ public class Shooter extends SubsystemBase {
   }
 
   /**
-   * Spins the motors at the given speed
-   * DO NOT USE TO STOP THE MOTORS
+   * Spins the motors at the given speed in duty cycle
    * @param speed
    */
   public void spinMotorsDutyCycle(double speed){
