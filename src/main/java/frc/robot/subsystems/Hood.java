@@ -76,8 +76,6 @@ public class Hood extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-
-    //TODO test this hood movement code with a gamepad
     if (RobotContainer.driveStick.getPOV()==0 && pressed1 == false){
       if (Constants.hoodIndex >= 0 && Constants.hoodIndex < position.length-1) {
         Constants.hoodIndex = Constants.hoodIndex + 1; 

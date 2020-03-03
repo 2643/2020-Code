@@ -107,7 +107,6 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
     RobotContainer.conveyorBelt.updateBallsHeld();
-    RobotContainer.hood.resetEncoder();
   }
 
   /**
@@ -171,7 +170,6 @@ public class Robot extends TimedRobot {
      * Friction Wheel Testing
      */
     //Configure SmartVelocity for the motor
-    //Test whether end condition for position control works
     
     /**
      * Climber Testing

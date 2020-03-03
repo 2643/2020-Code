@@ -29,6 +29,7 @@ public class Shooter extends SubsystemBase {
   private static final double maxRPM = 5700;
   
   private static int slotID = 0; 
+  
   /**
    * Creates a new Shooter.
    */
@@ -65,11 +66,20 @@ public class Shooter extends SubsystemBase {
       rightShooterMotor.getPIDController().setReference(0, ControlType.kDutyCycle);
   }
 
+  /**
+   * Spins the motors at the given speed
+   * DO NOT USE TO STOP THE MOTORS
+   * @param speed
+   */
   public void spinMotorsDutyCycle(double speed){
     leftShooterMotor.getPIDController().setReference(-speed, ControlType.kDutyCycle);
     rightShooterMotor.getPIDController().setReference(speed, ControlType.kDutyCycle);
   }
 
+  /**
+   * Returns the shooter speed of both motor
+   * @return double[] = {leftSpeed, rightSpeed};
+   */
   public double[] getShooterSpeed(){
     double[] speed = {leftShooterMotor.getEncoder().getVelocity(), rightShooterMotor.getEncoder().getVelocity()};
     return speed; 
