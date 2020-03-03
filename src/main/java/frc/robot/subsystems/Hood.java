@@ -34,9 +34,6 @@ public class Hood extends SubsystemBase {
   int minVel_hood = 0;
   double allowedErr_hood = 0.05;
 
-
-
-  int index = 0;
   double[] position = {1, 5, 10, 15, 20, 25};
   boolean pressed1 = false; 
   boolean pressed2 = false; 
@@ -82,8 +79,8 @@ public class Hood extends SubsystemBase {
 
     //TODO test this hood movement code with a gamepad
     if (RobotContainer.driveStick.getPOV()==0 && pressed1 == false){
-      if (index >= 0 && index < position.length-1) {
-        index = index + 1; 
+      if (Constants.hoodIndex >= 0 && Constants.hoodIndex < position.length-1) {
+        Constants.hoodIndex = Constants.hoodIndex + 1; 
       }
       pressed1 = true;
     }else{
@@ -91,14 +88,14 @@ public class Hood extends SubsystemBase {
     }
 
     if (RobotContainer.driveStick.getPOV()==180 && pressed2 == false){
-      if (index > 0 && index <= position.length-1) {
-        index = index - 1;
+      if (Constants.hoodIndex > 0 && Constants.hoodIndex <= position.length-1) {
+        Constants.hoodIndex = Constants.hoodIndex - 1;
       }
       pressed2 = true; 
     }else{
       pressed2 = false; 
     }
 
-    moveHood(position[index]);
+    moveHood(position[Constants.hoodIndex]);
   }
 }

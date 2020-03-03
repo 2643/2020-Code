@@ -73,6 +73,8 @@ public final class Constants {
     public static int upperHoodLimitPort = 0; //TODO find port of the upper limit switch on hood 
     public static int lowerHoodLimitPort = 0; //TODO find port of the bototm limit switch on hood
 
+    public static int hoodIndex = 0; 
+
     //Friction Wheel Constants
     public static final int frictionWheelMotorPort = 9;
 
