@@ -1,94 +1,99 @@
-// /*----------------------------------------------------------------------------*/
-// /* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
-// /* Open Source Software - may be modified and shared by FRC teams. The code   */
-// /* must be accompanied by the FIRST BSD license file in the root directory of */
-// /* the project.                                                               */
-// /*----------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
+/* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
+/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* must be accompanied by the FIRST BSD license file in the root directory of */
+/* the project.                                                               */
+/*----------------------------------------------------------------------------*/
 
-// package frc.robot.subsystems;
+package frc.robot.subsystems;
 
-// import com.revrobotics.CANSparkMax;
-// import com.revrobotics.ControlType;
-// import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.ControlType;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-// import edu.wpi.first.wpilibj.DigitalInput;
-// import edu.wpi.first.wpilibj2.command.SubsystemBase;
-// import frc.robot.Constants;
-// import frc.robot.RobotContainer;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
-// public class Hood extends SubsystemBase {
-//   private static CANSparkMax hoodMotor = new CANSparkMax(Constants.hoodMotorPort, MotorType.kBrushless);
-//   private static DigitalInput hoodLimit = new DigitalInput(Constants.hoodLimitPort); 
+public class Hood extends SubsystemBase {
+  private static CANSparkMax hoodMotor = new CANSparkMax(Constants.hoodMotorPort, MotorType.kBrushless);
+  //private static DigitalInput upperHoodLimit = new DigitalInput(Constants.upperHoodLimitPort);  //TODO implement limit switches for hood
+  //private static DigitalInput lowerHoodLimit = new DigitalInput(Constants.lowerHoodLimitPort);
 
-//   //Hood PID Constants
-//   double kP_hood = 0.00016;//0.006;
-//   double kI_hood = 0;//0.000002;
-//   double kD_hood = 0;//0.004;//0.2;
-//   double kFF_hood = 0.000156;
-//   double MaxOutput_hood = 1;
-//   double MinOutput_hood = -1;
-//   double maxAccel_hood = 3000;
-//   int slotID_hood = 0;
-//   int maxVel_hood = 7000;
-//   int minVel_hood = 0;
-//   double allowedErr_hood = 0.1;
+  //Hood PID Constants
+  double kP_hood = 0.095;//0.006;
+  double kI_hood = 0;//0.000002;
+  double kD_hood = 0;//0.004;//0.2;
+  double kFF_hood = 0;
+  double MaxOutput_hood = 0.3;
+  double MinOutput_hood = -0.3;
+  double maxAccel_hood = 300;
+  int slotID_hood = 0;
+  int maxVel_hood = 2000;
+  int minVel_hood = 0;
+  double allowedErr_hood = 0.05;
 
-//   int index = 0;
-//   double[] position = {210, 420, 630, 840, 1050}; //TODO verify these encoder positions for the hood - should be 5, 10, 15, 20, 25 rotations
-  
-//   /**
-//    * Creates a new Hood.
-//    */
-//   public Hood() {
-//     hoodMotor.getPIDController().setP(kP_hood, slotID_hood);
-//     hoodMotor.getPIDController().setI(kI_hood, slotID_hood);
-//     hoodMotor.getPIDController().setD(kD_hood, slotID_hood);
-//     hoodMotor.getPIDController().setFF(kFF_hood, slotID_hood);
-//     hoodMotor.getPIDController().setOutputRange(MinOutput_hood, MaxOutput_hood, slotID_hood);
-//     hoodMotor.getPIDController().setSmartMotionMaxAccel(maxAccel_hood, slotID_hood);
-//     hoodMotor.getPIDController().setSmartMotionAllowedClosedLoopError(allowedErr_hood, slotID_hood);
-//     hoodMotor.getPIDController().setSmartMotionMaxVelocity(maxVel_hood, slotID_hood);
-//     hoodMotor.getPIDController().setSmartMotionMinOutputVelocity(minVel_hood, slotID_hood);
-//   }
+  double[] position = {1, 5, 10, 15, 20, 25};
+  boolean pressed1 = false; 
+  boolean pressed2 = false; 
 
-//   /**
-//    * Moves hood to shoot at certain angle
-//    * @param position angle for the hood
-//    */
-//   public void moveHood(double position){ //TODO add functionality to accept angles to move hood to
-//     hoodMotor.getPIDController().setReference(position, ControlType.kSmartMotion, slotID_hood);
-//   }
+  /**
+   * Creates a new Hood.
+   */
+  public Hood() {
+    hoodMotor.getPIDController().setP(kP_hood, slotID_hood);
+    hoodMotor.getPIDController().setI(kI_hood, slotID_hood);
+    hoodMotor.getPIDController().setD(kD_hood, slotID_hood);
+    hoodMotor.getPIDController().setFF(kFF_hood, slotID_hood);
+    hoodMotor.getPIDController().setOutputRange(MinOutput_hood, MaxOutput_hood, slotID_hood);
+  }
 
-//   /**
-//    * Gets the current position of the encoder
-//    * @return double position
-//    */
-//   public double getPosition(){
-//     return hoodMotor.getEncoder().getPosition();
-//   }
+  /**
+   * Moves hood to shoot at certain angle
+   * @param position angle for the hood
+   */
+  public void moveHood(double position){
+    if(position >=0 && position <= 26)
+      hoodMotor.getPIDController().setReference(position, ControlType.kPosition, slotID_hood);
+  }
 
-//   /**
-//    * Resets the encoder
-//    */
-//   public void resetEncoder(){
-//     hoodMotor.getEncoder().setPosition(0);
-//   }
+  /**
+   * Gets the current position of the encoder
+   * @return double position
+   */
+  public double getPosition(){
+    return hoodMotor.getEncoder().getPosition();
+  }
 
-//   @Override
-//   public void periodic() {
-//     // This method will be called once per scheduler run
+  /**
+   * Resets the encoder
+   */
+  public void resetEncoder(){
+    hoodMotor.getEncoder().setPosition(0);
+  }
 
-//     if (RobotContainer.driveStick.getPOV()==0){
-//       if (index >=0 && index<= position.length-1) {
-//         index = index + 1;
-//         moveHood(position[index]);
-//       }
-//     }
-//     else if (RobotContainer.driveStick.getPOV()==180){
-//       if (index >=0 && index<= position.length-1) {
-//         index = index - 1;
-//         moveHood(position[index]); 
-//       }
-//     }
-//   }
-// }
+  @Override
+  public void periodic() {
+    // This method will be called once per scheduler run
+    if (RobotContainer.driveStick.getPOV()==0 && pressed1 == false){
+      if (Constants.hoodIndex >= 0 && Constants.hoodIndex < position.length-1) {
+        Constants.hoodIndex = Constants.hoodIndex + 1; 
+      }
+      pressed1 = true;
+    }else{
+      pressed1 = false; 
+    }
+
+    if (RobotContainer.driveStick.getPOV()==180 && pressed2 == false){
+      if (Constants.hoodIndex > 0 && Constants.hoodIndex <= position.length-1) {
+        Constants.hoodIndex = Constants.hoodIndex - 1;
+      }
+      pressed2 = true; 
+    }else{
+      pressed2 = false; 
+    }
+
+    moveHood(position[Constants.hoodIndex]);
+  }
+}

@@ -19,8 +19,7 @@ public class Intake extends SubsystemBase {
   private static DigitalInput intakeIR = new DigitalInput(Constants.intakeIRChannel);
   private static WPI_TalonSRX intakeMotor = new WPI_TalonSRX(Constants.intakeMotorPort);
 
-  // TODO uncomment when intake solenoids are added
-  //private static DoubleSolenoid intakePiston = new DoubleSolenoid(Constants.intakeSolenoidPort1, Constants.intakeSolenoidPort2);
+  private static DoubleSolenoid intakePiston = new DoubleSolenoid(Constants.intakeSolenoidPort1, Constants.intakeSolenoidPort2);
   
   /**
    * Creates a new Intake.
@@ -47,20 +46,19 @@ public class Intake extends SubsystemBase {
     intakeMotor.set(speed);
   }
 
-  //TODO uncomment when intake pistons are added
-  // /**
-  //  * Retracts the intake
-  //  */
-  // public void retract(){
-  //   intakePiston.set(Value.kForward);
-  // }
+  /**
+   * Retracts the intake
+   */
+  public void retract(){
+    intakePiston.set(Value.kForward);
+  }
    
-  // /**
-  //  * Extends the intake
-  //  */
-  // public void extend(){
-  //   intakePiston.set(Value.kReverse); 
-  // }
+  /**
+   * Extends the intake
+   */
+  public void extend(){
+    intakePiston.set(Value.kReverse); 
+  }
 
   @Override
   public void periodic() {

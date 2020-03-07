@@ -41,7 +41,8 @@ public class TFMini extends SubsystemBase {
     returnArray[3] = "NULL";
 
     if (port.getBytesReceived() < 18) {
-      System.out.println("Not enough bytes.");
+      System.out.print("Not enough bytes, Recieved: ");
+      System.out.println(port.getBytesReceived());
       return returnArray;
     }
 

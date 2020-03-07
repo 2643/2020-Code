@@ -7,8 +7,6 @@
 
 package frc.robot;
 
-import com.revrobotics.ColorMatch;
-
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -35,8 +33,7 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
 
-    //TODO uncomment when hood is added to the robot
-    // RobotContainer.hood.resetEncoder();
+    RobotContainer.hood.resetEncoder();
     RobotContainer.drivetrain.resetAllEncoder();
     RobotContainer.conveyorBelt.updateBallsHeld();
   }
@@ -66,8 +63,12 @@ public class Robot extends TimedRobot {
 
   }
 
+  /**
+   * This function is called periodically each time the robot enters Disabled mode. 
+   */
   @Override
   public void disabledPeriodic() {
+    RobotContainer.hood.resetEncoder();
 
   }
 
@@ -78,8 +79,7 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     RobotContainer.drivetrain.resetAllEncoder();
     RobotContainer.conveyorBelt.updateBallsHeld();
-    //TODO uncomment when hood is added to the robot
-    // RobotContainer.hood.resetEncoder();
+    RobotContainer.hood.resetEncoder();
 
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
@@ -115,19 +115,19 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     CommandScheduler.getInstance().run();
-    System.out.println(RobotContainer.frictionWheel.getColor());
+    //System.out.println(RobotContainer.tfmini.getDistance());
   }
 
+  /**
+   * This function is called once at the beginning of test mode. 
+   */
   @Override
   public void testInit() {
     // Cancels all running commands at the start of test mode.
     CommandScheduler.getInstance().cancelAll();
-
-
   }
 
 
-  ColorMatch matcher = new ColorMatch(); 
   /**
    * This function is called periodically during test mode.
    */
@@ -145,12 +145,7 @@ public class Robot extends TimedRobot {
     /**
      * Shooter Testing
      */
-    //Check whether the shooter goes in the right direction
-    // if(RobotContainer.driveStick.getRawButton(1)){
-    //   RobotContainer.shooter.spinMotors(0.5);
-    // }else{
-    //   RobotContainer.shooter.spinMotors(0);
-    // }
+
 
     /**
      * Turret Testing
@@ -163,23 +158,8 @@ public class Robot extends TimedRobot {
     /**
      * Hood Testing 
      */
-    //Find out if the encoder in the hood reset when the robot turned on
-    //Find hood encoder angles, then put them into the position array above
-    //System.out.println(RobotContainer.hood.getPosition());
 
-    //Next test whether this successfully switches between all of positions listed in the array
-    // if (RobotContainer.driveStick.getPOV()==0){
-    //   if (index >=0 && index<= position.length-1) {
-    //     index = index + 1;
-    //     RobotContainer.hood.moveHood(position[index]);
-    //   }
-    // }
-    // else if (RobotContainer.driveStick.getPOV()==180){
-    //   if (index >=0 && index<= position.length-1) {
-    //     index = index - 1;
-    //     RobotContainer.hood.moveHood(position[index]); 
-    //   }
-    // }
+ 
 
     /**
      * Intake + Conveyor Belt
@@ -190,14 +170,10 @@ public class Robot extends TimedRobot {
      * Friction Wheel Testing
      */
     //Configure SmartVelocity for the motor
-    //Test whether end condition for position control works
     
     /**
      * Climber Testing
      */
     //test soft stops for delivery 
-
-    //System.out.println(RobotContainer.hood.getPosition());
-
   }
 }

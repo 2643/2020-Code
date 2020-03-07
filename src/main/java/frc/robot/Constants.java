@@ -70,13 +70,16 @@ public final class Constants {
 
     //Hood Constants
     public static int hoodMotorPort = 8;
-    public static int hoodLimitPort = 0; //TODO find port of the limit switch on the hood
+    public static int upperHoodLimitPort = 0; //TODO find port of the upper limit switch on hood 
+    public static int lowerHoodLimitPort = 0; //TODO find port of the bototm limit switch on hood
+
+    public static int hoodIndex = 0; 
 
     //Friction Wheel Constants
     public static final int frictionWheelMotorPort = 9;
 
-    public static final int doubleSolenoidPort1 = 4;
-    public static final int doubleSolenoidPort2 = 6;
+    public static final int doubleSolenoidPort1 = 4; //TODO verify this solenoid port for the friction wheel
+    public static final int doubleSolenoidPort2 = 6; //TODO verify this solenoid port for the friction wheel
 
     public static final double maxRPM = 5500;
     public static final double frictionWheelSpeed = -0.2;
@@ -89,7 +92,7 @@ public final class Constants {
     public static final Color kRedTarget = ColorMatch.makeColor(0.561, 0.232, 0.114);
     public static final Color kYellowTarget = ColorMatch.makeColor(0.361, 0.524, 0.113);
 
-    public static String fieldColorString = "B"; 
+    public static String fieldColorString = "initialized"; 
     public static boolean colorShifted = false; 
 
     public static boolean frictionWheelToggleVariable = false; 
@@ -116,8 +119,8 @@ public final class Constants {
     public static final double intakeSpeed = -0.6;
     public static final double reverseIntakeSpeed = 0.6;
 
-    public static final int intakeSolenoidPort1 = 5;
-    public static final int intakeSolenoidPort2 = 7;
+    public static final int intakeSolenoidPort1 = 5; //TODO verify this solenoid port for the intake 
+    public static final int intakeSolenoidPort2 = 7; //TODO verify this solenoid port for the intake
 
     public static final int intakeRaiseTime = 1;
 
