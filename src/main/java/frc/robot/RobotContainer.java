@@ -89,12 +89,13 @@ public class RobotContainer {
     // reverseIntake.whileHeld(new ReverseIntake());
     // manualControlPanel.whileHeld(new MoveWheel());
     
-    // autoIntake.whileHeld(new ConditionalCommand(new IndexBeforeIntake(), new WaitCommand(0), () -> opBoard.getRawButtonPressed(6)).andThen(new ForwardIntake().raceWith(new IntakeIndex())));
+    // autoIntake.whileHeld(new ConditionalCommand(new IndexBeforeIntake(), new ForwardIntake().raceWith(new IntakeIndex()), () -> opBoard.getRawButtonPressed(6)));
+
 
     // rotationControl.whileHeld(new RotationControl().andThen(new WaitCommand(666))); 
     // positionControl.whileHeld(new PositionControl().andThen(new WaitCommand(4))); 
 
-    // // autoShoot.whileHeld(new DriveTrainAlign().andThen(new AimShooterRPM()));
+    // // autoShoot.whileHeld(new TurretAlign().andThen(new AutoShoot()));
     // // manualShooting
 
     // hookDelivery.whileHeld(new SendHook());

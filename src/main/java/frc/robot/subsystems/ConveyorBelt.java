@@ -26,7 +26,7 @@ public class ConveyorBelt extends SubsystemBase {
   public static DigitalInput conveyoriRSensor8 = new DigitalInput(Constants.conveyoriRSensor8Channel);
   public static DigitalInput conveyoriRSensor9 = new DigitalInput(Constants.conveyoriRSensor9Channel);
   public static DigitalInput[] conveyoriRSensors = {conveyoriRSensor1,conveyoriRSensor2, conveyoriRSensor3, conveyoriRSensor4, conveyoriRSensor5, conveyoriRSensor6, conveyoriRSensor7, conveyoriRSensor8, conveyoriRSensor9};
-
+  public boolean noBallsHeld = true; 
   private static int ballsHeld_temp = 0;
 
   private static boolean[] ballsHeldArray = {false, false, false, false, false};
@@ -94,6 +94,13 @@ public class ConveyorBelt extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    noBallsHeld = true;
+    for (int i = 0; i < conveyoriRSensors.length; i++) {
+      if (conveyoriRSensors[i].get()){
+        noBallsHeld = false;
+      }
+    }
+
     if(conveyoriRSensor1.get() == false){
       ballsHeldArray[0] = true;
     }else{

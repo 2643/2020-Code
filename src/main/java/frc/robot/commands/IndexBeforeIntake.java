@@ -30,7 +30,7 @@ public class IndexBeforeIntake extends CommandBase {
   @Override
   public void initialize() {
     firstIRActivated = RobotContainer.conveyorBelt.firstIndex();
-    if(firstIRActivated == 0){
+    if(firstIRActivated == 0 || RobotContainer.conveyorBelt.noBallsHeld){
       finished = true; 
     }
   }
@@ -52,7 +52,7 @@ public class IndexBeforeIntake extends CommandBase {
   @Override
   public boolean isFinished() {
     firstIRActivated = RobotContainer.conveyorBelt.firstIndex(); 
-    if(firstIRActivated == 0){
+    if(firstIRActivated == 0 || RobotContainer.conveyorBelt.noBallsHeld){
       finished = true; 
     }
     return finished; 
