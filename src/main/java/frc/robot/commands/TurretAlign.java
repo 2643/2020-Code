@@ -4,14 +4,14 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
-public class DrivetrainTargetAlign extends CommandBase {
+public class TurretAlign extends CommandBase {
 
   private boolean[] defaultArray = {false, false, false, false};
   private boolean[] movement;
   private double x_offset; 
   private double position; 
 
-  public DrivetrainTargetAlign() {
+  public TurretAlign() {
     addRequirements(RobotContainer.turret);
   }
 

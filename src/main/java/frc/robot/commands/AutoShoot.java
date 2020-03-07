@@ -5,12 +5,12 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import java.lang.Math;
 
-public class AimShooter extends CommandBase {
+public class AutoShoot extends CommandBase {
 
     private boolean finished = false;
     private double XfromTarget;
 
-    public AimShooter() {
+    public AutoShoot() {
         addRequirements(RobotContainer.shooter);
         addRequirements(RobotContainer.hood);
         addRequirements(RobotContainer.tfmini);
