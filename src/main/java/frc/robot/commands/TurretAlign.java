@@ -9,7 +9,8 @@ public class TurretAlign extends CommandBase {
   private boolean[] defaultArray = {false, false, false, false};
   private boolean[] movement;
   private double x_offset; 
-  private double position; 
+  private double x_offset_temp; 
+  private double target; 
 
   public TurretAlign() {
     addRequirements(RobotContainer.turret);
@@ -18,20 +19,20 @@ public class TurretAlign extends CommandBase {
   @Override
   public void initialize() {
     movement = Constants.visionTable.getEntry("movement_array").getBooleanArray(defaultArray);
-    x_offset = (double)Constants.visionTable.getEntry("2020-High-Target_x_offset").getNumber(0);
+    x_offset_temp = (double)Constants.visionTable.getEntry("2020-High-Target_x_offset").getNumber(0);
     
-    RobotContainer.turret.aimTurret(RobotContainer.turret.getPosition() - (x_offset/-10));
+    target = RobotContainer.turret.getPosition() - (x_offset_temp/-10);
   }
 
   @Override
   public void execute() {
-    // /-10 for position of turret
     movement = Constants.visionTable.getEntry("movement_array").getBooleanArray(defaultArray);
     x_offset = (double)Constants.visionTable.getEntry("2020-High-Target_x_offset").getNumber(0);
 
     // System.out.println("Turn left: " + movement[0] + ", Turn right: " + movement[1] + ", Move Back: " + movement[2] + ", Move Forwards: " + movement[3]);
     System.out.println("X offset " + x_offset + ", Position " + RobotContainer.turret.getPosition());
-    RobotContainer.turret.aimTurret((x_offset/(-10)));
+    //I think we always have to set the same target, because we did this before when testing just Smart Motion on the turret before
+    RobotContainer.turret.aimTurret(target); 
 
     if (movement[0] == true){
       // Turn Left
