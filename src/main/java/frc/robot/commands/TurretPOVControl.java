@@ -8,15 +8,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
-public class WinchRight extends CommandBase {
+public class TurretPOVControl extends CommandBase {
   /**
-   * Creates a new WinchRight.
+   * Creates a new TurretPOVControl.
    */
-  public WinchRight() {
-    addRequirements(RobotContainer.climber);
+  public TurretPOVControl() {
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(RobotContainer.turret);
   }
 
   // Called when the command is initially scheduled.
@@ -27,13 +27,19 @@ public class WinchRight extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.climber.setRightWinch(Constants.deliveryHookSpeed);
+    if(RobotContainer.driveStick.getPOV() == 90){
+      RobotContainer.turret.moveTurretRight();
+    }else if(RobotContainer.driveStick.getPOV() == 270){
+      RobotContainer.turret.moveTurretLeft();
+    }else{
+      RobotContainer.turret.stopTurret();
+    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.climber.setRightWinch(0);
+    RobotContainer.turret.stopTurret();
   }
 
   // Returns true when the command should end.

@@ -34,9 +34,6 @@ public class Hood extends SubsystemBase {
   int minVel_hood = 0;
   double allowedErr_hood = 0.05;
 
-  double[] position = {1, 5, 10, 15, 20, 25};
-  boolean pressed1 = false; 
-  boolean pressed2 = false; 
 
   /**
    * Creates a new Hood.
@@ -75,25 +72,7 @@ public class Hood extends SubsystemBase {
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
-    if (RobotContainer.driveStick.getPOV()==0 && pressed1 == false){
-      if (Constants.hoodIndex >= 0 && Constants.hoodIndex < position.length-1) {
-        Constants.hoodIndex = Constants.hoodIndex + 1; 
-      }
-      pressed1 = true;
-    }else{
-      pressed1 = false; 
-    }
+    //This method will be called once per scheduler run
 
-    if (RobotContainer.driveStick.getPOV()==180 && pressed2 == false){
-      if (Constants.hoodIndex > 0 && Constants.hoodIndex <= position.length-1) {
-        Constants.hoodIndex = Constants.hoodIndex - 1;
-      }
-      pressed2 = true; 
-    }else{
-      pressed2 = false; 
-    }
-
-    moveHood(position[Constants.hoodIndex]);
   }
 }

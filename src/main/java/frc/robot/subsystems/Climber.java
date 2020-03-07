@@ -21,7 +21,6 @@ public class Climber extends SubsystemBase {
   public static TalonFX rightWinchMotor = new TalonFX(Constants.rightWinchPort);
 
   public static CANSparkMax climberDeliveryMotor1 = new CANSparkMax(Constants.climberDeliveryMotorPort1, MotorType.kBrushless);
-  public static CANSparkMax climberDeliveryMotor2 = new CANSparkMax(Constants.climberDeliveryMotorPort2, MotorType.kBrushless);
   
   //TODO Implement soft limits for delivery and winch
 
@@ -38,11 +37,6 @@ public class Climber extends SubsystemBase {
     climberDeliveryMotor1.getPIDController().setI(kI, 0);
     climberDeliveryMotor1.getPIDController().setD(kD, 0);
     climberDeliveryMotor1.getPIDController().setFF(kFF, 0);
-
-    climberDeliveryMotor2.getPIDController().setP(kP, 0);
-    climberDeliveryMotor2.getPIDController().setI(kI, 0);
-    climberDeliveryMotor2.getPIDController().setD(kD, 0);
-    climberDeliveryMotor2.getPIDController().setFF(kFF, 0);
     
   }
 
@@ -51,20 +45,16 @@ public class Climber extends SubsystemBase {
    */
   public void setDeliveryMotorSpeed(double speed){
     climberDeliveryMotor1.getPIDController().setReference(speed, ControlType.kDutyCycle); 
-    climberDeliveryMotor2.getPIDController().setReference(-speed, ControlType.kDutyCycle);
   }
 
   /**
    * Makes the climber motor stay at the height it was released at
    */
   public void stay(){
-    if(climberDeliveryMotor1.getEncoder().getPosition() == Constants.deliveryBottomLimit 
-    && climberDeliveryMotor2.getEncoder().getPosition() == Constants.deliveryBottomLimit){
+    if(climberDeliveryMotor1.getEncoder().getPosition() == Constants.deliveryBottomLimit){
       climberDeliveryMotor1.getPIDController().setReference(0, ControlType.kDutyCycle);
-      climberDeliveryMotor2.getPIDController().setReference(0, ControlType.kDutyCycle);
     }else{
       climberDeliveryMotor1.getPIDController().setReference(climberDeliveryMotor1.getEncoder().getPosition(), ControlType.kPosition);
-      climberDeliveryMotor2.getPIDController().setReference(climberDeliveryMotor2.getEncoder().getPosition(), ControlType.kPosition); 
     }
   }
 

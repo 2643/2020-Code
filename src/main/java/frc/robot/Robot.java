@@ -8,6 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.*;
@@ -53,6 +54,8 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
     CommandScheduler.getInstance().setDefaultCommand(RobotContainer.drivetrain, new Tankdrive());
+    CommandScheduler.getInstance().setDefaultCommand(RobotContainer.turret, new TurretPOVControl());
+    CommandScheduler.getInstance().setDefaultCommand(RobotContainer.hood, new HoodPOVControl());
   }
 
   /**
@@ -69,6 +72,8 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledPeriodic() {
     RobotContainer.hood.resetEncoder();
+    //System.out.println(RobotContainer.turret.getPosition());
+
 
   }
 
@@ -150,9 +155,9 @@ public class Robot extends TimedRobot {
     /**
      * Turret Testing
      */
-    //teleop control using POV
-    //RobotContainer.turret.moveTurretLeft(); //These currently stop with duty cycle,
-    //RobotContainer.turret.moveTurretRight(); //Check if they need to stop with some kind of PID
+    System.out.println(RobotContainer.turret.getPosition());
+
+    RobotContainer.turret.aimTurret(-5);
 
 
     /**
@@ -165,11 +170,9 @@ public class Robot extends TimedRobot {
      * Intake + Conveyor Belt
      */
 
-
     /**
      * Friction Wheel Testing
      */
-    //Configure SmartVelocity for the motor
     
     /**
      * Climber Testing

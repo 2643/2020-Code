@@ -39,7 +39,7 @@ public final class Constants {
     public static int rightFrontMotorPort = 3; 
     public static int rightBackMotorPort = 4; 
 
-    public static NetworkTable visionTable = NetworkTableInstance.getDefault().getTable("vision");
+    public static NetworkTable visionTable = NetworkTableInstance.getDefault().getTable("vision-movement");
 
     /**
      * Determines the number of encoder ticks necessary for drivetrain to turn at certain angle
@@ -62,11 +62,11 @@ public final class Constants {
     public static int leftLimitSwitchPort = 0; //TODO find port of left limit switch on turret
     public static int rightLimitSwitchPort = 0; //TODO find port of right limit switch on turret
 
-    public static double leftTurretSpeed = 0.2; //TODO determine if this turns the turret left
-    public static double rightTurretSpeed = -0.2; //TODO determine if this turns the turret right
+    public static double leftTurretSpeed = 0.1; //TODO determine if this turns the turret left
+    public static double rightTurretSpeed = -0.1; //TODO determine if this turns the turret right
 
-    public static final int turretEncoderLeftSoftLimit = 0; //TODO determine encoder value for turret left limit
-    public static final int turretEncoderRightSoftLimit = 0; //TODO determine encoder value for turret right limit
+    public static final int turretEncoderLeftSoftLimit = 40; //TODO determine encoder value for turret left limit
+    public static final int turretEncoderRightSoftLimit = -40; //TODO determine encoder value for turret right limit
 
     //Hood Constants
     public static int hoodMotorPort = 8;
@@ -128,7 +128,7 @@ public final class Constants {
 
     public static boolean verticalIntakeToggleVariable = false; 
     public static BooleanSupplier verticalIntakeToggle = () -> verticalIntakeToggleVariable;
-    
+        
     //Conveyor Constants
     public static final int conveyorBeltMotorPort = 15;
 
