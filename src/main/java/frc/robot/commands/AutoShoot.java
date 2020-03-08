@@ -31,7 +31,7 @@ public class AutoShoot extends CommandBase {
 //         //double MaxshooterRPM = (1.14 * XfromTarget) + 1513;
 //         //double MinshooterRPM = (1.27 * XfromTarget) + 1074;
         
-        RobotContainer.turret.aimTurret(Constants.lastPosition);
+        RobotContainer.turret.aimTurret(Constants.lastTurretPosition);
 
         // Exponential function:
         double MaxshooterRPM = 1577*(Math.exp(5.25*(Math.pow(10,-4))*XfromTarget));
