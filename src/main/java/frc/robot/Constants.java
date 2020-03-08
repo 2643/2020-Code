@@ -27,7 +27,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
  */
 public final class Constants {
 
-    //Vision Constants
+    //Vision ConstantsS
     public static boolean valid = false; 
     public static double lastTurretPosition = 0; 
     public static double offset = -65; 
