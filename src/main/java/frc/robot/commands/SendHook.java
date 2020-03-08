@@ -28,12 +28,14 @@ public class SendHook extends CommandBase {
   @Override
   public void execute() {
     RobotContainer.climber.setDeliveryMotorSpeed(Constants.deliveryHookSpeed);
+    RobotContainer.climber.setBothWinch(Constants.bothWinchUnwindSpeed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     RobotContainer.climber.stay();
+    RobotContainer.climber.setBothWinch(0);
   }
 
   // Returns true when the command should end.

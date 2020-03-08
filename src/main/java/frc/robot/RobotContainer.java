@@ -28,10 +28,10 @@ public class RobotContainer {
 
   //Subsystems
   public static Drivetrain drivetrain = new Drivetrain();
-  public static Shooter shooter = new Shooter();
-  public static Turret turret = new Turret(); 
-  public static Hood hood = new Hood();
-  public static TFMini tfmini = new TFMini();
+ // public static Shooter shooter = new Shooter();
+  //public static Turret turret = new Turret(); 
+  //public static Hood hood = new Hood();
+  //public static TFMini tfmini = new TFMini();
 
   public static Intake intake = new Intake();
   public static ConveyorBelt conveyorBelt = new ConveyorBelt();
@@ -43,30 +43,30 @@ public class RobotContainer {
   
   // //Operator Interface
   public static Joystick driveStick = new Joystick(0);
-  // public static JoystickButton controlPanel = new JoystickButton(driveStick, 5);
-  // public static JoystickButton verticalIntake = new JoystickButton(driveStick, 6);
+  public static JoystickButton controlPanel = new JoystickButton(driveStick, 5);
+  public static JoystickButton verticalIntake = new JoystickButton(driveStick, 6);
 
-  // public static Joystick opBoard = new Joystick(1); //TODO change the operator board buttons to the correct ones
-  // public static JoystickButton forwardConveyor = new JoystickButton(opBoard, 1); 
-  // public static JoystickButton reverseConveyor = new JoystickButton(opBoard, 2); 
-  // public static JoystickButton manualIntake = new JoystickButton(opBoard, 3); 
-  // public static JoystickButton reverseIntake = new JoystickButton(opBoard, 4); 
+  public static Joystick opBoard = new Joystick(1);
+  // public static JoystickButton forwardConveyor = new JoystickButton(opBoard, 11); 
+  // public static JoystickButton reverseConveyor = new JoystickButton(opBoard, 10); 
+  // public static JoystickButton manualIntake = new JoystickButton(opBoard, 12); 
+  // public static JoystickButton reverseIntake = new JoystickButton(opBoard, 9); 
   // public static JoystickButton manualControlPanel = new JoystickButton(opBoard, 5); 
-  // public static JoystickButton autoIntake = new JoystickButton(opBoard, 6); 
-  // public static boolean intakePressed = false; 
+  // public static JoystickButton autoIntake = new JoystickButton(opBoard, 7); 
+  public static boolean intakePressed = false; 
 
-  // public static JoystickButton rotationControl = new JoystickButton(opBoard, 7); 
-  // public static JoystickButton positionControl = new JoystickButton(opBoard, 8); 
-  // public static JoystickButton autoShoot = new JoystickButton(opBoard, 9); 
-  // public static JoystickButton manualShooting = new JoystickButton(opBoard, 10); 
-  // public static JoystickButton hookDelivery = new JoystickButton(opBoard, 11); 
-  // public static JoystickButton dropTelescope = new JoystickButton(opBoard, 14); //button 12 doesn't work on the old operator board
-  // public static JoystickButton leftClimb = new JoystickButton(driveStick, 3); 
-  // public static JoystickButton rightClimb = new JoystickButton(driveStick, 2); 
-  // public static JoystickButton bothWinchClimb = new JoystickButton(opBoard, 13);  //button 15 doesn't work on old operator board
+  // public static JoystickButton rotationControl = new JoystickButton(opBoard, 6); 
+  // public static JoystickButton positionControl = new JoystickButton(opBoard, 4); 
+  // public static JoystickButton autoShoot = new JoystickButton(opBoard, 2); 
+  // public static JoystickButton manualShooting = new JoystickButton(opBoard, 3); 
+  public static JoystickButton hookDelivery = new JoystickButton(opBoard, 8); 
+  public static JoystickButton dropTelescope = new JoystickButton(opBoard, 15); //button 12 doesn't work on the old operator board
+  public static JoystickButton leftClimb = new JoystickButton(opBoard, 13); 
+  public static JoystickButton rightClimb = new JoystickButton(opBoard, 16); 
+  public static JoystickButton bothWinchClimb = new JoystickButton(opBoard, 14);  //button 15 doesn't work on old operator board
 
   //Shooter Testing
-  public static JoystickButton button  = new JoystickButton(driveStick, 1);
+  //public static JoystickButton button  = new JoystickButton(driveStick, 1);
   
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -98,18 +98,18 @@ public class RobotContainer {
     // // autoShoot.whileHeld(new TurretAlign().andThen(new AutoShoot()));
     // // manualShooting
 
-    // hookDelivery.whileHeld(new SendHook());
-    // dropTelescope.whileHeld(new DropHook());
+    hookDelivery.whileHeld(new SendHook());
+    dropTelescope.whileHeld(new DropHook());
 
-    // leftClimb.whileHeld(new WinchLeft());
-    // bothWinchClimb.whileHeld(new WinchUp());
-    // rightClimb.whileHeld(new WinchRight());
+    leftClimb.whileHeld(new WinchLeft());
+    bothWinchClimb.whileHeld(new WinchUp());
+    rightClimb.whileHeld(new WinchRight());
     
-    // controlPanel.whenPressed(new ConditionalCommand(new ExtendFrictionWheel(), new RetractFrictionWheel(), Constants.frictionWheelToggle));
-    // verticalIntake.whenPressed(new ConditionalCommand(new LowerIntake(), new RaiseIntake(), Constants.verticalIntakeToggle));
+    controlPanel.whenPressed(new ConditionalCommand(new ExtendFrictionWheel(), new RetractFrictionWheel(), Constants.frictionWheelToggle));
+    verticalIntake.whenPressed(new ConditionalCommand(new LowerIntake(), new RaiseIntake(), Constants.verticalIntakeToggle));
 
     // Shooter Testing
-    button.whileHeld(new TurretAlign());
+    //button.whileHeld(new TurretAlign());
 
 
   }

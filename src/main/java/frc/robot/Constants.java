@@ -100,7 +100,6 @@ public final class Constants {
 
     //Climber Constants
     public static final int climberDeliveryMotorPort1 = 10; 
-    public static final int climberDeliveryMotorPort2 = 11;  
     public static final int leftWinchPort = 13;
     public static final int rightWinchPort = 12;
     
@@ -108,6 +107,8 @@ public final class Constants {
     
     public static final double leftWinchUpSpeed = 0.3; 
     public static final double rightWinchUpSpeed =  0.3; 
+
+    public static final double bothWinchUnwindSpeed = 0.3;
     
     public static final double deliveryTopLimit = 0; //TODO determine encoder value for top limit of the winch
     public static final double deliveryBottomLimit = 0; 
