@@ -20,6 +20,8 @@ public class TFMini extends SubsystemBase {
   byte[] setInternalTrigger = hexStringToByteArray("4257020000000140");
   byte[] reset = hexStringToByteArray("4257020000000140");
   SerialPort port = new SerialPort(115200, Port.kMXP, 8, Parity.kNone, StopBits.kOne);
+  private int holdCount;
+  private int holdNum;
 
   /**
    * Creates a new TFMini.
@@ -40,11 +42,20 @@ public class TFMini extends SubsystemBase {
     returnArray[2] = -1;
     returnArray[3] = "NULL";
 
-    if (port.getBytesReceived() < 18) {
-      System.out.print("Not enough bytes, Recieved: ");
+    if (port.getBytesReceived() < 9) {
+      System.out.print("Not enough bytes using previous: " + holdNum + ", Recieved: ");
       System.out.println(port.getBytesReceived());
+      if (holdCount > 0) {
+        holdCount -= 1;
+        returnArray[0] = true;
+        returnArray[1] = holdNum;
+      }
+      else {
+        holdNum = -1;
+      }
       return returnArray;
     }
+    holdCount = 3;
 
     byte[] outputFrame = port.read(18);
     for (int index = 0; index < 18; index++) {
@@ -92,7 +103,8 @@ public class TFMini extends SubsystemBase {
     int distance = ((Byte.toUnsignedInt(bytes[3]) << 8) | (Byte.toUnsignedInt(bytes[2])));
     int strength = ((Byte.toUnsignedInt(bytes[5]) << 8) | (Byte.toUnsignedInt(bytes[4])));
     long mode = bytes[6];
-
+    
+    holdNum = distance;
     returnArray[0] = true;
     returnArray[1] = distance;
     returnArray[2] = strength;

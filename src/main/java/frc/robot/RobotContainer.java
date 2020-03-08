@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
+import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
@@ -28,10 +29,10 @@ public class RobotContainer {
 
   //Subsystems
   public static Drivetrain drivetrain = new Drivetrain();
- // public static Shooter shooter = new Shooter();
-  //public static Turret turret = new Turret(); 
-  //public static Hood hood = new Hood();
-  //public static TFMini tfmini = new TFMini();
+  public static Shooter shooter = new Shooter();
+  public static Turret turret = new Turret(); 
+  public static Hood hood = new Hood();
+  public static TFMini tfmini = new TFMini();
 
   public static Intake intake = new Intake();
   public static ConveyorBelt conveyorBelt = new ConveyorBelt();
@@ -47,18 +48,16 @@ public class RobotContainer {
   public static JoystickButton verticalIntake = new JoystickButton(driveStick, 6);
 
   public static Joystick opBoard = new Joystick(1);
-  // public static JoystickButton forwardConveyor = new JoystickButton(opBoard, 11); 
-  // public static JoystickButton reverseConveyor = new JoystickButton(opBoard, 10); 
-  // public static JoystickButton manualIntake = new JoystickButton(opBoard, 12); 
-  // public static JoystickButton reverseIntake = new JoystickButton(opBoard, 9); 
-  // public static JoystickButton manualControlPanel = new JoystickButton(opBoard, 5); 
-  // public static JoystickButton autoIntake = new JoystickButton(opBoard, 7); 
-  public static boolean intakePressed = false; 
-
-  // public static JoystickButton rotationControl = new JoystickButton(opBoard, 6); 
-  // public static JoystickButton positionControl = new JoystickButton(opBoard, 4); 
-  // public static JoystickButton autoShoot = new JoystickButton(opBoard, 2); 
-  // public static JoystickButton manualShooting = new JoystickButton(opBoard, 3); 
+  public static JoystickButton forwardConveyor = new JoystickButton(opBoard, 11); 
+  public static JoystickButton reverseConveyor = new JoystickButton(opBoard, 10); 
+  public static JoystickButton manualIntake = new JoystickButton(opBoard, 12); 
+  public static JoystickButton reverseIntake = new JoystickButton(opBoard, 9); 
+  public static JoystickButton manualControlPanel = new JoystickButton(opBoard, 5); 
+  public static JoystickButton autoIntake = new JoystickButton(opBoard, 7); 
+  public static JoystickButton rotationControl = new JoystickButton(opBoard, 6); 
+  public static JoystickButton positionControl = new JoystickButton(opBoard, 4); 
+  public static JoystickButton autoShoot = new JoystickButton(opBoard, 2); 
+  public static JoystickButton manualShooting = new JoystickButton(opBoard, 3); 
   public static JoystickButton hookDelivery = new JoystickButton(opBoard, 8); 
   public static JoystickButton dropTelescope = new JoystickButton(opBoard, 15); //button 12 doesn't work on the old operator board
   public static JoystickButton leftClimb = new JoystickButton(opBoard, 13); 
@@ -83,20 +82,20 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    // forwardConveyor.whileHeld(new ForwardConveyor());
-    // reverseConveyor.whileHeld(new ReverseConveyor());
-    // manualIntake.whileHeld(new ForwardIntake());
-    // reverseIntake.whileHeld(new ReverseIntake());
-    // manualControlPanel.whileHeld(new MoveWheel());
+    forwardConveyor.whileHeld(new ForwardConveyor());
+    reverseConveyor.whileHeld(new ReverseConveyor());
+    manualIntake.whileHeld(new ForwardIntake());
+    reverseIntake.whileHeld(new ReverseIntake());
+    manualControlPanel.whileHeld(new MoveWheel());
     
-    // autoIntake.whileHeld(new ConditionalCommand(new IndexBeforeIntake(), new ForwardIntake().raceWith(new IntakeIndex()), () -> opBoard.getRawButtonPressed(6)));
+    autoIntake.whileHeld(new ConditionalCommand(new IndexBeforeIntake(), new ForwardIntake().raceWith(new IntakeIndex()), () -> opBoard.getRawButtonPressed(6)));
 
 
-    // rotationControl.whileHeld(new RotationControl().andThen(new WaitCommand(666))); 
-    // positionControl.whileHeld(new PositionControl().andThen(new WaitCommand(4))); 
+    rotationControl.whileHeld(new RotationControl().andThen(new WaitCommand(666))); 
+    positionControl.whileHeld(new PositionControl().andThen(new WaitCommand(4))); 
 
-    // // autoShoot.whileHeld(new TurretAlign().andThen(new AutoShoot()));
-    // // manualShooting
+    autoShoot.whileHeld(new ConditionalCommand(new TurretAlign().andThen(new AutoShoot()), new Nothing(), () -> Constants.visionTable.getEntry("valid").getBoolean(false)));
+    // manualShooting
 
     hookDelivery.whileHeld(new SendHook());
     dropTelescope.whileHeld(new DropHook());
@@ -114,8 +113,7 @@ public class RobotContainer {
 
   }
 
-
-  /**
+  /*
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
    * @return the command to run in autonomous

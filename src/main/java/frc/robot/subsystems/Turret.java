@@ -23,18 +23,19 @@ public class Turret extends SubsystemBase {
   //private static DigitalInput leftLimitSwitch = new DigitalInput(Constants.leftLimitSwitchPort);  
   //private static DigitalInput rightLimitSwitch = new DigitalInput(Constants.rightLimitSwitchPort);
 
+  //
   //Turret PID Constants
-  double kP_turret = 0.0001;
+  double kP_turret = 0.16;
   double kI_turret = 0;
   double kD_turret = 0;
   double kFF_turret = 0;
-  double MaxOutput_turret = 0.6;
-  double MinOutput_turret = -0.6;
-  double maxAccel_turret = 18000;
+  double MaxOutput_turret = 0.2;
+  double MinOutput_turret = -0.2;
+  // double maxAccel_turret = 18000;
   int slotID_turret = 0;
-  int maxVel_turret = 9000;
-  int minVel_turret = 0;
-  double allowedErr_turret = 0;
+  // int maxVel_turret = 3000;
+  // int minVel_turret = 0;
+  // double allowedErr_turret = 0;
 
   /**
    * Creates a new Turret.
@@ -45,10 +46,10 @@ public class Turret extends SubsystemBase {
     turretMotor.getPIDController().setD(kD_turret, slotID_turret);
     turretMotor.getPIDController().setFF(kFF_turret, slotID_turret);
     turretMotor.getPIDController().setOutputRange(MinOutput_turret, MaxOutput_turret, slotID_turret);
-    turretMotor.getPIDController().setSmartMotionMaxAccel(maxAccel_turret, slotID_turret);
-    turretMotor.getPIDController().setSmartMotionAllowedClosedLoopError(allowedErr_turret, slotID_turret);
-    turretMotor.getPIDController().setSmartMotionMaxVelocity(maxVel_turret, slotID_turret);
-    turretMotor.getPIDController().setSmartMotionMinOutputVelocity(minVel_turret, slotID_turret);
+    // turretMotor.getPIDController().setSmartMotionMaxAccel(maxAccel_turret, slotID_turret);
+    // turretMotor.getPIDController().setSmartMotionAllowedClosedLoopError(allowedErr_turret, slotID_turret);
+    // turretMotor.getPIDController().setSmartMotionMaxVelocity(maxVel_turret, slotID_turret);
+    // turretMotor.getPIDController().setSmartMotionMinOutputVelocity(minVel_turret, slotID_turret);
   }
 
   /**
@@ -69,12 +70,11 @@ public class Turret extends SubsystemBase {
     //   turretMotor.getPIDController().setReference(turretMotor.getEncoder().getPosition(), ControlType.kPosition, slotID_turret);
     // }
     if(position <= Constants.turretEncoderLeftSoftLimit && position >= Constants.turretEncoderRightSoftLimit){
-      turretMotor.getPIDController().setReference(position, ControlType.kSmartMotion, slotID_turret);
+      turretMotor.getPIDController().setReference(position, ControlType.kPosition, slotID_turret);
     }else{
-      turretMotor.getPIDController().setReference(turretMotor.getEncoder().getPosition(), ControlType.kSmartMotion, slotID_turret);
+      turretMotor.getPIDController().setReference(turretMotor.getEncoder().getPosition(), ControlType.kPosition, slotID_turret);
     }
   }
-
   /**
    * Move the turret left using duty cycle
    */

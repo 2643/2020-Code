@@ -78,6 +78,10 @@ public class ConveyorBelt extends SubsystemBase {
       return -1;
   }
 
+  public boolean atLimit(){
+    return !conveyoriRSensor9.get();
+  }
+
   /**
    * Returns the index of the first IR activated
    * @return int index 0 - 4; default return -1 when none activated 

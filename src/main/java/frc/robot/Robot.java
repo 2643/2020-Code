@@ -155,9 +155,7 @@ public class Robot extends TimedRobot {
     /**
      * Turret Testing
      */
-    System.out.println(RobotContainer.turret.getPosition());
 
-    RobotContainer.turret.aimTurret(-5);
 
 
     /**
@@ -177,6 +175,5 @@ public class Robot extends TimedRobot {
     /**
      * Climber Testing
      */
-    //test soft stops for delivery 
   }
 }

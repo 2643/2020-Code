@@ -26,6 +26,11 @@ import edu.wpi.first.networktables.NetworkTableInstance;
  * wherever the constants are needed, to reduce verbosity.
  */
 public final class Constants {
+
+    //vision constants
+    public static boolean valid = false; 
+    public static double lastPosition = 0; 
+
     //Debug Options
     public static final boolean debugConveyorBelt = true;
     //OI Constants
@@ -62,11 +67,20 @@ public final class Constants {
     public static int leftLimitSwitchPort = 0; //TODO find port of left limit switch on turret
     public static int rightLimitSwitchPort = 0; //TODO find port of right limit switch on turret
 
-    public static double leftTurretSpeed = 0.1; //TODO determine if this turns the turret left
-    public static double rightTurretSpeed = -0.1; //TODO determine if this turns the turret right
+    public static double leftTurretSpeed;
+    public static double rightTurretSpeed;
 
-    public static final int turretEncoderLeftSoftLimit = 40; //TODO determine encoder value for turret left limit
-    public static final int turretEncoderRightSoftLimit = -40; //TODO determine encoder value for turret right limit
+    public static double leftTurretPOVSpeed = 0.15; //TODO determine if this turns the turret left
+    public static double rightTurretPOVSpeed = -0.15; //TODO determine if this turns the turret right
+
+    public static double leftTurretHighSpeed = 0.08;
+    public static double rightTurretHighSpeed = -0.08;
+
+    public static double leftTurretLowSpeed = 0.02;
+    public static double rightTurretLowSpeed = -0.02;
+
+    public static final int turretEncoderLeftSoftLimit = 25; //TODO determine encoder value for turret left limit
+    public static final int turretEncoderRightSoftLimit = -25; //TODO determine encoder value for turret right limit
 
     //Hood Constants
     public static int hoodMotorPort = 8;
