@@ -5,7 +5,7 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class TurretAlign extends CommandBase {
-  private double x_offset;  
+  private double vision_error;  //in pixels
 
   public TurretAlign() {
     addRequirements(RobotContainer.turret);
@@ -17,9 +17,9 @@ public class TurretAlign extends CommandBase {
 
   @Override
   public void execute() {
-    x_offset = (double)Constants.visionTable.getEntry("2020-High-Target_x_offset").getNumber(0);
+    vision_error = (double)Constants.visionTable.getEntry("2020-High-Target_x_offset").getNumber(0);
 
-    if(Math.abs(x_offset-65) < 50){
+    if(Math.abs(vision_error-65) < 50){
       Constants.leftTurretSpeed = Constants.leftTurretLowSpeed;
       Constants.rightTurretSpeed = Constants.rightTurretLowSpeed;
     }else{
@@ -27,9 +27,9 @@ public class TurretAlign extends CommandBase {
       Constants.rightTurretSpeed = Constants.rightTurretHighSpeed;
     }
 
-    if((x_offset - 65) > 0){
+    if((vision_error - Constants.offset) > 0){
       RobotContainer.turret.moveTurretRight();
-    }else if((x_offset - 65) < 0){
+    }else if((vision_error - Constants.offset) < 0){
       RobotContainer.turret.moveTurretLeft();
     }else{
       RobotContainer.turret.stopTurret();
@@ -41,7 +41,7 @@ public class TurretAlign extends CommandBase {
   public void end(boolean interrupted) {
     // RobotContainer.drivetrain.setLeftMotorSpeed(0);
     // RobotContainer.drivetrain.setRightMotorSpeed(0);
-    RobotContainer.turret.aimTurret(Constants.lastPosition);
+    RobotContainer.turret.aimTurret(Constants.lastTurretPosition);
   }
 
   // Returns true when the command should end
@@ -50,8 +50,8 @@ public class TurretAlign extends CommandBase {
     Constants.valid  = Constants.visionTable.getEntry("valid").getBoolean(false);
     if(!Constants.valid){
       return true; 
-    }else if(((x_offset-65) >= -1) && ((x_offset-65) <= 1)){
-      Constants.lastPosition = RobotContainer.turret.getPosition(); 
+    }else if(((vision_error-Constants.offset) >= -1) && ((vision_error-Constants.offset) <= 1)){
+      Constants.lastTurretPosition = RobotContainer.turret.getPosition(); 
       return true; 
     }else{
       return false; 

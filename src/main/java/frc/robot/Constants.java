@@ -27,12 +27,14 @@ import edu.wpi.first.networktables.NetworkTableInstance;
  */
 public final class Constants {
 
-    //vision constants
+    //Vision Constants
     public static boolean valid = false; 
-    public static double lastPosition = 0; 
+    public static double lastTurretPosition = 0; 
+    public static double offset = -65; 
 
     //Debug Options
     public static final boolean debugConveyorBelt = true;
+    
     //OI Constants
     public static final int leftAxis = 1;
     public static final int rightAxis = 5; 
