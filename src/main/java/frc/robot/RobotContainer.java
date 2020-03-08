@@ -95,6 +95,7 @@ public class RobotContainer {
     positionControl.whileHeld(new PositionControl().andThen(new WaitCommand(4))); 
 
     autoShoot.whileHeld(new ConditionalCommand(new TurretAlign().andThen(new AutoShoot()), new Nothing(), () -> Constants.visionTable.getEntry("valid").getBoolean(false)));
+    autoShoot.whenReleased(new CenterTurret()); //TODO test centering the turret after shooting
     // manualShooting
 
     hookDelivery.whileHeld(new SendHook());
