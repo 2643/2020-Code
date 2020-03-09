@@ -37,15 +37,27 @@ public class Tankdrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if(RobotContainer.driveStick.getRawButtonPressed(1)){
+      Constants.slowMode = !Constants.slowMode;
+    }
+    
     if (Math.abs(RobotContainer.driveStick.getRawAxis(Constants.leftAxis)) > 0.03) {
-      leftSpeed = (RobotContainer.driveStick.getRawAxis(Constants.leftAxis));
+      if(Constants.slowMode == true){
+        leftSpeed = Constants.slowModeMultipler*(RobotContainer.driveStick.getRawAxis(Constants.leftAxis));
+      }else{
+        leftSpeed = (RobotContainer.driveStick.getRawAxis(Constants.leftAxis));
+      }
     }
     else{
       leftSpeed = 0;
     }
 
     if (Math.abs(RobotContainer.driveStick.getRawAxis(Constants.rightAxis)) > 0.03) {
-      rightSpeed = (RobotContainer.driveStick.getRawAxis(Constants.rightAxis));
+      if(Constants.slowMode == true){
+        rightSpeed = Constants.slowModeMultipler*(RobotContainer.driveStick.getRawAxis(Constants.rightAxis));
+      }else{
+        rightSpeed = (RobotContainer.driveStick.getRawAxis(Constants.rightAxis));
+      }
     }
     else{
       rightSpeed = 0;

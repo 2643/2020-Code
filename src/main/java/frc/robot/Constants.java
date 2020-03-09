@@ -27,13 +27,17 @@ import edu.wpi.first.networktables.NetworkTableInstance;
  */
 public final class Constants {
 
+    //Auto Constants
+    public static int autoMode = 0; 
+
     //Vision ConstantsS
     public static boolean valid = false; 
     public static double lastTurretPosition = 0; 
-    public static double offset = -65; 
+    public static double offset = 40; 
+    public static NetworkTable visionTable = NetworkTableInstance.getDefault().getTable("vision-movement");
 
     //Debug Options
-    public static final boolean debugConveyorBelt = true;
+    public static final boolean debugConveyorBelt = false;
     
     //OI Constants
     public static final int leftAxis = 1;
@@ -46,8 +50,8 @@ public final class Constants {
     public static int rightFrontMotorPort = 3; 
     public static int rightBackMotorPort = 4; 
 
-    public static NetworkTable visionTable = NetworkTableInstance.getDefault().getTable("vision-movement");
-
+    public static boolean slowMode = false; 
+    public static double slowModeMultipler = 0.5;
     /**
      * Determines the number of encoder ticks necessary for drivetrain to turn at certain angle
      * @param angle the angle to turn
@@ -64,38 +68,44 @@ public final class Constants {
     public static int leftShooterMotorPort = 5;
     public static int rightShooterMotorPort = 6;
 
+    public static double shooterDutyCycleSpeed = 0.7;
+
     //Turret Constants
     public static int turretMotorPort = 7;
     public static int leftLimitSwitchPort = 0; //TODO find port of left limit switch on turret
     public static int rightLimitSwitchPort = 0; //TODO find port of right limit switch on turret
 
-    public static double leftTurretSpeed;
-    public static double rightTurretSpeed;
+    public static double leftTurretSpeed = 0.15;
+    public static double rightTurretSpeed = -0.15;
 
-    public static double leftTurretPOVSpeed = 0.15; //TODO determine if this turns the turret left
-    public static double rightTurretPOVSpeed = -0.15; //TODO determine if this turns the turret right
+    public static double leftTurretPOVSpeed = 0.15; 
+    public static double rightTurretPOVSpeed = -0.15; 
 
     public static double leftTurretHighSpeed = 0.08;
     public static double rightTurretHighSpeed = -0.08;
 
-    public static double leftTurretLowSpeed = 0.02;
-    public static double rightTurretLowSpeed = -0.02;
+    public static double leftTurretLowSpeed = 0.04;
+    public static double rightTurretLowSpeed = -0.04;
 
-    public static final int turretEncoderLeftSoftLimit = 25; //TODO determine encoder value for turret left limit
-    public static final int turretEncoderRightSoftLimit = -25; //TODO determine encoder value for turret right limit
+    public static final int turretEncoderLeftSoftLimit = 25; //TODO soft limit should become 85 when safe
+    public static final int turretEncoderRightSoftLimit = -25; //TODO soft limit should become -85 when safe
 
     //Hood Constants
     public static int hoodMotorPort = 8;
-    public static int upperHoodLimitPort = 0; //TODO find port of the upper limit switch on hood 
-    public static int lowerHoodLimitPort = 0; //TODO find port of the bototm limit switch on hood
+    public static int upperHoodLimitPort = 12; 
+    public static int lowerHoodLimitPort = 11;
 
-    public static int hoodIndex = 0; 
+    public static int upperEncoderSoftLimit = 26;
+    public static int lowerEncoderSoftLimit = 0;
+
+    public static double hoodUpSpeed = 0.2; 
+    public static double hoodDownSpeed = -0.2;
 
     //Friction Wheel Constants
     public static final int frictionWheelMotorPort = 9;
 
-    public static final int doubleSolenoidPort1 = 4; //TODO verify this solenoid port for the friction wheel
-    public static final int doubleSolenoidPort2 = 6; //TODO verify this solenoid port for the friction wheel
+    public static final int doubleSolenoidPort1 = 6; 
+    public static final int doubleSolenoidPort2 = 7;
 
     public static final double maxRPM = 5500;
     public static final double frictionWheelSpeed = -0.2;
@@ -136,8 +146,8 @@ public final class Constants {
     public static final double intakeSpeed = -0.6;
     public static final double reverseIntakeSpeed = 0.6;
 
-    public static final int intakeSolenoidPort1 = 5; //TODO verify this solenoid port for the intake 
-    public static final int intakeSolenoidPort2 = 7; //TODO verify this solenoid port for the intake
+    public static final int intakeSolenoidPort1 = 5; 
+    public static final int intakeSolenoidPort2 = 4; 
 
     public static final int intakeRaiseTime = 1;
 

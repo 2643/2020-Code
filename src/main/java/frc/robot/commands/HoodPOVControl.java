@@ -8,13 +8,9 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class HoodPOVControl extends CommandBase {
-  private boolean pressed1 = false;
-  private boolean pressed2 = false; 
-  private double[] position = {1, 5, 10, 15, 20, 25};
 
   /**
    * Creates a new HoodPOVControl.
@@ -32,35 +28,19 @@ public class HoodPOVControl extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (RobotContainer.driveStick.getPOV()==0){
-      if(!pressed1){
-        if (Constants.hoodIndex >= 0 && Constants.hoodIndex < position.length-1) {
-          Constants.hoodIndex++; 
-          RobotContainer.hood.moveHood(position[Constants.hoodIndex]);
-        }
-        pressed1 = true;
-      }
-      else{
-        pressed1 = false; 
-      }
-    }
-
-    if(RobotContainer.driveStick.getPOV() == 180){
-      if(!pressed2){
-        if(Constants.hoodIndex > 0 && Constants.hoodIndex <= position.length-1){
-          Constants.hoodIndex--;
-          RobotContainer.hood.moveHood(position[Constants.hoodIndex]);
-        }
-        pressed2 = true;
-      }else{
-        pressed2 = false; 
-      }
+    if(RobotContainer.driveStick.getPOV()==0 && !RobotContainer.hood.atTopLimit()){
+      RobotContainer.hood.moveHoodUp();
+    }else if(RobotContainer.driveStick.getPOV() == 180 && !RobotContainer.hood.atBottomLimit()){
+      RobotContainer.hood.moveHoodDown();
+    }else{
+      RobotContainer.hood.stopHood();
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    RobotContainer.hood.stopHood();
   }
 
   // Returns true when the command should end.

@@ -100,7 +100,7 @@ public class ConveyorBelt extends SubsystemBase {
     // This method will be called once per scheduler run
     noBallsHeld = true;
     for (int i = 0; i < conveyoriRSensors.length; i++) {
-      if (conveyoriRSensors[i].get()){
+      if (!conveyoriRSensors[i].get()){
         noBallsHeld = false;
       }
     }

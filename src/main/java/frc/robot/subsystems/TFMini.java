@@ -44,7 +44,7 @@ public class TFMini extends SubsystemBase {
 
     if (port.getBytesReceived() < 9) {
       System.out.print("Not enough bytes using previous: " + holdNum + ", Recieved: ");
-      System.out.println(port.getBytesReceived());
+      // System.out.println(port.getBytesReceived());
       if (holdCount > 0) {
         holdCount -= 1;
         returnArray[0] = true;

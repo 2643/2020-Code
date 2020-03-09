@@ -20,7 +20,6 @@ public class AutoShoot extends CommandBase {
     @Override
     public void initialize() {
         XfromTarget = RobotContainer.tfmini.getDistance();
-
     }
 
     @Override
@@ -50,7 +49,6 @@ public class AutoShoot extends CommandBase {
     @Override
     public void end (boolean interrupted) {
         RobotContainer.shooter.stopMotors();
-        Constants.hoodIndex = 0;
         RobotContainer.hood.moveHood(1);
     }
 

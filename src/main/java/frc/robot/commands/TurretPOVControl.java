@@ -23,13 +23,15 @@ public class TurretPOVControl extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Constants.leftTurretSpeed = Constants.leftTurretPOVSpeed; 
-    Constants.rightTurretSpeed = Constants.rightTurretPOVSpeed; 
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    Constants.leftTurretSpeed = Constants.leftTurretPOVSpeed; 
+    Constants.rightTurretSpeed = Constants.rightTurretPOVSpeed; 
+    
     if(RobotContainer.driveStick.getPOV() == 90){
       RobotContainer.turret.moveTurretRight();
     }else if(RobotContainer.driveStick.getPOV() == 270){

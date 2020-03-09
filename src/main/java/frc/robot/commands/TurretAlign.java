@@ -17,9 +17,10 @@ public class TurretAlign extends CommandBase {
 
   @Override
   public void execute() {
-    vision_error = (double)Constants.visionTable.getEntry("2020-High-Target_x_offset").getNumber(0);
+    vision_error = (double)Constants.visionTable.getEntry("2020-High-Target_x_offset").getNumber(Constants.offset);
 
-    if(Math.abs(vision_error-65) < 50){
+    System.out.println("Vision Error " + vision_error);
+    if(Math.abs(vision_error-Constants.offset) < 50){
       Constants.leftTurretSpeed = Constants.leftTurretLowSpeed;
       Constants.rightTurretSpeed = Constants.rightTurretLowSpeed;
     }else{
@@ -49,11 +50,14 @@ public class TurretAlign extends CommandBase {
   public boolean isFinished() {
     Constants.valid  = Constants.visionTable.getEntry("valid").getBoolean(false);
     if(!Constants.valid){
+      System.out.println("Not valid");
       return true; 
     }else if(((vision_error-Constants.offset) >= -1) && ((vision_error-Constants.offset) <= 1)){
       Constants.lastTurretPosition = RobotContainer.turret.getPosition(); 
+      System.out.println("Centered");
       return true; 
     }else{
+      System.out.println("Valid");
       return false; 
     } 
   }

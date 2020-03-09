@@ -12,11 +12,13 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
+import frc.robot.commands.auto.*;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -38,12 +40,10 @@ public class RobotContainer {
   public static ConveyorBelt conveyorBelt = new ConveyorBelt();
   public static FrictionWheel frictionWheel = new FrictionWheel();
   public static Climber climber = new Climber();
-
-  //Autonomous Command
-  AutonomousRoutine auto = new AutonomousRoutine(); 
   
   // //Operator Interface
   public static Joystick driveStick = new Joystick(0);
+  public static JoystickButton slowToggle = new JoystickButton(driveStick, 1);
   public static JoystickButton controlPanel = new JoystickButton(driveStick, 5);
   public static JoystickButton verticalIntake = new JoystickButton(driveStick, 6);
 
@@ -59,10 +59,10 @@ public class RobotContainer {
   public static JoystickButton autoShoot = new JoystickButton(opBoard, 2); 
   public static JoystickButton manualShooting = new JoystickButton(opBoard, 3); 
   public static JoystickButton hookDelivery = new JoystickButton(opBoard, 8); 
-  public static JoystickButton dropTelescope = new JoystickButton(opBoard, 15); //button 12 doesn't work on the old operator board
+  public static JoystickButton dropTelescope = new JoystickButton(opBoard, 15);
   public static JoystickButton leftClimb = new JoystickButton(opBoard, 13); 
   public static JoystickButton rightClimb = new JoystickButton(opBoard, 16); 
-  public static JoystickButton bothWinchClimb = new JoystickButton(opBoard, 14);  //button 15 doesn't work on old operator board
+  public static JoystickButton bothWinchClimb = new JoystickButton(opBoard, 14);
 
   //Shooter Testing
   //public static JoystickButton button  = new JoystickButton(driveStick, 1);
@@ -88,15 +88,15 @@ public class RobotContainer {
     reverseIntake.whileHeld(new ReverseIntake());
     manualControlPanel.whileHeld(new MoveWheel());
     
-    autoIntake.whileHeld(new ConditionalCommand(new IndexBeforeIntake(), new ForwardIntake().raceWith(new IntakeIndex()), () -> opBoard.getRawButtonPressed(6)));
+    autoIntake.whileHeld(new ConditionalCommand(new IndexBeforeIntake(), new ForwardIntake().raceWith(new IntakeIndex()), () -> opBoard.getRawButtonPressed(7)));
 
 
     rotationControl.whileHeld(new RotationControl().andThen(new WaitCommand(666))); 
     positionControl.whileHeld(new PositionControl().andThen(new WaitCommand(4))); 
 
-    autoShoot.whileHeld(new ConditionalCommand(new TurretAlign().andThen(new AutoShoot()), new Nothing(), () -> Constants.visionTable.getEntry("valid").getBoolean(false)));
-    autoShoot.whenReleased(new CenterTurret()); //TODO test centering the turret after shooting
-    // manualShooting
+    autoShoot.whileHeld(new ConditionalCommand(new TurretAlign().andThen(new AutoShoot().raceWith(new WaitCommand(1).andThen(new ForwardConveyor()))), new Nothing(), () -> Constants.visionTable.getEntry("valid").getBoolean(false)));
+    //autoShoot.whenReleased(new CenterTurret()); //TODO test centering the turret after shooting
+    manualShooting.whileHeld(new ForwardConveyor().alongWith(new Shoot()));
 
     hookDelivery.whileHeld(new SendHook());
     dropTelescope.whileHeld(new DropHook());
@@ -104,14 +104,9 @@ public class RobotContainer {
     leftClimb.whileHeld(new WinchLeft());
     bothWinchClimb.whileHeld(new WinchUp());
     rightClimb.whileHeld(new WinchRight());
-    
+
     controlPanel.whenPressed(new ConditionalCommand(new ExtendFrictionWheel(), new RetractFrictionWheel(), Constants.frictionWheelToggle));
     verticalIntake.whenPressed(new ConditionalCommand(new LowerIntake(), new RaiseIntake(), Constants.verticalIntakeToggle));
-
-    // Shooter Testing
-    //button.whileHeld(new TurretAlign());
-
-
   }
 
   /*
@@ -121,7 +116,17 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return auto;
+
+    if(Constants.autoMode == 1){
+      return (new LeftPowerPortAuto());
+    }else if(Constants.autoMode == 2){
+      return (new CenterPowerPortAuto());
+    }else if(Constants.autoMode == 3){
+      return (new RightPowerPortAuto());
+    }else{
+      return (new CrossInitiationLine());
+    }
+
   }
 
 }

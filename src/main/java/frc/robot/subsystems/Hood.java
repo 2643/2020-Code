@@ -18,8 +18,8 @@ import frc.robot.RobotContainer;
 
 public class Hood extends SubsystemBase {
   private static CANSparkMax hoodMotor = new CANSparkMax(Constants.hoodMotorPort, MotorType.kBrushless);
-  //private static DigitalInput upperHoodLimit = new DigitalInput(Constants.upperHoodLimitPort);  //TODO implement limit switches for hood
-  //private static DigitalInput lowerHoodLimit = new DigitalInput(Constants.lowerHoodLimitPort);
+  private static DigitalInput upperHoodLimit = new DigitalInput(Constants.upperHoodLimitPort);  //TODO implement limit switches for hood
+  private static DigitalInput lowerHoodLimit = new DigitalInput(Constants.lowerHoodLimitPort);
 
   //Hood PID Constants
   double kP_hood = 0.095;//0.006;
@@ -51,8 +51,45 @@ public class Hood extends SubsystemBase {
    * @param position angle for the hood
    */
   public void moveHood(double position){
-    if(position >=0 && position <= 26)
+    if(position >= Constants.lowerEncoderSoftLimit && position <= Constants.upperEncoderSoftLimit)
       hoodMotor.getPIDController().setReference(position, ControlType.kPosition, slotID_hood);
+  }
+
+  /**
+   * Moves the hood up 
+   */
+  public void moveHoodUp(){
+    hoodMotor.getPIDController().setReference(Constants.hoodUpSpeed, ControlType.kDutyCycle);
+  }
+
+  /**
+   * Moves the hood down
+   */
+  public void moveHoodDown(){
+    hoodMotor.getPIDController().setReference(Constants.hoodDownSpeed, ControlType.kDutyCycle);
+  }
+
+  /**
+   * Stops the hood at the given location
+   */
+  public void stopHood(){
+    hoodMotor.getPIDController().setReference(0, ControlType.kDutyCycle);
+  }
+
+  /**
+   * Returns whether the hood is at the top limit according to the top limit switch
+   * @return boolean 
+   */
+  public boolean atTopLimit(){
+    return upperHoodLimit.get();
+  }
+
+  /**
+   * Returns whether the hood is at the bottom limit according the bottom limit switch
+   * @return boolean
+   */
+  public boolean atBottomLimit(){
+    return !lowerHoodLimit.get();
   }
 
   /**

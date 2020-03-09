@@ -7,7 +7,10 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -23,6 +26,8 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private static RobotContainer m_robotContainer;
+  SendableChooser<Integer> autoChooser = new SendableChooser<>();
+
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -37,6 +42,14 @@ public class Robot extends TimedRobot {
     RobotContainer.hood.resetEncoder();
     RobotContainer.drivetrain.resetAllEncoder();
     RobotContainer.conveyorBelt.updateBallsHeld();
+
+    autoChooser.setDefaultOption("Cross Initiation Line", 0);
+    autoChooser.addOption("Left Power Port Auto", 1);
+    autoChooser.addOption("Center Power Port Auto", 2);
+    autoChooser.addOption("Right Power Port Auto", 3);
+
+    SmartDashboard.putData("Autonomous routine", autoChooser);
+    CameraServer.getInstance().startAutomaticCapture();
   }
 
   /**
@@ -71,9 +84,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledPeriodic() {
-    RobotContainer.hood.resetEncoder();
-    //System.out.println(RobotContainer.turret.getPosition());
-
+    // System.out.println("Hood Rotations: " + RobotContainer.hood.getPosition());
+    // System.out.println("Turret Position: " + RobotContainer.turret.getPosition());
+    // System.out.println("Distance: " + RobotContainer.tfmini.getDistance());
+    // //RobotContainer.hood.resetEncoder();
 
   }
 
@@ -85,6 +99,8 @@ public class Robot extends TimedRobot {
     RobotContainer.drivetrain.resetAllEncoder();
     RobotContainer.conveyorBelt.updateBallsHeld();
     RobotContainer.hood.resetEncoder();
+
+    Constants.autoMode = autoChooser.getSelected();
 
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
@@ -120,7 +136,8 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     CommandScheduler.getInstance().run();
-    //System.out.println(RobotContainer.tfmini.getDistance());
+    System.out.println("Distance: " + RobotContainer.tfmini.getDistance());
+    System.out.println("Shooter speed:" + RobotContainer.shooter.getShooterSpeed()[1]);
   }
 
   /**
@@ -147,33 +164,5 @@ public class Robot extends TimedRobot {
     //Test RotateX to make sure it turns in the right direction - schedule this in AutonomousInit
     //Make/test autonomous routine - with/without shooting
 
-    /**
-     * Shooter Testing
-     */
-
-
-    /**
-     * Turret Testing
-     */
-
-
-
-    /**
-     * Hood Testing 
-     */
-
- 
-
-    /**
-     * Intake + Conveyor Belt
-     */
-
-    /**
-     * Friction Wheel Testing
-     */
-    
-    /**
-     * Climber Testing
-     */
   }
 }
