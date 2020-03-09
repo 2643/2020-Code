@@ -57,10 +57,10 @@ public class TFMini extends SubsystemBase {
     }
     holdCount = 3;
 
-    if ((port.getBytesReceived()-18) > 0) {
+    if ((port.getBytesReceived()-18) >= 0) {
       port.read(port.getBytesReceived()-18);
     }
-    
+
     byte[] outputFrame = port.read(18);
     for (int index = 0; index < 18; index++) {
       if (headerOne && headerTwo) {
