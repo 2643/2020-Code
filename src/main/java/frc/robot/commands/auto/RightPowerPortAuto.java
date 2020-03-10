@@ -8,6 +8,9 @@
 package frc.robot.commands.auto;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.Constants;
+import frc.robot.commands.*;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -19,6 +22,6 @@ public class RightPowerPortAuto extends SequentialCommandGroup {
   public RightPowerPortAuto() {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super();
+    super(new LowerIntake(), new MoveForward(Constants.moveOffInitiationLineRotations), new TurretAlign().andThen(new AutoShoot().raceWith(new WaitCommand(1).andThen(new ForwardConveyor()))));
   }
 }

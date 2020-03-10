@@ -28,9 +28,9 @@ public class HoodPOVControl extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(RobotContainer.driveStick.getPOV()==0 && !RobotContainer.hood.atTopLimit()){
+    if(RobotContainer.driveStick.getPOV()==0 /*&& !RobotContainer.hood.atTopLimit()*/){
       RobotContainer.hood.moveHoodUp();
-    }else if(RobotContainer.driveStick.getPOV() == 180 && !RobotContainer.hood.atBottomLimit()){
+    }else if(RobotContainer.driveStick.getPOV() == 180 /*&& !RobotContainer.hood.atBottomLimit()*/){
       RobotContainer.hood.moveHoodDown();
     }else{
       RobotContainer.hood.stopHood();

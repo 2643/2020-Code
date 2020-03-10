@@ -12,8 +12,8 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class ShootingIndex extends CommandBase {
-  private int lastIRActivated = 0;
-  private boolean finished = false; 
+  // private int lastIRActivated = 0;
+  // private boolean finished = false; 
 
   /**
    * Creates a new ShootingIndex.
@@ -26,34 +26,35 @@ public class ShootingIndex extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    lastIRActivated = RobotContainer.conveyorBelt.lastIndex();
-    //If the fifth iRSensor is activated, then the command ends 
-    if(lastIRActivated == 4){
-      finished = true; 
-    }
+    // lastIRActivated = RobotContainer.conveyorBelt.lastIndex();
+    // //If the fifth iRSensor is activated, then the command ends 
+    // if(lastIRActivated == 4){
+    //   finished = true; 
+    // }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.conveyorBelt.setSpeed(Constants.conveyorBeltForwardSpeed);
+    RobotContainer.conveyorBelt.setSpeed(Constants.conveyorBeltForwardSpeedAutoShoot);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     RobotContainer.conveyorBelt.setSpeed(0);
-    finished = false; 
+    // finished = false; 
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    lastIRActivated = RobotContainer.conveyorBelt.lastIndex();
-    //If the iRSensor after the one last activated is activated, the command ends.
-    if(lastIRActivated == 4){
-      finished = true; 
-    }
-    return finished; 
+    // lastIRActivated = RobotContainer.conveyorBelt.lastIndex();
+    // //If the iRSensor after the one last activated is activated, the command ends.
+    // if(lastIRActivated == 4){
+    //   finished = true; 
+    // }
+    // return finished; 
+    return false; 
   }
 }

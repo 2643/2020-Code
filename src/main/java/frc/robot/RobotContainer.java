@@ -94,7 +94,7 @@ public class RobotContainer {
     rotationControl.whileHeld(new RotationControl().andThen(new WaitCommand(666))); 
     positionControl.whileHeld(new PositionControl().andThen(new WaitCommand(4))); 
 
-    autoShoot.whileHeld(new ConditionalCommand(new TurretAlign().andThen(new AutoShoot().raceWith(new WaitCommand(1).andThen(new ForwardConveyor()))), new Nothing(), () -> Constants.visionTable.getEntry("valid").getBoolean(false)));
+    autoShoot.whileHeld(new ConditionalCommand(new TurretAlign().andThen(new AutoShoot().raceWith(new WaitCommand(6).andThen(new ShootingIndex()))), new Nothing(), () -> Constants.visionTable.getEntry("valid").getBoolean(false)));
     //autoShoot.whenReleased(new CenterTurret()); //TODO test centering the turret after shooting
     manualShooting.whileHeld(new ForwardConveyor().alongWith(new Shoot()));
 
@@ -120,6 +120,7 @@ public class RobotContainer {
     if(Constants.autoMode == 1){
       return (new LeftPowerPortAuto());
     }else if(Constants.autoMode == 2){
+      System.out.println("Center");
       return (new CenterPowerPortAuto());
     }else if(Constants.autoMode == 3){
       return (new RightPowerPortAuto());

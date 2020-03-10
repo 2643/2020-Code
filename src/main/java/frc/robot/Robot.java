@@ -43,13 +43,13 @@ public class Robot extends TimedRobot {
     RobotContainer.drivetrain.resetAllEncoder();
     RobotContainer.conveyorBelt.updateBallsHeld();
 
-    autoChooser.setDefaultOption("Cross Initiation Line", 0);
-    autoChooser.addOption("Left Power Port Auto", 1);
-    autoChooser.addOption("Center Power Port Auto", 2);
-    autoChooser.addOption("Right Power Port Auto", 3);
+    // autoChooser.setDefaultOption("Cross Initiation Line", 0);
+    // autoChooser.addOption("Left Power Port Auto", 1);
+    // autoChooser.addOption("Center Power Port Auto", 2);
+    // autoChooser.addOption("Right Power Port Auto", 3);
 
-    SmartDashboard.putData("Autonomous routine", autoChooser);
-    CameraServer.getInstance().startAutomaticCapture();
+    // SmartDashboard.putData("Autonomous routine", autoChooser);
+    // CameraServer.getInstance().startAutomaticCapture();
   }
 
   /**
@@ -84,7 +84,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledPeriodic() {
-    // System.out.println("Hood Rotations: " + RobotContainer.hood.getPosition());
+    System.out.println("Hood Rotations: " + RobotContainer.hood.getPosition());
     // System.out.println("Turret Position: " + RobotContainer.turret.getPosition());
     // System.out.println("Distance: " + RobotContainer.tfmini.getDistance());
     // //RobotContainer.hood.resetEncoder();
@@ -100,7 +100,7 @@ public class Robot extends TimedRobot {
     RobotContainer.conveyorBelt.updateBallsHeld();
     RobotContainer.hood.resetEncoder();
 
-    Constants.autoMode = autoChooser.getSelected();
+    //Constants.autoMode = autoChooser.getSelected();
 
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 

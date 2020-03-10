@@ -50,14 +50,14 @@ public class Intake extends SubsystemBase {
    * Retracts the intake
    */
   public void retract(){
-    intakePiston.set(Value.kForward);
+    intakePiston.set(Value.kReverse);
   }
    
   /**
    * Extends the intake
    */
   public void extend(){
-    intakePiston.set(Value.kReverse); 
+    intakePiston.set(Value.kForward); 
   }
 
   @Override

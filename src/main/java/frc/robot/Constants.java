@@ -28,7 +28,10 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 public final class Constants {
 
     //Auto Constants
-    public static int autoMode = 0; 
+    public static int autoMode = 2; 
+    public static double moveOffInitiationLineRotations = 20; 
+
+    public static double conveyorBeltForwardSpeedAutoShoot = -0.4;
 
     //Vision ConstantsS
     public static boolean valid = false; 
