@@ -9,7 +9,6 @@ package frc.robot;
 
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -43,13 +42,13 @@ public class Robot extends TimedRobot {
     RobotContainer.drivetrain.resetAllEncoder();
     RobotContainer.conveyorBelt.updateBallsHeld();
 
-    // autoChooser.setDefaultOption("Cross Initiation Line", 0);
-    // autoChooser.addOption("Left Power Port Auto", 1);
-    // autoChooser.addOption("Center Power Port Auto", 2);
-    // autoChooser.addOption("Right Power Port Auto", 3);
+    autoChooser.setDefaultOption("Cross Initiation Line", 0);
+    autoChooser.addOption("Left Power Port Auto", 1);
+    autoChooser.addOption("Center Power Port Auto", 2);
+    autoChooser.addOption("Right Power Port Auto", 3);
 
-    // SmartDashboard.putData("Autonomous routine", autoChooser);
-    // CameraServer.getInstance().startAutomaticCapture();
+    SmartDashboard.putData("Autonomous routine", autoChooser);
+    CameraServer.getInstance().startAutomaticCapture();
   }
 
   /**

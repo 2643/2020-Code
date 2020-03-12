@@ -23,7 +23,6 @@ public class Turret extends SubsystemBase {
   //private static DigitalInput leftLimitSwitch = new DigitalInput(Constants.leftLimitSwitchPort);  
   //private static DigitalInput rightLimitSwitch = new DigitalInput(Constants.rightLimitSwitchPort);
 
-  //
   //Turret PID Constants
   double kP_turret = 0.16;
   double kI_turret = 0;
@@ -75,33 +74,27 @@ public class Turret extends SubsystemBase {
       turretMotor.getPIDController().setReference(turretMotor.getEncoder().getPosition(), ControlType.kPosition, slotID_turret);
     }
   }
+
   /**
    * Move the turret left using duty cycle
    */
   public void moveTurretLeft(){
-    // //If the left limit switch is activated, then don't move to the left
-    // if(leftLimitSwitch.get() == false){
-    //   stopTurret();
-    // }else{
-    //   turretMotor.getPIDController().setReference(Constants.leftTurretSpeed, ControlType.kDutyCycle, slotID_turret);
-    // }
-    
-    turretMotor.getPIDController().setReference(Constants.leftTurretSpeed, ControlType.kDutyCycle, slotID_turret);
+    if(turretMotor.getEncoder().getPosition() <= Constants.turretEncoderLeftSoftLimit && turretMotor.getEncoder().getPosition() >= Constants.turretEncoderRightSoftLimit){
+      turretMotor.getPIDController().setReference(Constants.leftTurretSpeed, ControlType.kDutyCycle, slotID_turret);
+    }else{
+      turretMotor.getPIDController().setReference(turretMotor.getEncoder().getPosition(), ControlType.kPosition, slotID_turret);
+    }
   }
 
   /**
    * Move the turret right using duty cycle
    */
   public void moveTurretRight(){
-    // //If the right limit switch is activated, then don't move to the right
-    // if(rightLimitSwitch.get() == false){
-    //   stopTurret();
-    // }else{
-    //   turretMotor.getPIDController().setReference(Constants.rightTurretSpeed, ControlType.kDutyCycle, slotID_turret);
-    // }  
-
-    turretMotor.getPIDController().setReference(Constants.rightTurretSpeed, ControlType.kDutyCycle, slotID_turret);
-
+    if(turretMotor.getEncoder().getPosition() <= Constants.turretEncoderLeftSoftLimit && turretMotor.getEncoder().getPosition() >= Constants.turretEncoderRightSoftLimit){
+      turretMotor.getPIDController().setReference(Constants.rightTurretSpeed, ControlType.kDutyCycle, slotID_turret);
+    }else{
+      turretMotor.getPIDController().setReference(turretMotor.getEncoder().getPosition(), ControlType.kPosition, slotID_turret);
+    }
   }
 
   /**
