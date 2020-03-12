@@ -58,14 +58,16 @@ public class Hood extends SubsystemBase {
    * Moves the hood up 
    */
   public void moveHoodUp(){
-    hoodMotor.getPIDController().setReference(Constants.hoodUpSpeed, ControlType.kDutyCycle);
+    if(!(atTopLimit() || atBottomLimit()))
+      hoodMotor.getPIDController().setReference(Constants.hoodUpSpeed, ControlType.kDutyCycle);
   }
 
   /**
    * Moves the hood down
    */
   public void moveHoodDown(){
-    hoodMotor.getPIDController().setReference(Constants.hoodDownSpeed, ControlType.kDutyCycle);
+    if(!(atTopLimit() || atBottomLimit()))
+      hoodMotor.getPIDController().setReference(Constants.hoodDownSpeed, ControlType.kDutyCycle);
   }
 
   /**
