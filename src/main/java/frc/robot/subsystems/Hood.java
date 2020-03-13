@@ -17,7 +17,7 @@ import frc.robot.Constants;
 
 public class Hood extends SubsystemBase {
   private static CANSparkMax hoodMotor = new CANSparkMax(Constants.hoodMotorPort, MotorType.kBrushless);
-  private static DigitalInput upperHoodLimit = new DigitalInput(Constants.upperHoodLimitPort);  //TODO implement limit switches for hood
+  private static DigitalInput upperHoodLimit = new DigitalInput(Constants.upperHoodLimitPort);  
   private static DigitalInput lowerHoodLimit = new DigitalInput(Constants.lowerHoodLimitPort);
 
   //Hood PID Constants

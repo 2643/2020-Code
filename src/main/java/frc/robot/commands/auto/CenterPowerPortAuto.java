@@ -22,6 +22,6 @@ public class CenterPowerPortAuto extends SequentialCommandGroup {
   public CenterPowerPortAuto() {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(new LowerIntake(), /*new MoveForward(-Constants.moveOffInitiationLineRotations)*/ new TurretAlign().andThen(new AutoShoot().raceWith(new WaitCommand(1).andThen(new ForwardConveyor()))));
+    super(new LowerIntake(), new MoveForward(-Constants.moveOffInitiationLineRotations), new TurretAlign().andThen(new AutoShoot().raceWith(new WaitCommand(1).andThen(new ForwardConveyor()))));
   }
 }

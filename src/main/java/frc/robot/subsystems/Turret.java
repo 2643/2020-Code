@@ -19,9 +19,8 @@ import frc.robot.RobotContainer;
 public class Turret extends SubsystemBase {
   private static CANSparkMax turretMotor = new CANSparkMax(Constants.turretMotorPort, MotorType.kBrushless);
 
-  //TODO uncomment turret limit switch functionality
-  //private static DigitalInput leftLimitSwitch = new DigitalInput(Constants.leftLimitSwitchPort);  
-  //private static DigitalInput rightLimitSwitch = new DigitalInput(Constants.rightLimitSwitchPort);
+  //TODO implement turret limit switch to zero the turret
+  //private static DigitalInput limitSwitch = new DigitalInput(Constants.turretLimitSwitchPort);
 
   //Turret PID Constants
   double kP_turret = 0.16;
@@ -56,18 +55,6 @@ public class Turret extends SubsystemBase {
    * @param position to move turret to
    */
   public void aimTurret(double position){ //TODO add functionality to accept angles to move turret to
-    // if(leftLimitSwitch.get() == true){
-    //   if(position <= Constants.turretEncoderLeftSoftLimit){ //TODO check which direction is positive/negative
-    //     turretMotor.getPIDController().setReference(position, ControlType.kSmartMotion, slotID_turret);
-    //   }
-    // } else if(rightLimitSwitch.get() == true){
-    //   if(position <= Constants.turretEncoderRightSoftLimit){
-    //     turretMotor.getPIDController().setReference(position, ControlType.kSmartMotion, slotID_turret);
-    //   }
-    // }
-    // else{
-    //   turretMotor.getPIDController().setReference(turretMotor.getEncoder().getPosition(), ControlType.kPosition, slotID_turret);
-    // }
     if(position <= Constants.turretEncoderLeftSoftLimit && position >= Constants.turretEncoderRightSoftLimit){
       turretMotor.getPIDController().setReference(position, ControlType.kPosition, slotID_turret);
     }else{

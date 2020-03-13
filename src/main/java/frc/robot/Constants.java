@@ -75,8 +75,7 @@ public final class Constants {
 
     //Turret Constants
     public static int turretMotorPort = 7;
-    public static int leftLimitSwitchPort = 0; //TODO find port of left limit switch on turret
-    public static int rightLimitSwitchPort = 0; //TODO find port of right limit switch on turret
+    public static int turretLimitSwitchPort = 0; //TODO find port of the turret limit switch
 
     public static double leftTurretSpeed = 0.15;
     public static double rightTurretSpeed = -0.15;
