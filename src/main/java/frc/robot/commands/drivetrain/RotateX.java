@@ -28,6 +28,7 @@ public class RotateX extends CommandBase {
     // Reset the drivetrain encoders
     RobotContainer.drivetrain.resetLeftEncoder();
     RobotContainer.drivetrain.resetRightEncoder();
+    
     RobotContainer.drivetrain.setRightMotorPosition(-Constants.rotateX(angle));
     RobotContainer.drivetrain.setLeftMotorPosition(Constants.rotateX(angle));
 
@@ -53,8 +54,8 @@ public class RotateX extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    //TODO Make sure if logic works 
-    if((RobotContainer.drivetrain.getLeftMotorEncoder() == Constants.rotateX(angle)) && (RobotContainer.drivetrain.getRightMotorEncoder() == Constants.rotateX(angle)))
+    if((RobotContainer.drivetrain.getLeftMotorEncoder() == Constants.rotateX(angle)) 
+    && (RobotContainer.drivetrain.getRightMotorEncoder() == Constants.rotateX(angle)))
       return true;
     return false;
   }

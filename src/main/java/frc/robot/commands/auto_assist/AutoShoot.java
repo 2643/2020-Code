@@ -7,7 +7,6 @@ import java.lang.Math;
 
 public class AutoShoot extends CommandBase {
 
-    private boolean finished = false;
     private double XfromTarget;
 
     public AutoShoot() {

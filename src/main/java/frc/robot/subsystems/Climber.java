@@ -22,7 +22,7 @@ public class Climber extends SubsystemBase {
 
   public static CANSparkMax climberDeliveryMotor1 = new CANSparkMax(Constants.climberDeliveryMotorPort1, MotorType.kBrushless);
   
-  //TODO Implement soft limits for delivery
+  //TODO Necessary feature: Implement soft limits for delivery
 
   private double kP = 0.00016;//0.006;
   private double kI = 0;//0.000002;

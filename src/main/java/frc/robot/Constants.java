@@ -75,7 +75,7 @@ public final class Constants {
 
     //Turret Constants
     public static int turretMotorPort = 7;
-    public static int turretLimitSwitchPort = 0; //TODO find port of the turret limit switch
+    public static int turretLimitSwitchPort = 0; //TODO Necessary value: find port of the turret limit switch
 
     public static double leftTurretSpeed = 0.15;
     public static double rightTurretSpeed = -0.15;
@@ -89,8 +89,8 @@ public final class Constants {
     public static double leftTurretLowSpeed = 0.04;
     public static double rightTurretLowSpeed = -0.04;
 
-    public static final int turretEncoderLeftSoftLimit = 25; //TODO soft limit should become 85 when safe
-    public static final int turretEncoderRightSoftLimit = -25; //TODO soft limit should become -85 when safe
+    public static final int turretEncoderLeftSoftLimit = 25; //TODO Reminder: soft limit should become 85 when safe
+    public static final int turretEncoderRightSoftLimit = -25; //TODO Reminder: soft limit should become -85 when safe
 
     //Hood Constants
     public static int hoodMotorPort = 8;
@@ -138,7 +138,7 @@ public final class Constants {
 
     public static final double bothWinchUnwindSpeed = 0.3;
     
-    public static final double deliveryTopLimit = 0; //TODO determine encoder value for top limit of the winch
+    public static final double deliveryTopLimit = 0; //TODO Necessary value: determine top encoder value for climber delivery
     public static final double deliveryBottomLimit = 0; 
 
     //Intake Constants

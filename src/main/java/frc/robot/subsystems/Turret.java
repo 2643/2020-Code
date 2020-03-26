@@ -14,12 +14,11 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.RobotContainer;
 
 public class Turret extends SubsystemBase {
   private static CANSparkMax turretMotor = new CANSparkMax(Constants.turretMotorPort, MotorType.kBrushless);
 
-  //TODO implement turret limit switch to zero the turret
+  //TODO Necessary feature: implement turret limit switch to zero the turret
   //private static DigitalInput limitSwitch = new DigitalInput(Constants.turretLimitSwitchPort);
 
   //Turret PID Constants
@@ -54,7 +53,7 @@ public class Turret extends SubsystemBase {
    * Moves the turret to an angle
    * @param position to move turret to
    */
-  public void aimTurret(double position){ //TODO add functionality to accept angles to move turret to
+  public void aimTurret(double position){ 
     if(position <= Constants.turretEncoderLeftSoftLimit && position >= Constants.turretEncoderRightSoftLimit){
       turretMotor.getPIDController().setReference(position, ControlType.kPosition, slotID_turret);
     }else{
