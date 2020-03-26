@@ -14,9 +14,18 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 import frc.robot.commands.auto.*;
+import frc.robot.commands.auto_assist.*;
+import frc.robot.commands.climber.*;
+import frc.robot.commands.conveyor.*;
+import frc.robot.commands.frictionwheel.*;
+import frc.robot.commands.intake.*;
+import frc.robot.commands.shooter.*;
+import frc.robot.commands.turret.*;
+
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
