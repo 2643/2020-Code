@@ -97,8 +97,8 @@ public final class Constants {
     public static int upperHoodLimitPort = 12; 
     public static int lowerHoodLimitPort = 11;
 
-    public static int upperEncoderSoftLimit = 26;
-    public static int lowerEncoderSoftLimit = 0;
+    public static int upperEncoderSoftLimit = 26; //TODO get upper limit for hood
+    public static int lowerEncoderSoftLimit = 0; //TODO get lower limit for hood
 
     public static double hoodUpSpeed = 0.2; 
     public static double hoodDownSpeed = -0.2;

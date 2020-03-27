@@ -19,8 +19,8 @@ public class TurretAlign extends CommandBase {
   public void execute() {
     vision_error = (double)Constants.visionTable.getEntry("2020-High-Target_x_offset").getNumber(Constants.offset);
 
-    System.out.println("Vision Error " + vision_error);
-    if(Math.abs(vision_error-Constants.offset) < 50){
+    // System.out.println("Vision Error " + vision_error);
+    if(Math.abs(vision_error - Constants.offset) < 50){
       Constants.leftTurretSpeed = Constants.leftTurretLowSpeed;
       Constants.rightTurretSpeed = Constants.rightTurretLowSpeed;
     }else{

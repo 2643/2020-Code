@@ -10,11 +10,11 @@ package frc.robot.commands.auto;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
-import frc.robot.commands.auto_assist.AutoShoot;
-import frc.robot.commands.conveyor.ForwardConveyor;
-import frc.robot.commands.drivetrain.MoveForward;
-import frc.robot.commands.intake.LowerIntake;
-import frc.robot.commands.turret.TurretAlign;
+import frc.robot.commands.auto_assist.*;
+import frc.robot.commands.conveyor.*;
+import frc.robot.commands.drivetrain.*;
+import frc.robot.commands.intake.*;
+import frc.robot.commands.turret.*;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:

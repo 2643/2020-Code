@@ -99,7 +99,7 @@ public class RobotContainer {
 
 
     rotationControl.whileHeld(new RotationControl().andThen(new WaitCommand(666))); 
-    positionControl.whileHeld(new PositionControl().andThen(new WaitCommand(4))); 
+    positionControl.whileHeld(new PositionControl().andThen(new WaitCommand(4)));  //check if at desired position before running position control
 
     autoShoot.whileHeld(new ConditionalCommand(new TurretAlign().andThen(new AutoShoot().raceWith(new WaitCommand(6).andThen(new ShootingIndex()))), new Nothing(), () -> Constants.visionTable.getEntry("valid").getBoolean(false)));
     manualShooting.whileHeld(new ForwardConveyor().alongWith(new Shoot()));
